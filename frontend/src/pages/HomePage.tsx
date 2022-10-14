@@ -1,17 +1,45 @@
 import React, { useState } from "react";
 import Collapsible from "../components/Collapsible";
+import { Navbar } from "../components/Navbar";
+import SemesterPill from "../components/SemesterPill";
 import { SubjectGroup, subjectGroups, subjectTableRowData } from "../data";
 
 const HomePage = () => {
   return (
-    <div className="container max-w-xl mx-auto mt-32">
-      {subjectGroups.map((group) => (
-        <div className="mt-12">
-          <SubjectGroupCollapsible
-            subjectGroup={group}
-          ></SubjectGroupCollapsible>
+    <div className="">
+      <Navbar></Navbar>
+      <div className="container max-w-2xl mx-auto mt-32">
+        <div className="alert alert-info">
+          {/* <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              className="stroke-current flex-shrink-0 w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg> */}
+
+          <div className="flex justify-between w-full">
+            <h3 className="font-bold">Total</h3>
+            <div className="flex">
+              <p className="mr-8">37/54</p>
+              <p className="mr-10">5.37</p>
+            </div>
+          </div>
         </div>
-      ))}
+        {subjectGroups.map((group) => (
+          <div className="mt-12">
+            <SubjectGroupCollapsible
+              subjectGroup={group}
+            ></SubjectGroupCollapsible>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
@@ -30,7 +58,7 @@ const SubjectGroupCollapsible = ({
           <h3>{subjectGroup.name}</h3>
           <div className="flex">
             {collapsed && <p className="mr-8">37/54</p>}
-            {collapsed && <p className="mr-4">5.37</p>}
+            {collapsed && <p className="mr-2">5.37</p>}
           </div>
         </div>
       )}
@@ -49,17 +77,40 @@ const SubjectGroupCollapsible = ({
           {subjectGroup.data.map((subject) => (
             <tr key={subject.id}>
               <td className="text-left pr-2">{subject.name}</td>
-              <td className="pr-2">Sem {subject.semester}</td>
-              <td className="pr-2">{subject.ects}</td>
-              <td className="pr-2">{subject.grade}</td>
-              <td className=""></td>
+              <td className="pr-2">
+                <SemesterPill semester={subject.semester}></SemesterPill>
+              </td>
+              <td className="text-right pr-2">{subject.ects}</td>
+              <td className="text-right pr-2">{subject.grade}</td>
+              <td className="transition-all  hover:opacity-100">
+                <button
+                  className=""
+                  onClick={() => console.log("Suck my nuts")}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-edit"
+                  >
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                  </svg>
+                </button>
+              </td>
             </tr>
           ))}
           <tr className="">
             <td className="text-left pr-2 bg-base-200">Total</td>
             <td className="bg-base-200 pr-2"></td>
-            <td className="bg-base-200 pr-2">36/54</td>
-            <td className="bg-base-200 pr-2">5.37</td>
+            <td className="text-right bg-base-200 pr-2">36/54</td>
+            <td className="text-right bg-base-200 pr-2">5.37</td>
             <td className="bg-base-200 "></td>
           </tr>
         </tbody>
