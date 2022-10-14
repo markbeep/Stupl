@@ -1,14 +1,21 @@
 version: "1"
 
 services:
-  flask-server:
+  # db:
+  #   image: postgres
+  #   volumes:
+  #     - ./data/db:/var/lib/postgresql/data
+  #   environment:
+  #     - POSTGRES_DB=postgres
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=postgres
+  django:
     build: .
     restart: always
     ports:
-      - "8080:8080"
-    expose: [ 8080 ]
+      - "8000:8000"
     volumes:
-      - data:/data
+      - .:/app
 
 volumes:
   data:

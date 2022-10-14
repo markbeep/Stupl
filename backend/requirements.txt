@@ -1,3 +1,2 @@
-Flask
-python-jwt
-peewee
+Django
+psycopg2
