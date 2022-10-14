@@ -3,12 +3,13 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { Konsti } from "./pages/konsti";
 import { Yanick } from "./pages/Yanick";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<TestHome />}></Route>
+        <Route path="/" element={<HomePage />}></Route>
         <Route path="/example" element={<TestHome />}></Route>
         <Route path="/konsti" element={<Konsti />}></Route>
         <Route path="/yanick" element={<Yanick />}></Route>
