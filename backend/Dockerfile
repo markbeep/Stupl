@@ -8,6 +8,6 @@ RUN pip3 install --no-cache -r requirements.txt
 
 COPY . .
 
-EXPOSE 5000
+EXPOSE 8080
 
 CMD python3 server.py
