@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/api/hello")
 def count_day():
-    return "Hello"
+    return "hello world"
 
 
 if __name__ == "__main__":
