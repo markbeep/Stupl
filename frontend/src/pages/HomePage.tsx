@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Collapsible from "../components/Collapsible";
 import { SubjectGroup, subjectGroups, subjectTableRowData } from "../data";
 
 const HomePage = () => {
@@ -22,16 +23,9 @@ const SubjectGroupCollapsible = ({
 }: {
   subjectGroup: SubjectGroup;
 }) => {
-  const [collapsed, setCollapsed] = useState(false);
   return (
-    <div className="collapse collapse-arrow bg-base-100 rounded-box">
-      <input
-        type="checkbox"
-        className="peer"
-        checked={!collapsed}
-        onClick={() => setCollapsed(!collapsed)}
-      />
-      <div className="collapse-title bg-base-200 ">
+    <Collapsible
+      headerBuilder={(collapsed) => (
         <div className="flex justify-between">
           <h3>{subjectGroup.name}</h3>
           <div className="flex">
@@ -39,38 +33,37 @@ const SubjectGroupCollapsible = ({
             {collapsed && <p className="mr-4">5.37</p>}
           </div>
         </div>
-      </div>
-      <div className="collapse-content p-0">
-        <table className="table w-full">
-          <thead className="rounded-none">
-            <tr className="rounded-none">
-              <th className="text-left"></th>
-              <th className="pr-2">Semester</th>
-              <th className="pr-2">ECTS</th>
-              <th className="pr-2">Grade</th>
-              <th className=""></th>
+      )}
+    >
+      <table className="table w-full">
+        <thead className="rounded-none">
+          <tr className="rounded-none">
+            <th className="text-left"></th>
+            <th className="pr-2">Semester</th>
+            <th className="pr-2">ECTS</th>
+            <th className="pr-2">Grade</th>
+            <th className=""></th>
+          </tr>
+        </thead>
+        <tbody>
+          {subjectGroup.data.map((subject) => (
+            <tr key={subject.id}>
+              <td className="text-left pr-2">{subject.name}</td>
+              <td className="pr-2">Sem {subject.semester}</td>
+              <td className="pr-2">{subject.ects}</td>
+              <td className="pr-2">{subject.grade}</td>
+              <td className=""></td>
             </tr>
-          </thead>
-          <tbody>
-            {subjectGroup.data.map((subject) => (
-              <tr key={subject.id}>
-                <td className="text-left pr-2">{subject.name}</td>
-                <td className="pr-2">Sem {subject.semester}</td>
-                <td className="pr-2">{subject.ects}</td>
-                <td className="pr-2">{subject.grade}</td>
-                <td className=""></td>
-              </tr>
-            ))}
-            <tr className="">
-              <td className="text-left pr-2 bg-base-200">Total</td>
-              <td className="bg-base-200 pr-2"></td>
-              <td className="bg-base-200 pr-2">36/54</td>
-              <td className="bg-base-200 pr-2">5.37</td>
-              <td className="bg-base-200 "></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+          ))}
+          <tr className="">
+            <td className="text-left pr-2 bg-base-200">Total</td>
+            <td className="bg-base-200 pr-2"></td>
+            <td className="bg-base-200 pr-2">36/54</td>
+            <td className="bg-base-200 pr-2">5.37</td>
+            <td className="bg-base-200 "></td>
+          </tr>
+        </tbody>
+      </table>
+    </Collapsible>
   );
 };
