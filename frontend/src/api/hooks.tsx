@@ -50,3 +50,9 @@ export const loginUser = async (email: string, password: string) => {
   const response = await axios.post("/auth/login/", { email, password });
   return response.data;
 };
+
+// export const getAllSubjects = async () => {
+//   console.log("is this working?");
+//   const response = axios.get("api/get_subjects/");
+//   console.log(response);
+// };
