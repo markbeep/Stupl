@@ -1,11 +1,15 @@
 
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework import status
 import json
 from .models import VVZSubjects, UserSubjects
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
+@api_view(["GET"])
 def list_temporary(request):
     subjects = VVZSubjects.objects.all()
     sub2 = UserSubjects.objects.all()
@@ -13,44 +17,73 @@ def list_temporary(request):
         "data": len(subjects),
         "data2": len(sub2)
     })
+    
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def get_subjects_per_user(request):
+    user = request.user
+    subjects = user.subjects.all()
+    return Response([
+        {
+            "name": x.name,
+            "credits": x.credits,
+            "id": x.id
+        }
+        for x in subjects
+    ])
 
-@api_view(["POST","GET"])
-def load_user_sub(request):
-    # From UserSubjects return list with all information for certain user
-    usersub = UserSubjects.objects.all().filter(user=request.user)
-    return Response(usersub)
-
-def load_vvz(request):
-    vvz = VVZSubjects.objects.al()
-    return Response(vvz)
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def load_vvz(request, keyword):
+    vvz = VVZSubjects.objects.filter(name__icontains=keyword).all()
+    return Response([
+        {
+            "name": x.name,
+            "credits": x.credits
+        }
+        for x in vvz
+    ])
 
 @api_view(["POST"])
+@permission_classes([IsAuthenticated])
 def add_subject(request):
-    name = request.POST["name"]
-    credits = request.POST["credits"]
+    name = request.data.get("name", None)
+    credits = request.data.get("credits", None)
     vvz_subject = None #request.POST["vvz_subject"]
-    category = request.POST["category"]
-    semester = request.POST["semester"]
-    grade = request.POST["grade"]
+    category = request.data.get("category", None)
+    semester = request.data.get("semester", None)
+    grade = request.data.get("grade", None)
     user = request.user
     count_grade = True
     count_credits = True
     year = 2022
-    sub = UserSubjects.objects.create(name=name,user=user,credits=credits,category=category,vvz_subject=vvz_subject,grade=grade,semester=semester,year=year,user=None,count_grade=count_grade,count_credits=count_credits)
+    sub = UserSubjects.objects.create(
+        name=name,
+        user=user,
+        credits=credits,
+        category=category,
+        vvz_subject=vvz_subject,
+        grade=grade,
+        semester=semester,
+        year=year,
+        count_grade=count_grade,
+        count_credits=count_credits
+    )
     sub.save()
     return Response("Success")
 
-def del_subject(request):
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def delete_subject(request):
     # Delete subject from UserSubjects
-    subjid = request.POST["subjid"]
-    UserSubjects.objects.filter(id=subjid, user=request.user).delete()
+    subjid = request.GET.get("subject_id")
+    subject = get_object_or_404(UserSubjects, id=subjid)
+    subject.delete()
     return Response("Success")
 
 
-def subject_table_row_data(request):
-    user = request.user
-    subjects = user.subjects.all()
 
+@api_view(["GET"])
 def fill_db(request):
     print("HELLO")
     with open("data/lectures.json",'r') as f:
