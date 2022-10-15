@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import { createSubject } from "../api/hooks";
+import { addSubject } from "../api/hooks";
+import { useAuth } from "../authHanlder";
 import { SubjectData } from "../data";
 import SemesterPill from "./SemesterPill";
 import Stepper from "./Stepper";
@@ -27,21 +28,23 @@ const AddSubjectModal = ({ isOpen, closeModal, subjectPresets }: Props) => {
   const [category, setCategory] = useState();
   const [completedCheckbox, setCompletedCheckbox] = useState(true);
   const [submitLoading, setSubmitLoading] = useState(false);
+  const { token } = useAuth();
 
   const onSubmit = async () => {
-    const data: SubjectData = {
+    const data: any = {
       name: subjectName!,
-      ects: ectsStepper,
-      grade: gradeStepper,
+      credits: ectsStepper,
+      category: 0,
       semester: semesterStepper,
+      grade: gradeStepper,
       planned: completedCheckbox,
-      id: 69420,
     };
 
     setSubmitLoading(true);
-    const result = await createSubject(data);
+    const result = await addSubject(token!, data);
     setSubmitLoading(false);
-    closeModal();
+    console.log(result);
+    // closeModal();
   };
 
   return (
