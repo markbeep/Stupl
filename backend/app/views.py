@@ -25,9 +25,12 @@ def get_subjects_per_user(request):
     subjects = user.subjects.all()
     return Response([
         {
+            "id": x.id,
             "name": x.name,
             "credits": x.credits,
-            "id": x.id
+            "category": x.category,
+            "semester": x.semester,
+            "grade": x.grade
         }
         for x in subjects
     ])
