@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import Collapsible from "../components/Collapsible";
 import { Navbar } from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
