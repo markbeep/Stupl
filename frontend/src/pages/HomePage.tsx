@@ -3,12 +3,8 @@ import Collapsible from "../components/Collapsible";
 import { Navbar } from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
 import SemesterPill from "../components/SemesterPill";
-import {
-  SubjectGroup,
-  subjectGroups,
-  SubjectTableRowData,
-  subjectTableRowData,
-} from "../data";
+import { SubjectGroup, subjectGroups, SubjectData } from "../data";
+import { RequirementsCollapsible } from "./Yanick";
 
 const HomePage = () => {
   const [includePlanned, setIncludePlanned] = useState(false);
@@ -37,6 +33,9 @@ const HomePage = () => {
             ></SubjectGroupCollapsible>
           </div>
         ))}
+        <div className="mt-12">
+          <RequirementsCollapsible></RequirementsCollapsible>
+        </div>
       </div>
     </div>
   );
@@ -50,7 +49,7 @@ const showSubject = ({
   subjectTableRowData,
 }: {
   includePlanned: boolean;
-  subjectTableRowData: SubjectTableRowData;
+  subjectTableRowData: SubjectData;
 }) => {
   return includePlanned ? true : subjectTableRowData.planned ? false : true;
 };
@@ -86,6 +85,7 @@ const wsumGrades = ({
   includePlanned: boolean;
   subjectGroup: SubjectGroup;
 }) => {
+  console.log(subjectGroup.data);
   return subjectGroup.data.reduce((accumulator, currentValue) => {
     return (
       accumulator +
@@ -107,6 +107,14 @@ const avgGrades = ({
   includePlanned: boolean;
   subjectGroup: SubjectGroup;
 }) => {
+  console.log(
+    Number(
+      sumEcts({
+        includePlanned: includePlanned,
+        subjectGroup: subjectGroup,
+      })
+    )
+  );
   return (
     Number(
       wsumGrades({
@@ -190,9 +198,17 @@ const SubjectGroupCollapsible = ({
           <tr className="">
             <td className="text-left pr-2 bg-base-200">Total</td>
             <td className="bg-base-200 pr-2"></td>
-            <td className="text-right bg-base-200 pr-2">36/54</td>
             <td className="text-right bg-base-200 pr-2">
-              {" "}
+              {Number(
+                sumEcts({
+                  includePlanned: includePlanned,
+                  subjectGroup: subjectGroup,
+                })
+              )}
+              /54
+            </td>
+            {/* compute average grade per component */}
+            <td className="text-right bg-base-200 pr-2">
               {Number(
                 avgGrades({
                   includePlanned: includePlanned,
