@@ -22,17 +22,13 @@ class UserLoginSerializer(serializers.Serializer):
     def validate(self, data):
         email = data.get("email", None)
         password = data.get("password", None)
-        print(f"{email = } | {password = }")
         user = authenticate(email=email, password=password)
-        print(f"{user = }")
         if user is None:
             raise serializers.ValidationError("Invalid login")
         try:
             token = Token.objects.get(user=user)
-        except User.DoesNotExist:
-            raise serializers.ValidationError("User doesn't exist")
         except Token.DoesNotExist:
-            token = Token.objects.create(user=user)            
+            token = Token.objects.create(user=user)
         update_last_login(None, user)
         return {
             "email": user.email,
