@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import lectureData from "../data/lectures";
+import AddSubjectModal from "./AddSubjectModal";
 
 type Props = {};
 
@@ -10,8 +11,17 @@ const getLectureNamesStartingWith = (prefix: string) =>
 
 const SearchBar = (props: Props) => {
   const [searchText, setSearchText] = useState<string>();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   return (
     <div className="w-full">
+      <button
+        className="btn btn-primary"
+        onClick={() => {
+          setModalIsOpen(true);
+        }}
+      >
+        click
+      </button>
       <div className="relative">
         <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
           <svg
@@ -41,7 +51,7 @@ const SearchBar = (props: Props) => {
         {searchText != null && searchText.length != 0 && (
           <ul
             tabIndex={0}
-            className="absolute dropdown-content menu p-2 shadow bg-base-100 rounded-box w-full"
+            className="absolute dropdown-content menu p-2 shadow-md bg-base-200 rounded-box w-full"
           >
             {getLectureNamesStartingWith(searchText!).length > 0 ? (
               getLectureNamesStartingWith(searchText!).map((name) => (
@@ -60,6 +70,7 @@ const SearchBar = (props: Props) => {
           </ul>
         )}
       </div>
+      <AddSubjectModal isOpen={modalIsOpen}></AddSubjectModal>
     </div>
   );
 };
