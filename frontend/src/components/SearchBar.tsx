@@ -17,6 +17,7 @@ const SearchBar = (props: Props) => {
       <AddSubjectModal
         isOpen={modalIsOpen}
         closeModal={() => setModalIsOpen(false)}
+        subjectPresets={{ name: "Diskmath", ects: 7 }}
       ></AddSubjectModal>
       <button
         className="btn btn-primary"
