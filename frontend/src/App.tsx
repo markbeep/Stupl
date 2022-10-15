@@ -4,7 +4,8 @@ import { Navbar } from "./components/Navbar";
 import { Konsti } from "./pages/konsti";
 import { Yanick } from "./pages/Yanick";
 import HomePage from "./pages/HomePage";
-import AccountPage from "./pages/AccountPage";
+import AboutPage from "./pages/AboutPage";
+import StatisticsPage from "./pages/StatisticsPage";
 import LoginPage from "./pages/LoginPage";
 import CreateAccount from "./pages/CreateAccount";
 import { AuthProvider, useAuth } from "./authHanlder";
@@ -28,6 +29,8 @@ function App() {
 
           <Route path="/konsti" element={<Konsti />}></Route>
           <Route path="/yanick" element={<Yanick />}></Route>
+          <Route path="/about" element={<AboutPage />}></Route>
+          <Route path="/statistics" element={<StatisticsPage />}></Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>

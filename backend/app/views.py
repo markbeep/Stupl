@@ -1,4 +1,5 @@
 
+import django
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -25,9 +26,12 @@ def get_subjects_per_user(request):
     subjects = user.subjects.all()
     return Response([
         {
+            "id": x.id,
             "name": x.name,
             "credits": x.credits,
-            "id": x.id
+            "category": x.category,
+            "semester": x.semester,
+            "grade": x.grade
         }
         for x in subjects
     ])
@@ -81,7 +85,31 @@ def delete_subject(request):
     subject.delete()
     return Response("Success")
 
+def sumCreditsCategories(user, categoryList):
+    sum = 0
+    for cat in categoryList:
+        credits = 0
+        for sub in UserSubjects.objects.filter(user=user, category=cat):
+            credits = credits + sub.credits
+        sum = sum + credits
+    return sum
 
+@api_view(["GET"])
+def requirements(request):
+    user = request.user
+    return Response({
+        {
+            "1": sumCreditsCategories(user, []) >= 100,
+            "2": True,
+            "3": True,
+            "4": True,
+            "5": True,
+            "6": True,
+            "7": True,
+            "8": True,
+            "9": True,
+        }
+    })
 
 @api_view(["GET"])
 def fill_db(request):
@@ -89,12 +117,15 @@ def fill_db(request):
     with open("data/lectures.json",'r') as f:
         data = json.load(f)
 
-    for i in range(len(data)):
-        lec = VVZSubjects.objects.create()
-        lec.name = data[i]["name"]
-        lec.credits = data[i]["credits"]
-        lec.vvz_id = data[i]["vvz_id"]
-        lec.semester = data[i]["semester"]
-        lec.year = data[i]["year"]
-        lec.save()
+    for i, x in enumerate(data):
+        try:
+            lec = VVZSubjects.objects.create()
+            lec.name = x["name"]
+            lec.credits = x["credits"]
+            lec.vvz_id = x["vvz_id"]
+            lec.semester = x["semester"]
+            lec.year = x["year"]
+            lec.save()
+        except django.db.utils.IntegrityError:
+            print(f"Error {i = } | {x = }")
     return Response("Done")
