@@ -28,15 +28,15 @@ export const subjectData: SubjectData[] = [
     ects: 7,
     grade: 5.25,
     semester: 2,
-    planned: false,
+    planned: true,
     id: 1,
   },
   {
     name: "Algorithmen und Datenstrukturen",
     ects: 7,
-    grade: 5.25,
+    grade: 6,
     semester: 3,
-    planned: false,
+    planned: true,
     id: 1,
   },
   {

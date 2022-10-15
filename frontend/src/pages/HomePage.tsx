@@ -9,6 +9,11 @@ import { RequirementsCollapsible } from "./Yanick";
 
 const HomePage = () => {
   const [includePlanned, setIncludePlanned] = useState(false);
+
+  const change = () => {
+    console.log(includePlanned);
+    setIncludePlanned(!includePlanned);
+  };
   return (
     <div className="pb-12">
       <Navbar></Navbar>
@@ -16,10 +21,14 @@ const HomePage = () => {
       <div className="mt-12 max-w-lg mx-auto">
         <SearchBar></SearchBar>
       </div>
-      <div className="mt-12 max-w-lg mx-auto">
+      <div className="form-contorl mt-12 max-w-lg mx-auto">
         <label className="label cursor-pointer">
           <span className="label-text">Include planned subjects.</span>
-          <input type="checkbox" className="toggle toggle-accent" checked />
+          <input
+            type="checkbox"
+            className="toggle toggle-accent"
+            onClick={change}
+          />
         </label>
       </div>
       <div className="max-w-2xl mx-auto mt-12">
@@ -115,7 +124,6 @@ const wsumGrades = ({
   includePlanned: boolean;
   subjectGroup: SubjectGroup;
 }) => {
-  console.log(subjectGroup.data);
   return subjectGroup.data.reduce((accumulator, currentValue) => {
     return (
       accumulator +
