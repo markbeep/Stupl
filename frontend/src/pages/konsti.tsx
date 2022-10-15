@@ -2,21 +2,18 @@ import { useState } from "react";
 
 export const Konsti = () => {
   return (
-    <div>
-      <SearchBar></SearchBar>
-      <SearchBar2></SearchBar2>
+    <div className="tooltip mt-10" data-tip="hello">
+      <button className="btn" mt-10>
+        Hover me
+      </button>
     </div>
   );
 };
 
 const SearchBar = () => {
   return (
-    <input
-      type="text"
-      placeholder="Search"
-      className="input w-full max-w-xs"
-    />
-  );  
+    <input type="text" placeholder="Search" className="input w-full max-w-xs" />
+  );
 };
 
 export const SearchBar2 = () => {
@@ -58,6 +55,5 @@ export const SearchBar2 = () => {
         </p>
       ))}
     </>
-
   );
 };

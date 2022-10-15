@@ -1,10 +1,17 @@
+import { useState } from "react";
 import Collapsible from "../components/Collapsible";
 import { Navbar } from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
 import SemesterPill from "../components/SemesterPill";
-import { SubjectGroup, subjectGroups, subjectTableRowData } from "../data";
+import {
+  SubjectGroup,
+  subjectGroups,
+  SubjectTableRowData,
+  subjectTableRowData,
+} from "../data";
 
 const HomePage = () => {
+  const [includePlanned, setIncludePlanned] = useState(false);
   return (
     <div className="pb-12">
       <Navbar></Navbar>
@@ -26,6 +33,7 @@ const HomePage = () => {
           <div className="mt-12">
             <SubjectGroupCollapsible
               subjectGroup={group}
+              includePlanned={includePlanned}
             ></SubjectGroupCollapsible>
           </div>
         ))}
@@ -36,16 +44,99 @@ const HomePage = () => {
 
 export default HomePage;
 
-const SubjectGroupCollapsible = ({
+// function that checks if a certain subject should be included in calculations
+const showSubject = ({
+  includePlanned,
+  subjectTableRowData,
+}: {
+  includePlanned: boolean;
+  subjectTableRowData: SubjectTableRowData;
+}) => {
+  return includePlanned ? true : subjectTableRowData.planned ? false : true;
+};
+
+//compute sum of ECTS per category (that are to be included based on includePlanned)
+const sumEcts = ({
+  includePlanned,
   subjectGroup,
 }: {
+  includePlanned: boolean;
   subjectGroup: SubjectGroup;
+}) => {
+  return subjectGroup.data
+    .reduce((accumulator, currentValue) => {
+      return (
+        accumulator +
+        (showSubject({
+          includePlanned: includePlanned,
+          subjectTableRowData: currentValue,
+        })
+          ? currentValue.ects
+          : 0)
+      );
+    }, 0)
+    .toFixed(2);
+};
+
+//compute the weigthed sum of grades * ECTS per category
+const wsumGrades = ({
+  includePlanned,
+  subjectGroup,
+}: {
+  includePlanned: boolean;
+  subjectGroup: SubjectGroup;
+}) => {
+  return subjectGroup.data.reduce((accumulator, currentValue) => {
+    return (
+      accumulator +
+      (showSubject({
+        includePlanned: includePlanned,
+        subjectTableRowData: currentValue,
+      })
+        ? currentValue.grade * currentValue.ects
+        : 0)
+    );
+  }, 0);
+};
+
+//compute the average grade based one includePlanned per category
+const avgGrades = ({
+  includePlanned,
+  subjectGroup,
+}: {
+  includePlanned: boolean;
+  subjectGroup: SubjectGroup;
+}) => {
+  return (
+    Number(
+      wsumGrades({
+        includePlanned: includePlanned,
+        subjectGroup: subjectGroup,
+      })
+    ) /
+    Number(
+      sumEcts({
+        includePlanned: includePlanned,
+        subjectGroup: subjectGroup,
+      })
+    )
+  ).toFixed(2);
+};
+
+const SubjectGroupCollapsible = ({
+  subjectGroup,
+  includePlanned,
+}: {
+  subjectGroup: SubjectGroup;
+  includePlanned: boolean;
 }) => {
   return (
     <Collapsible
       headerBuilder={(collapsed) => (
         <div className="flex justify-between">
-          <h3>{subjectGroup.name}</h3>
+          <div className="tooltip" data-tip={subjectGroup.information}>
+            <h3>{subjectGroup.name}</h3>
+          </div>
           <div className="flex">
             {collapsed && <p className="mr-8">37/54</p>}
             {collapsed && <p className="mr-2">5.37</p>}
@@ -100,7 +191,15 @@ const SubjectGroupCollapsible = ({
             <td className="text-left pr-2 bg-base-200">Total</td>
             <td className="bg-base-200 pr-2"></td>
             <td className="text-right bg-base-200 pr-2">36/54</td>
-            <td className="text-right bg-base-200 pr-2">5.37</td>
+            <td className="text-right bg-base-200 pr-2">
+              {" "}
+              {Number(
+                avgGrades({
+                  includePlanned: includePlanned,
+                  subjectGroup: subjectGroup,
+                })
+              )}
+            </td>
             <td className="bg-base-200 "></td>
           </tr>
         </tbody>

@@ -1,11 +1,8 @@
 from .models import User
 from django.contrib.auth import authenticate
 from rest_framework import serializers
-from rest_framework_jwt.settings import api_settings
 from django.contrib.auth.models import update_last_login
-
-JWT_PAYLOAD_HANDLER = api_settings.JWT_PAYLOAD_HANDLER
-JWT_ENCODE_HANDLER = api_settings.JWT_ENCODE_HANDLER
+from rest_framework.authtoken.models import Token
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -31,12 +28,13 @@ class UserLoginSerializer(serializers.Serializer):
         if user is None:
             raise serializers.ValidationError("Invalid login")
         try:
-            payload = JWT_PAYLOAD_HANDLER(user)
-            jwt_token = JWT_ENCODE_HANDLER(payload)
+            token = Token.objects.filter(user=user).get()
+            if not token:
+                token = Token.objects.create(user=user)
             update_last_login(None, user)
         except User.DoesNotExist:
             raise serializers.ValidationError("User doesn't exist")
         return {
             "email": user.email,
-            "token": jwt_token,
+            "token": token.key,
         }
