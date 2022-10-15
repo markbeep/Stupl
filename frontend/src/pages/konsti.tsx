@@ -1,3 +1,4 @@
+import { group } from "console";
 import { useState } from "react";
 import Collapsible from "../components/Collapsible";
 import { Navbar } from "../components/Navbar";
@@ -8,11 +9,6 @@ import { RequirementsCollapsible } from "./Yanick";
 
 export const Konsti = () => {
   const [includePlanned, setIncludePlanned] = useState(false);
-
-  const el = document.getElementById("box");
-
-  const hiddenEl = document.getElementById("hidden");
-
   return (
     <div className="pb-12">
       <Navbar></Navbar>
@@ -20,13 +16,42 @@ export const Konsti = () => {
       <div className="mt-12 max-w-lg mx-auto">
         <SearchBar></SearchBar>
       </div>
-      <div className="max-w-2xl mx-auto mt-24">
+      <div className="mt-12 max-w-lg mx-auto">
+        <label className="label cursor-pointer">
+          <span className="label-text">Include planned subjects.</span>
+          <input type="checkbox" className="toggle toggle-accent" checked />
+        </label>
+      </div>
+      <div className="max-w-2xl mx-auto mt-12">
         <div className="alert alert-">
           <div className="flex justify-between w-full">
             <h3 className="font-bold">Total</h3>
             <div className="flex">
-              <p className="mr-8">37/54</p>
-              <p className="mr-10">5.37</p>
+              <p className="mr-8">
+                {Number(
+                  totalCredits({
+                    includePlanned: includePlanned,
+                    subjectGroups: subjectGroups,
+                  })
+                ) + "/180"}
+              </p>
+              <p className="mr-10">
+                {/* compute the total average */}
+                {(
+                  Number(
+                    totalWsum({
+                      includePlanned: includePlanned,
+                      subjectGroups: subjectGroups,
+                    })
+                  ) /
+                  Number(
+                    totalCredits({
+                      includePlanned: includePlanned,
+                      subjectGroups: subjectGroups,
+                    })
+                  )
+                ).toFixed(2)}
+              </p>
             </div>
           </div>
         </div>
@@ -48,6 +73,7 @@ export const Konsti = () => {
 
 export default Konsti;
 
+// function that checks if a certain subject should be included in calculations
 const showSubject = ({
   includePlanned,
   subjectTableRowData,
@@ -145,7 +171,58 @@ const avgGrades = ({
     ).toFixed(2);
   }
 };
-//function
+
+//compute total credits
+const totalCredits = ({
+  includePlanned,
+  subjectGroups,
+}: {
+  includePlanned: boolean;
+  subjectGroups: SubjectGroup[];
+}) => {
+  {
+    return Number(
+      subjectGroups.reduce((accumulator, currentValue) => {
+        return (
+          accumulator +
+          Number(
+            sumEcts({
+              includePlanned: includePlanned,
+              subjectGroup: currentValue,
+            })
+          )
+        );
+      }, 0)
+    );
+  }
+};
+
+//compute the total sum of weighted grades
+const totalWsum = ({
+  includePlanned,
+  subjectGroups,
+}: {
+  includePlanned: boolean;
+  subjectGroups: SubjectGroup[];
+}) => {
+  {
+    return Number(
+      subjectGroups.reduce((accumulator, currentValue) => {
+        return (
+          accumulator +
+          Number(
+            wsumGrades({
+              includePlanned: includePlanned,
+              subjectGroup: currentValue,
+            })
+          )
+        );
+      }, 0)
+    );
+  }
+};
+
+//Edit button
 const DisplaySubjects = ({ subject }: { subject: SubjectData }) => {
   const [showEditButton, setShowEditButton] = useState(false);
   return (
@@ -196,7 +273,6 @@ const SubjectGroupCollapsible = ({
   subjectGroup: SubjectGroup;
   includePlanned: boolean;
 }) => {
-  const [hideLightbox, setHideLightbox] = useState(true);
   return (
     <Collapsible
       headerBuilder={(collapsed) => (
