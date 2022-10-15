@@ -20,6 +20,26 @@ def list_temporary(request):
         "data": len(subjects),
         "data2": len(sub2)
     })
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def get_subjects_per_user(request):
+    user = request.user
+    subjects = user.subjects.all()
+    return Response({[{
+                "id": x.id,
+                "name": x.name,
+                "credits": x.credits,
+                "category_id": x.category,
+                "category": enum_to_category_german(Categories(x.category)),
+                "semester": x.semester,
+                "year": x.year,
+                "grade": x.grade,
+                "planned": x.planned,
+        } for x in subjects] 
+    })
+
 def sumCreditsCategories(user, categoryList, maxList):
     sum = 0
     i = 0
@@ -33,26 +53,11 @@ def sumCreditsCategories(user, categoryList, maxList):
             sum = sum + credits
         i = i+1
     return sum
-
+    
 @api_view(["GET"])
-@permission_classes([IsAuthenticated])
-def get_subjects_per_user(request):
+def get_requirements(request):
     user = request.user
-    subjects = user.subjects.all()
     return Response({
-        "subjects": [
-            {
-                "id": x.id,
-                "name": x.name,
-                "credits": x.credits,
-                "category_id": x.category,
-                "category": enum_to_category_german(Categories(x.category)),
-                "semester": x.semester,
-                "year": x.year,
-                "grade": x.grade,
-                "planned": x.planned,
-        } for x in subjects], 
-        "requirements": {
             "1": sumCreditsCategories(user, [4],[180]) == 56,
             "2": sumCreditsCategories(user, [1,3],[180,180]) >= 84,
             "3": sumCreditsCategories(user, [1],[180]) >= 45,
@@ -63,9 +68,7 @@ def get_subjects_per_user(request):
             "9": sumCreditsCategories(user, [8], [180]) >= 6,
             "10": sumCreditsCategories(user, [7],[180]) >= 10,
             "11": sumCreditsCategories(user, [0,1,2,3,4,5,6,7,8],[180,180,10,180,180,2,180,10,6]) >= 180,
-        }
-
-    })
+        })
 
 @api_view(["GET"])
 def load_vvz(request):
