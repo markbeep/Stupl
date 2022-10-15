@@ -33,14 +33,15 @@ def load_vvz(request):
 def add_subject(request):
     name = request.POST["name"]
     credits = request.POST["credits"]
-    vvz_subject = request.POST["vvz_subject"]
+    vvz_subject = None #request.POST["vvz_subject"]
     category = request.POST["category"]
     semester = request.POST["semester"]
     grade = request.POST["grade"]
+    user = request.user
     count_grade = True
     count_credits = True
     year = 2022
-    sub = UserSubjects.objects.create(name=name,credits=credits,category=category,vvz_subject=vvz_subject,grade=grade,semester=semester,year=year,user=None,count_grade=count_grade,count_credits=count_credits)
+    sub = UserSubjects.objects.create(name=name,user=user,credits=credits,category=category,vvz_subject=vvz_subject,grade=grade,semester=semester,year=year,user=None,count_grade=count_grade,count_credits=count_credits)
     sub.save()
     return Response("Success")
 
@@ -56,6 +57,7 @@ def subject_table_row_data(request):
     subjects = user.subjects.all()
 
 def fill_db(request):
+    print("HELLO")
     with open("data/lectures.json",'r') as f:
         data = json.load(f)
 
@@ -64,7 +66,6 @@ def fill_db(request):
         lec.name = data[i]["name"]
         lec.credits = data[i]["credits"]
         lec.vvz_id = data[i]["vvz_id"]
-        #lec.lesson_number = data[i]["id"]
         lec.semester = data[i]["semester"]
         lec.year = data[i]["year"]
         lec.save()
