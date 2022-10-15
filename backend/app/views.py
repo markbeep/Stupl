@@ -46,7 +46,7 @@ def sumCreditsCategories(user, categoryList, maxList, incplanned):
     for cat in categoryList:
         credits = 0
         for sub in UserSubjects.objects.filter(user=user, category=cat):
-            if incplanned:
+            if incplanned or (not sub.planned):
                 credits = credits + sub.credits
         if credits > maxList[i]:
             sum += maxList[i]
