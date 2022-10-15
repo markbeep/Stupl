@@ -27,7 +27,7 @@ def list_temporary(request):
 def get_subjects_per_user(request):
     user = request.user
     subjects = user.subjects.all()
-    return Response({[{
+    return Response([{
                 "id": x.id,
                 "name": x.name,
                 "credits": x.credits,
@@ -37,8 +37,8 @@ def get_subjects_per_user(request):
                 "year": x.year,
                 "grade": x.grade,
                 "planned": x.planned,
-        } for x in subjects] 
-    })
+        } for x in subjects ]
+    )
 
 def sumCreditsCategories(user, categoryList, maxList):
     sum = 0
@@ -53,7 +53,7 @@ def sumCreditsCategories(user, categoryList, maxList):
             sum = sum + credits
         i = i+1
     return sum
-    
+
 @api_view(["GET"])
 def get_requirements(request):
     user = request.user
