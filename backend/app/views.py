@@ -125,6 +125,12 @@ def delete_subject(request):
     subject.delete()
     return Response("Success")
 
+@api_view(["GET"])
+def get_statistics(request):
+    return Response({
+        "number_users" : 10
+        
+    })
 
 @api_view(["GET"])
 def fill_db(request):
