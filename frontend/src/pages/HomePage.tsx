@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Collapsible from "../components/Collapsible";
 import { Navbar } from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
@@ -10,6 +11,7 @@ import {
 } from "../data";
 
 const HomePage = () => {
+  const [includePlanned, setIncludePlanned] = useState(false);
   return (
     <div className="pb-12">
       <Navbar></Navbar>
@@ -31,6 +33,7 @@ const HomePage = () => {
           <div className="mt-12">
             <SubjectGroupCollapsible
               subjectGroup={group}
+              includePlanned={includePlanned}
             ></SubjectGroupCollapsible>
           </div>
         ))}
@@ -122,8 +125,10 @@ const avgGrades = ({
 
 const SubjectGroupCollapsible = ({
   subjectGroup,
+  includePlanned,
 }: {
   subjectGroup: SubjectGroup;
+  includePlanned: boolean;
 }) => {
   return (
     <Collapsible
@@ -186,7 +191,15 @@ const SubjectGroupCollapsible = ({
             <td className="text-left pr-2 bg-base-200">Total</td>
             <td className="bg-base-200 pr-2"></td>
             <td className="text-right bg-base-200 pr-2">36/54</td>
-            <td className="text-right bg-base-200 pr-2">5.37</td>
+            <td className="text-right bg-base-200 pr-2">
+              {" "}
+              {Number(
+                avgGrades({
+                  includePlanned: includePlanned,
+                  subjectGroup: subjectGroup,
+                })
+              )}
+            </td>
             <td className="bg-base-200 "></td>
           </tr>
         </tbody>
