@@ -58,24 +58,22 @@ const SearchBar = (props: Props) => {
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
-        {searchText != null && searchText.length != 0 && (
-          <ul
-            tabIndex={0}
-            className="absolute dropdown-content menu p-2 shadow-md bg-base-200 rounded-box w-full"
-          >
-            <SearchBarNameList
-              searchText={searchText}
-              openModal={openModal}
-            ></SearchBarNameList>
-          </ul>
-        )}
+        <ul
+          tabIndex={0}
+          className="absolute dropdown-content menu p-2 shadow-md bg-base-200 rounded-box w-full"
+        >
+          <SearchBarNameList
+            searchText={searchText}
+            openModal={openModal}
+          ></SearchBarNameList>
+        </ul>
       </div>
     </div>
   );
 };
 
 type SearchBarNameListProps = {
-  searchText: string;
+  searchText?: string;
   openModal: (l: any) => void;
 };
 
@@ -86,6 +84,8 @@ const SearchBarNameList = ({
   const { data, error, loading } = useRequest(getAllVVZLectures);
   const getLecturesStartingWith = (lectureData: VVZSubject[], prefix: string) =>
     lectureData.filter((d) => d.name.toLowerCase().startsWith(prefix));
+
+  if (searchText == null || searchText.length == 0) return null;
 
   if (loading || !!error) return <div>Loading/Error</div>;
 
