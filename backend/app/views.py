@@ -38,12 +38,20 @@ def get_subjects_per_user(request):
 
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
-def load_vvz(request, keyword):
-    vvz = VVZSubjects.objects.filter(name__icontains=keyword).all()
+def load_vvz(request):
+    category = request.GET.get("category", None)
+    if category:
+        vvz = VVZSubjects.objects.filter(category=category).all()
+    else:
+        vvz = VVZSubjects.objects.all()
     return Response([
         {
+            "id": x.id,
             "name": x.name,
-            "credits": x.credits
+            "credits": x.credits,
+            "category": x.category,
+            "semester": x.semester,
+            "grade": x.grade,
         }
         for x in vvz
     ])
