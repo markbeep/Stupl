@@ -13,7 +13,11 @@ const SearchBar = (props: Props) => {
   const [searchText, setSearchText] = useState<string>();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   return (
-    <div className="w-full">
+    <div className="w-full z-10">
+      <AddSubjectModal
+        isOpen={modalIsOpen}
+        closeModal={() => setModalIsOpen(false)}
+      ></AddSubjectModal>
       <button
         className="btn btn-primary"
         onClick={() => {
@@ -70,7 +74,6 @@ const SearchBar = (props: Props) => {
           </ul>
         )}
       </div>
-      <AddSubjectModal isOpen={modalIsOpen}></AddSubjectModal>
     </div>
   );
 };

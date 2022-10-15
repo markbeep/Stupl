@@ -14,7 +14,7 @@ const CreateAccount = (props: Props) => {
   return (
     <>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8">
+        <div className="w-full max-w-md">
           <div>
             <img className="mx-auto h-14 w-auto" src={katze} />
 
@@ -25,11 +25,11 @@ const CreateAccount = (props: Props) => {
               The Smart Study Planner
             </p>
           </div>
-          <form className="space-y-6 " action="#" method="POST">
+          <form className="" action="#" method="POST">
             <input type="hidden" name="remember" defaultValue="true" />
 
-            <div className="space-y-3 rounded-md shadow-sm">
-              <label htmlFor="email-address" className="sr-only">
+            <div className="rounded-md shadow-sm">
+              <label htmlFor="email-address" className="mt-10">
                 Name
               </label>
               <input
@@ -38,7 +38,7 @@ const CreateAccount = (props: Props) => {
                 type="Name"
                 autoComplete="Name"
                 required
-                className="relative block w-full appearance-none rounded-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                 placeholder="Name"
               />
 
@@ -51,7 +51,7 @@ const CreateAccount = (props: Props) => {
                 type="currentSemester"
                 autoComplete="currentSemester"
                 required
-                className="relative block w-full appearance-none rounded-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                 placeholder="Current Semester"
               />
 
@@ -65,7 +65,7 @@ const CreateAccount = (props: Props) => {
                   type="email"
                   autoComplete="email"
                   required
-                  className="relative block w-full appearance-none rounded-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   placeholder="Email address"
                 />
               </div>
@@ -80,14 +80,14 @@ const CreateAccount = (props: Props) => {
                   type="password"
                   //autoComplete="current-password"
                   required
-                  className="relative block w-full appearance-none rounded-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   placeholder="Password"
                 />
               </div>
 
               <div>
                 <label htmlFor="password" className="sr-only">
-                  ConfirmPassword
+                  Confirm Password
                 </label>
                 <input
                   id="confirmPassword"
@@ -95,7 +95,7 @@ const CreateAccount = (props: Props) => {
                   type="password"
                   //autoComplete="current-password"
                   required
-                  className="relative block w-full appearance-none rounded-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   placeholder="ConfirmPassword"
                 />
               </div>
