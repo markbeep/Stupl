@@ -22,18 +22,12 @@ const HomePage = () => {
             <h3 className="font-bold">Total</h3>
             <div className="flex">
               <p className="mr-8">
-                {subjectGroups.reduce((accumulator, currentValue) => {
-                  return (
-                    accumulator +
-                    Number(
-                      sumEcts({
-                        includePlanned: includePlanned,
-                        subjectGroup: currentValue,
-                      })
-                    )
-                  );
-                }, 0)}
-                /180
+                {Number(
+                  totalCredits({
+                    includePlanned: includePlanned,
+                    subjectGroups: subjectGroups,
+                  })
+                ) + "/180"}
               </p>
               <p className="mr-10">5.37</p>
             </div>
@@ -153,6 +147,31 @@ const avgGrades = ({
         })
       )
     ).toFixed(2);
+  }
+};
+
+//compute total credits
+const totalCredits = ({
+  includePlanned,
+  subjectGroups,
+}: {
+  includePlanned: boolean;
+  subjectGroups: SubjectGroup[];
+}) => {
+  {
+    return Number(
+      subjectGroups.reduce((accumulator, currentValue) => {
+        return (
+          accumulator +
+          Number(
+            sumEcts({
+              includePlanned: includePlanned,
+              subjectGroup: currentValue,
+            })
+          )
+        );
+      }, 0)
+    );
   }
 };
 
