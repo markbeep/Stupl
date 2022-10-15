@@ -10,13 +10,19 @@ services:
   #     - POSTGRES_USER=postgres
   #     - POSTGRES_PASSWORD=postgres
   django:
-    build: .
+    build: backend
     restart: always
     ports:
       - "8000:8000"
     volumes:
-      - .:/app
+      - ./backend:/app
     environment:
       - DJANGO_DEBUG=False
+  react-nginx:
+    build: frontend
+    restart: always
+    ports:
+      - "3000:80"
+
 volumes:
   data:

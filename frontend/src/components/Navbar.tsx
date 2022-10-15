@@ -10,12 +10,24 @@ export const Navbar = () => {
   };
   return (
     <nav className="navbar bg-transparent">
-      <div className="container mx-auto">
+      <div
+        className="
+      container mx-auto"
+      >
         <div className="flex justify-between items-baseline w-full">
           <Link to="/">
             <a className="btn btn-ghost normal-case text-xl">Logo</a>
           </Link>
-          <button className="btn btn-ghost normal-case" onClick={logout}>
+          <button
+            className="float-right btn btn-ghost normal-case"
+            onClick={logout}
+          >
+            About Us
+          </button>
+          <button
+            className="float-right btn btn-ghost normal-case"
+            onClick={logout}
+          >
             Log Out
           </button>
         </div>
