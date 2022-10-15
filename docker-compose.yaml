@@ -1,0 +1,26 @@
+version: "1"
+
+services:
+  # db:
+  #   image: postgres
+  #   volumes:
+  #     - ./data/db:/var/lib/postgresql/data
+  #   environment:
+  #     - POSTGRES_DB=postgres
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=postgres
+  django:
+    build: backend
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+  react-nginx:
+    build: frontend
+    restart: always
+    ports:
+      - "3000:80"
+
+volumes:
+  data:
