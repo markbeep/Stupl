@@ -20,6 +20,23 @@ export function useLogin(email: string, password: string) {
     return { error, loading, data, run } as const;
 }
 
+async function loginUser(email: string, password: string) {
+    const options = {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }
+    const response = await fetch("/auth/login", options)
+    if (response.status == 200) {
+        const data = await response.json()
+        return data["token"] as string;
+    } else {
+        return "invalid login";
+    }
+}
+
 async function loadTestHello() {
     const response = await fetch('/api/hello')
     const data = await response.json();
