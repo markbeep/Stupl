@@ -1,35 +1,28 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import { addSubject } from "../api/api";
-import { categories, VVZSubject } from "../api/schemas";
+import { addSubject, deleteSubject } from "../api/api";
+import { categories, SubjectData, VVZSubject } from "../api/schemas";
 import { useAuth } from "../authHanlder";
-import { SubjectData } from "../data";
 import { useDisplayOptions } from "../pages/HomePage";
 import SemesterPill from "./SemesterPill";
 import Stepper from "./Stepper";
 
-type SubjectPresets = {
-  id?: number;
-  name?: string;
-  ects?: number;
-  category?: string;
-  allowedCategories?: [string];
-};
-
 type Props = {
   isOpen: boolean;
   closeModal: () => void;
-  subjectPreset: VVZSubject;
+  subject: SubjectData;
 };
 
-const AddSubjectModal = ({ isOpen, closeModal, subjectPreset }: Props) => {
-  const [ectsStepper, setEctsStepper] = useState(subjectPreset.credits);
-  const [semesterStepper, setSemesterStepper] = useState(1);
-  const [gradeStepper, setGradeStepper] = useState(5);
-  const [subjectName, setSubjectName] = useState(subjectPreset.name);
-  const [category, setCategory] = useState(subjectPreset.category_id);
-  const [completedCheckbox, setCompletedCheckbox] = useState(true);
+const EditSubjectModal = ({ isOpen, closeModal, subject }: Props) => {
+  const [ectsStepper, setEctsStepper] = useState(subject.credits);
+  const [semesterStepper, setSemesterStepper] = useState(subject.semester);
+  const [gradeStepper, setGradeStepper] = useState(subject.grade);
+  const [subjectName, setSubjectName] = useState(subject.name);
+  const [category, setCategory] = useState(subject.category_id);
+  const [completedCheckbox, setCompletedCheckbox] = useState(!subject.planned);
+
   const [submitLoading, setSubmitLoading] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
 
   const { token } = useAuth();
   const { requestRefresh } = useDisplayOptions();
@@ -42,6 +35,7 @@ const AddSubjectModal = ({ isOpen, closeModal, subjectPreset }: Props) => {
       semester: semesterStepper,
       grade: gradeStepper,
       planned: !completedCheckbox,
+      id: subject.id,
     };
 
     setSubmitLoading(true);
@@ -52,16 +46,23 @@ const AddSubjectModal = ({ isOpen, closeModal, subjectPreset }: Props) => {
     closeModal();
   };
 
+  const onDelete = async () => {
+    setDeleteLoading(true);
+    deleteSubject(token!, subject.id);
+    setDeleteLoading(false);
+    requestRefresh();
+    closeModal();
+  };
+
   return (
     <Modal
       isOpen={isOpen}
       onAfterOpen={() => {}}
       onRequestClose={closeModal}
       style={customStyles}
-      contentLabel="Example Modal"
     >
       <div className="container mx-auto w-96 p-4">
-        <h1 className="text-2xl font-medium">Add Subject</h1>
+        <h1 className="text-2xl font-medium">Edit Subject</h1>
         <label className="block text-sm font-medium mt-6">Subject</label>
         <input
           type="text"
@@ -139,7 +140,13 @@ const AddSubjectModal = ({ isOpen, closeModal, subjectPreset }: Props) => {
           </div>
         </div>
         <button className="btn btn-primary w-full mt-8" onClick={onSubmit}>
-          {submitLoading ? "Loading..." : "Add"}
+          {submitLoading ? "Loading..." : "Edit"}
+        </button>
+        <button
+          className="btn btn-error btn-outline w-full mt-4"
+          onClick={onDelete}
+        >
+          {deleteLoading ? "Loading..." : "Delete"}
         </button>
       </div>
     </Modal>
@@ -163,4 +170,4 @@ const customStyles = {
   },
 };
 
-export default AddSubjectModal;
+export default EditSubjectModal;

@@ -7,6 +7,7 @@ import {
 import { avgGrades, sumEcts } from "../api/subjectMath";
 import { useDisplayOptions } from "../pages/HomePage";
 import Collapsible from "./Collapsible";
+import EditSubjectModal from "./EditSubjectModal";
 import SemesterPill from "./SemesterPill";
 
 const SubjectGroupCollapsible = ({
@@ -90,43 +91,61 @@ export default SubjectGroupCollapsible;
 //Edit button
 const SubjectTableRow = ({ subject }: { subject: SubjectData }) => {
   const [showEditButton, setShowEditButton] = useState(false);
-  return (
-    <tr
-      onMouseEnter={() => setShowEditButton(true)}
-      onMouseLeave={() => setShowEditButton(false)}
-      key={subject.id}
-    >
-      <td className="text-left pr-2">{subject.name}</td>
-      <td className="pr-2">
-        <SemesterPill semester={subject.semester}></SemesterPill>
-      </td>
-      <td className="text-right pr-2">{subject.credits}</td>
-      <td className="text-right pr-2">{subject.grade}</td>
-      {/* was macht das hover hier*/}
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
-      <td
-        className={
-          "transition-all " + (showEditButton ? " opacity-100" : " opacity-0")
-        }
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  return (
+    <>
+      <EditSubjectModal
+        isOpen={modalIsOpen}
+        closeModal={closeModal}
+        subject={subject}
+      ></EditSubjectModal>
+      <tr
+        onMouseEnter={() => setShowEditButton(true)}
+        onMouseLeave={() => setShowEditButton(false)}
+        onClick={openModal}
+        key={subject.id}
+        className="cursor-pointer"
       >
-        <button className="" onClick={() => console.log("Suck my nuts")}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="feather feather-edit"
-          >
-            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-          </svg>
-        </button>
-      </td>
-    </tr>
+        <td className="text-left pr-2">{subject.name}</td>
+        <td className="pr-2">
+          <SemesterPill semester={subject.semester}></SemesterPill>
+        </td>
+        <td className="text-right pr-2">{subject.credits}</td>
+        <td className="text-right pr-2">{subject.grade}</td>
+
+        <td
+          className={
+            "transition-all " + (showEditButton ? " opacity-100" : " opacity-0")
+          }
+        >
+          <button className="" onClick={() => console.log("Suck my nuts")}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="feather feather-edit"
+            >
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+            </svg>
+          </button>
+        </td>
+      </tr>
+    </>
   );
 };
