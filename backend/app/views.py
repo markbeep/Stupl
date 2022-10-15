@@ -122,6 +122,7 @@ def add_subject(request):
 @api_view(["Post"])
 @permission_classes([IsAuthenticated])
 def edit_subject(request):
+    print("Edit subject called")
     name = request.data.get("name", None)
     credits = request.data.get("credits", None)
     category = request.data.get("category", None)
@@ -129,7 +130,9 @@ def edit_subject(request):
     year = request.data.get("year", 2022)
     grade = request.data.get("grade", None)
     planned = request.data.get("planned", None)
-    subjid = request.data.get("subjid")
+    subjid = request.data.get("id")
+    print("Deleting subject_id:")
+    print(subjid)
     subject = get_object_or_404(UserSubjects, id=subjid)
     subject.delete()
     sub = UserSubjects.objects.create(
@@ -145,11 +148,13 @@ def edit_subject(request):
     sub.save()
     return Response("Success")
 
-@api_view(["DELETE"])
+@api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def delete_subject(request):
     # Delete subject from UserSubjects
-    subjid = request.GET.get("subject_id")
+    print("called")
+    subjid = request.data.get("subject_id")
+    print(subjid)
     subject = get_object_or_404(UserSubjects, id=subjid)
     subject.delete()
     return Response("Success")
