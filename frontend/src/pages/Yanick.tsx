@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import Collapsible from "../components/Collapsible";
 import { requirementsData, RequirementsData } from "../data/yanick_data";
@@ -10,6 +11,13 @@ export const Yanick = () => {
       </div>
     </div>
   );
+};
+
+export const getAllRequirements = async (token: string) => {
+  console.log("is this working?");
+  const response = axios.get("api/get_requirements/");
+  console.log(response);
+  return response;
 };
 
 export const RequirementsCollapsible = () => {

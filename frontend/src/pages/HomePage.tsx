@@ -31,6 +31,11 @@ const HomePage = () => {
   //   getAllSubjects();
   // }, []);
 
+  const getSubjets = async () => {
+    const subs = await getAllSubjects(token);
+    console.log(subs);
+  };
+
   return (
     <DisplayOptionsContext.Provider
       value={{
