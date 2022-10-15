@@ -56,3 +56,9 @@ export const loginUser = async (email: string, password: string) => {
 //   const response = axios.get("api/get_subjects/");
 //   console.log(response);
 // };
+
+// export const getAllRequirements = async () => {
+//   console.log("is this working?");
+//   const response = axios.get("api/get_requirements/");
+//   console.log(response);
+// };
