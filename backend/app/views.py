@@ -40,13 +40,14 @@ def get_subjects_per_user(request):
         } for x in subjects ]
     )
 
-def sumCreditsCategories(user, categoryList, maxList):
+def sumCreditsCategories(user, categoryList, maxList, incplanned):
     sum = 0
     i = 0
     for cat in categoryList:
         credits = 0
         for sub in UserSubjects.objects.filter(user=user, category=cat):
-            credits = credits + sub.credits
+            if incplanned:
+                credits = credits + sub.credits
         if credits > maxList[i]:
             sum += maxList[i]
         else:
@@ -58,16 +59,16 @@ def sumCreditsCategories(user, categoryList, maxList):
 def get_requirements(request):
     user = request.user
     return Response({
-            "1": {"sat":sumCreditsCategories(user, [4],[180]) == 56, "name":"First Year Courses = 56 KP"},
-            "2": {"sat":sumCreditsCategories(user, [1,3],[180,180]) >= 84, "name": "Basic Courses + Core Courses >= 84 KP"},
-            "3": {"sat":sumCreditsCategories(user, [1],[180]) >= 45, "name": "Basic Courses >= 45 KP"},
-            "4": {"sat":sumCreditsCategories(user, [3],[180]) >= 32, "name":"Core Courses >= 32 KP"},
-            "6": {"sat":sumCreditsCategories(user, [1,3,6],[180,180,180]) >= 96,"name": "Basic Courses + Core Courses + Electives >= 96 KP"},
-            "7": {"sat":sumCreditsCategories(user, [5],[180]) >= 2,"name": "Seminar = 2KP"},
-            "8": {"sat":sumCreditsCategories(user, [2], [180]) >= 5, "name": "Minor Courses >= 5 KP"},
-            "9": {"sat":sumCreditsCategories(user, [8], [180]) >= 6, "name": "Science in Perspective >= 6 KP"},
-            "10": {"sat":sumCreditsCategories(user, [7],[180]) >= 10, "name": "Bachelor's Thesis = 10 KP"},
-            "11": {"sat":sumCreditsCategories(user, [0,1,2,3,4,5,6,7,8],[180,180,10,180,180,2,180,10,6]) >= 180, "name": "Total  >= 180 KP"},
+            "1": {"sat":sumCreditsCategories(user, [4], [180], True) == 56,"sat2":sumCreditsCategories(user, [4], [180], False) == 56, "name":"First Year Courses = 56 KP"},
+            "2": {"sat":sumCreditsCategories(user, [1,3],[180,180],True) >= 84,"sat2":sumCreditsCategories(user, [1,3],[180,180], False) >= 84, "name": "Basic Courses + Core Courses >= 84 KP"},
+            "3": {"sat":sumCreditsCategories(user, [1],[180],True) >= 45,"sat2":sumCreditsCategories(user, [1],[180], False) >= 45, "name": "Basic Courses >= 45 KP"},
+            "4": {"sat":sumCreditsCategories(user, [3],[180],True) >= 32,"sat2":sumCreditsCategories(user, [3],[180], False) >= 32, "name":"Core Courses >= 32 KP"},
+            "6": {"sat":sumCreditsCategories(user, [1,3,6],[180,180,180],True) >= 96,"sat2":sumCreditsCategories(user, [1,3,6],[180,180,180], False) >= 96,"name": "Basic Courses + Core Courses + Electives >= 96 KP"},
+            "7": {"sat":sumCreditsCategories(user, [5],[180],True) >= 2,"sat2":sumCreditsCategories(user, [5],[180], False) >= 2,"name": "Seminar = 2KP"},
+            "8": {"sat":sumCreditsCategories(user, [2], [180],True) >= 5,"sat2":sumCreditsCategories(user, [2], [180], False) >= 5, "name": "Minor Courses >= 5 KP"},
+            "9": {"sat":sumCreditsCategories(user, [8], [180],True) >= 6,"sat2":sumCreditsCategories(user, [8], [180], False) >= 6, "name": "Science in Perspective >= 6 KP"},
+            "10": {"sat":sumCreditsCategories(user, [7],[180],True) >= 10,"sat2":sumCreditsCategories(user, [7],[180], False) >= 10, "name": "Bachelor's Thesis = 10 KP"},
+            "11": {"sat":sumCreditsCategories(user, [0,1,2,3,4,5,6,7,8],[180,180,10,180,180,2,180,10,6],True) >= 180,"sat2":sumCreditsCategories(user, [0,1,2,3,4,5,6,7,8],[180,180,10,180,180,2,180,10,6], False) >= 180, "name": "Total  >= 180 KP"},
         })
 
 @api_view(["GET"])
