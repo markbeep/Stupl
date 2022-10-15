@@ -1,40 +1,67 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
+import { createSubject } from "../api/hooks";
+import { SubjectData } from "../data";
 import SemesterPill from "./SemesterPill";
 import Stepper from "./Stepper";
 
-type Props = { isOpen: boolean; closeModal: () => void };
+type SubjectPresets = {
+  id?: number;
+  name?: string;
+  ects?: number;
+  category?: string;
+  allowedCategories?: [string];
+};
 
-const AddSubjectModal = (props: Props) => {
-  const [ectsStepper, setEctsStepper] = useState(7);
+type Props = {
+  isOpen: boolean;
+  closeModal: () => void;
+  subjectPresets: SubjectPresets;
+};
+
+const AddSubjectModal = ({ isOpen, closeModal, subjectPresets }: Props) => {
+  const [ectsStepper, setEctsStepper] = useState(subjectPresets.ects ?? 7);
   const [semesterStepper, setSemesterStepper] = useState(1);
   const [gradeStepper, setGradeStepper] = useState(5);
+  const [subjectName, setSubjectName] = useState(subjectPresets.name);
+  const [category, setCategory] = useState();
+  const [completedCheckbox, setCompletedCheckbox] = useState(true);
+  const [submitLoading, setSubmitLoading] = useState(false);
+
+  const onSubmit = async () => {
+    const data: SubjectData = {
+      name: subjectName!,
+      ects: ectsStepper,
+      grade: gradeStepper,
+      semester: semesterStepper,
+      planned: completedCheckbox,
+      id: 69420,
+    };
+
+    setSubmitLoading(true);
+    const result = await createSubject(data);
+    setSubmitLoading(false);
+    closeModal();
+  };
 
   return (
     <Modal
-      isOpen={props.isOpen}
+      isOpen={isOpen}
       onAfterOpen={() => {}}
-      onRequestClose={props.closeModal}
+      onRequestClose={closeModal}
       style={customStyles}
       contentLabel="Example Modal"
-      //   className="bg-base-300"
     >
-      {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-      <button onClick={closeModal}>close</button> */}
       <div className="container mx-auto w-96">
         <h1 className="text-2xl font-medium">Add Subject</h1>
-        {/* <form action="#" method="POST"> */}
-        {/* <input
-          type="text"
-          placeholder="Type here"
-          className="input input-bordered w-full"
-        /> */}
         <label className="block text-sm font-medium mt-6">Subject</label>
         <input
           type="text"
           name="first-name"
           id="first-name"
           className="mt-1 input input-bordered w-full"
+          value={subjectName}
+          onChange={(e) => setSubjectName(e.target.value)}
         ></input>
 
         <label className="block text-sm font-medium mt-4">Category</label>
@@ -62,7 +89,12 @@ const AddSubjectModal = (props: Props) => {
         <div className="flex items-center mt-6">
           <label className="block flex-1 text-sm font-medium">Completed</label>
           <div className="flex flex-1">
-            <input type="checkbox" checked={true} className="checkbox" />
+            <input
+              type="checkbox"
+              checked={completedCheckbox}
+              onClick={(e) => setCompletedCheckbox(!completedCheckbox)}
+              className="checkbox"
+            />
           </div>
         </div>
         <div className="flex items-center mt-4">
@@ -93,7 +125,9 @@ const AddSubjectModal = (props: Props) => {
             </Stepper>
           </div>
         </div>
-        <button className="btn btn-primary w-full mt-8">Add</button>
+        <button className="btn btn-primary w-full mt-8" onClick={onSubmit}>
+          {submitLoading ? "Loading..." : "Add"}
+        </button>
       </div>
     </Modal>
   );

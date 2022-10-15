@@ -3,12 +3,8 @@ import Collapsible from "../components/Collapsible";
 import { Navbar } from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
 import SemesterPill from "../components/SemesterPill";
-import {
-  SubjectGroup,
-  subjectGroups,
-  SubjectTableRowData,
-  subjectTableRowData,
-} from "../data";
+import { SubjectGroup, subjectGroups, SubjectData } from "../data";
+import { RequirementsCollapsible } from "./Yanick";
 
 const HomePage = () => {
   const [includePlanned, setIncludePlanned] = useState(false);
@@ -37,6 +33,9 @@ const HomePage = () => {
             ></SubjectGroupCollapsible>
           </div>
         ))}
+        <div className="mt-12">
+          <RequirementsCollapsible></RequirementsCollapsible>
+        </div>
       </div>
     </div>
   );
@@ -50,7 +49,7 @@ const showSubject = ({
   subjectTableRowData,
 }: {
   includePlanned: boolean;
-  subjectTableRowData: SubjectTableRowData;
+  subjectTableRowData: SubjectData;
 }) => {
   return includePlanned ? true : subjectTableRowData.planned ? false : true;
 };

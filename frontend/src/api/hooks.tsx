@@ -1,4 +1,5 @@
 import { useRequest } from "ahooks";
+import { SubjectData } from "../data";
 import { TestWord } from "./interfaces";
 
 export async function loginUser(email: string, password: string) {
@@ -44,3 +45,8 @@ export function useRestricted(token: string) {
   const { data, loading, error, run } = useRequest(() => loadRestricted(token));
   return { data, loading, error, run };
 }
+export const createSubject = async (s: SubjectData) => {
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  console.log(s);
+  return { success: true };
+};
