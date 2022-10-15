@@ -9,7 +9,7 @@ RUN pip3 install --no-cache --upgrade pip
 
 WORKDIR /app
 COPY requirements.txt .
-RUN pip3 install --no-cache -r requirements.txt
+RUN python -m pip install --no-cache -r requirements.txt
 COPY . .
 
 EXPOSE 8000

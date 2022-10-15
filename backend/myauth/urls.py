@@ -3,8 +3,8 @@ from . import views
 
 urlpatterns = [
     # path("", include("dj_rest_auth.urls")),
-    path("login/", views.my_login),
+    path("register/", views.UserRegistrationView.as_view()),
+    path("login/", views.UserLoginView.as_view()),
     path("test/", views.insert_test_user),
-    path("success/", views.logged_in),
     path("get/", views.UserViewSet.as_view({"get": "list"}))
 ]
