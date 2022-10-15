@@ -1,7 +1,7 @@
 # Layout
 The frontend is built using React.js, uses Typescript, Material UI icons and TailwindCSS with the DaisyUI plugin.
 
-The backend is simply build on a Flask server with Peewee as the DB manager.
+The backend is simply built on a Django server.
 
 # How to start
 
