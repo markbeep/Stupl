@@ -38,12 +38,20 @@ def get_subjects_per_user(request):
 
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
-def load_vvz(request, keyword):
-    vvz = VVZSubjects.objects.filter(name__icontains=keyword).all()
+def load_vvz(request):
+    category = request.GET.get("category", None)
+    if category:
+        vvz = VVZSubjects.objects.filter(category=category).all()
+    else:
+        vvz = VVZSubjects.objects.all()
     return Response([
         {
+            "id": x.id,
             "name": x.name,
-            "credits": x.credits
+            "credits": x.credits,
+            "category": x.category,
+            "semester": x.semester,
+            "grade": x.grade,
         }
         for x in vvz
     ])
@@ -95,21 +103,23 @@ def sumCreditsCategories(user, categoryList):
     return sum
 
 @api_view(["GET"])
-def requirements(request):
+def get_requirements(request):
     user = request.user
-    return Response({
+    return Response(
         {
-            "1": sumCreditsCategories(user, []) >= 100,
-            "2": True,
-            "3": True,
-            "4": True,
-            "5": True,
-            "6": True,
-            "7": True,
-            "8": True,
-            "9": True,
+            "1": sumCreditsCategories(user, []) == 56,
+            "2": sumCreditsCategories(user, []) >= 84,
+            "3": sumCreditsCategories(user, []) >= 45,
+            "4": sumCreditsCategories(user, []) >= 32,
+            "5": sumCreditsCategories(user, []) >= 84,
+            "6": sumCreditsCategories(user, []) >= 96,
+            "7": sumCreditsCategories(user, []) >= 2,
+            "8": sumCreditsCategories(user, []) >= 5,
+            "9": sumCreditsCategories(user, []) >= 6,
+            "10": sumCreditsCategories(user, []) >= 10,
+            "11": sumCreditsCategories(user, []) >= 180,
         }
-    })
+    )
 
 @api_view(["GET"])
 def fill_db(request):
