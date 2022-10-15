@@ -1,6 +1,8 @@
 from unicodedata import category
 from django.shortcuts import render
 from django.http import JsonResponse
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 from .models import VVZSubjects, UserSubjects
 
@@ -17,21 +19,23 @@ def get_page(request, pk: int):
         "pk": pk
     }
 
-
+@api_view(["POST","GET"])
 def load_main_info(request):
     # From UserSubjects return list with all information for certain user
-    username = request.POST["username"]
+    user = request.user
+    
     subs = UserSubjects.objects.all().filter(user=username)
     return subs
 
+@api_view(["POST"])
 def add_subject(request):
     # Add subject to UserSubjects
     user = UserSubjects.objects.create()
     user.name = request.POST["name"]
-    user.credits = request.Post["credits"]
-    user.category = request.Post["category"]
-    user.semester = request.Post["semester"]
-    user.grade = request.Post["grade"]
+    user.credits = request.POST["credits"]
+    user.category = request.POST["category"]
+    user.semester = request.POST["semester"]
+    user.grade = request.POST["grade"]
     user.count_grade = True
     user.count_credits = True
     return
