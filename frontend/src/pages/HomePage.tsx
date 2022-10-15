@@ -45,7 +45,9 @@ const SubjectGroupCollapsible = ({
     <Collapsible
       headerBuilder={(collapsed) => (
         <div className="flex justify-between">
-          <h3>{subjectGroup.name}</h3>
+          <div className="tooltip" data-tip={subjectGroup.information}>
+            <h3>{subjectGroup.name}</h3>
+          </div>
           <div className="flex">
             {collapsed && <p className="mr-8">37/54</p>}
             {collapsed && <p className="mr-2">5.37</p>}
