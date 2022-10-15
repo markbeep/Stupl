@@ -14,7 +14,7 @@ const CreateAccount = (props: Props) => {
   return (
     <>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8">
+        <div className="w-full max-w-md">
           <div>
             <img className="mx-auto h-14 w-auto" src={katze} />
 

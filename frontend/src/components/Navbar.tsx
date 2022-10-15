@@ -7,7 +7,12 @@ export const Navbar = () => (
         <Link to="/">
           <a className="btn btn-ghost normal-case text-xl">Logo</a>
         </Link>
-        <Link to="/account">Account</Link>
+        <button
+          className="btn btn-ghost normal-case text-xl"
+          onClick={() => console.log("Suck my nuts")}
+        >
+          Log Out
+        </button>
       </div>
     </div>
   </nav>
