@@ -26,6 +26,7 @@ async function postLogin(email: string, password: string) {
     }
     const response = await fetch("/auth/login", options)
     const data = await response.json()
+
     return data as string;
 }
 

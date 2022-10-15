@@ -14,11 +14,6 @@ def list_temporary(request):
         "data": len(subjects)
     })
 
-def get_page(request, pk: int):
-    return {
-        "pk": pk
-    }
-
 @api_view(["POST","GET"])
 def load_main_info(request):
     # From UserSubjects return list with all information for certain user
