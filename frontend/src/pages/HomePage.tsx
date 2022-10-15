@@ -2,7 +2,7 @@ import Collapsible from "../components/Collapsible";
 import { Navbar } from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
 import SemesterPill from "../components/SemesterPill";
-import { SubjectGroup, subjectGroups, subjectTableRowData } from "../data";
+import { SubjectGroup, subjectGroups } from "../data";
 
 const HomePage = () => {
   return (

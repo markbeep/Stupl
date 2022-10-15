@@ -1,1 +1,156 @@
-[{"name": "Bachelor's Thesis", "credits": "10\u00a0credits", "id": 163034, "sem": false, "category": "Bachelor's Thesis"}, {"name": "Analysis 3", "credits": "4\u00a0credits", "id": 163429, "sem": false, "category": "Basic Courses"}, {"name": "Control Systems I", "credits": "4\u00a0credits", "id": 163254, "sem": false, "category": "MinorCourses"}, {"name": "Theoretical Computer Science", "credits": "7\u00a0credits", "id": 163672, "sem": false, "category": "MinorCourses"}, {"name": "Mathematics III: Systems Analysis", "credits": "4\u00a0credits", "id": 163440, "sem": false, "category": "MinorCourses"}, {"name": "Seminar on Media Innovation", "credits": "2\u00a0credits", "id": 161914, "sem": false, "category": "Seminar"}, {"name": "Visual Computing", "credits": "8\u00a0credits", "id": 162436, "sem": false, "category": "Core Courses"}, {"name": "Neural Networks and Computational Complexity", "credits": "2\u00a0credits", "id": 164215, "sem": false, "category": "Seminar"}, {"name": "Software Engineering Seminar", "credits": "2\u00a0credits", "id": 163725, "sem": false, "category": "Seminar"}, {"name": "Discrete Mathematics", "credits": "7\u00a0credits", "id": 163342, "sem": false, "category": "First Year Examinations"}, {"name": "Seminar on Machine Learning Systems", "credits": "2\u00a0credits", "id": 163863, "sem": false, "category": "Seminar"}, {"name": "Compiler Design", "credits": "8\u00a0credits", "id": 162320, "sem": false, "category": "Core Courses"}, {"name": "Computer Systems", "credits": "8\u00a0credits", "id": 163788, "sem": false, "category": "Core Courses"}, {"name": "Systems Programming and Computer Architecture", "credits": "7\u00a0credits", "id": 162562, "sem": false, "category": "Basic Courses"}, {"name": "Introduction to Programming", "credits": "7\u00a0credits", "id": 163718, "sem": false, "category": "First Year Examinations"}, {"name": "Machine Learning Seminar", "credits": "2\u00a0credits", "id": 163859, "sem": false, "category": "Seminar"}, {"name": "Algorithms, Probability, and Computing", "credits": "8\u00a0credits", "id": 162148, "sem": false, "category": "Core Courses"}, {"name": "Analysis II", "credits": "5\u00a0credits", "id": 162699, "sem": false, "category": "Basic Courses"}, {"name": "Electrical Engineering II", "credits": "4\u00a0credits", "id": 162280, "sem": false, "category": "MinorCourses"}, {"name": "Algorithms and Data Structures", "credits": "7\u00a0credits", "id": 162076, "sem": false, "category": "First Year Examinations"}, {"name": "Physics I", "credits": "7\u00a0credits", "id": 161894, "sem": false, "category": "MinorCourses"}, {"name": "Linear Algebra", "credits": "7\u00a0credits", "id": 163637, "sem": false, "category": "First Year Examinations"}]
+[
+  {
+    "name": "Bachelor's Thesis",
+    "credits": "10\u00a0credits",
+    "id": 163034,
+    "sem": false,
+    "category": "Bachelor's Thesis"
+  },
+  {
+    "name": "Analysis 3",
+    "credits": "4\u00a0credits",
+    "id": 163429,
+    "sem": false,
+    "category": "Basic Courses"
+  },
+  {
+    "name": "Control Systems I",
+    "credits": "4\u00a0credits",
+    "id": 163254,
+    "sem": false,
+    "category": "MinorCourses"
+  },
+  {
+    "name": "Theoretical Computer Science",
+    "credits": "7\u00a0credits",
+    "id": 163672,
+    "sem": false,
+    "category": "MinorCourses"
+  },
+  {
+    "name": "Mathematics III: Systems Analysis",
+    "credits": "4\u00a0credits",
+    "id": 163440,
+    "sem": false,
+    "category": "MinorCourses"
+  },
+  {
+    "name": "Seminar on Media Innovation",
+    "credits": "2\u00a0credits",
+    "id": 161914,
+    "sem": false,
+    "category": "Seminar"
+  },
+  {
+    "name": "Visual Computing",
+    "credits": "8\u00a0credits",
+    "id": 162436,
+    "sem": false,
+    "category": "Core Courses"
+  },
+  {
+    "name": "Neural Networks and Computational Complexity",
+    "credits": "2\u00a0credits",
+    "id": 164215,
+    "sem": false,
+    "category": "Seminar"
+  },
+  {
+    "name": "Software Engineering Seminar",
+    "credits": "2\u00a0credits",
+    "id": 163725,
+    "sem": false,
+    "category": "Seminar"
+  },
+  {
+    "name": "Discrete Mathematics",
+    "credits": "7\u00a0credits",
+    "id": 163342,
+    "sem": false,
+    "category": "First Year Examinations"
+  },
+  {
+    "name": "Seminar on Machine Learning Systems",
+    "credits": "2\u00a0credits",
+    "id": 163863,
+    "sem": false,
+    "category": "Seminar"
+  },
+  {
+    "name": "Compiler Design",
+    "credits": "8\u00a0credits",
+    "id": 162320,
+    "sem": false,
+    "category": "Core Courses"
+  },
+  {
+    "name": "Computer Systems",
+    "credits": "8\u00a0credits",
+    "id": 163788,
+    "sem": false,
+    "category": "Core Courses"
+  },
+  {
+    "name": "Systems Programming and Computer Architecture",
+    "credits": "7\u00a0credits",
+    "id": 162562,
+    "sem": false,
+    "category": "Basic Courses"
+  },
+  {
+    "name": "Introduction to Programming",
+    "credits": "7\u00a0credits",
+    "id": 163718,
+    "sem": false,
+    "category": "First Year Examinations"
+  },
+  {
+    "name": "Machine Learning Seminar",
+    "credits": "2\u00a0credits",
+    "id": 163859,
+    "sem": false,
+    "category": "Seminar"
+  },
+  {
+    "name": "Algorithms, Probability, and Computing",
+    "credits": "8\u00a0credits",
+    "id": 162148,
+    "sem": false,
+    "category": "Core Courses"
+  },
+  {
+    "name": "Analysis II",
+    "credits": "5\u00a0credits",
+    "id": 162699,
+    "sem": false,
+    "category": "Basic Courses"
+  },
+  {
+    "name": "Electrical Engineering II",
+    "credits": "4\u00a0credits",
+    "id": 162280,
+    "sem": false,
+    "category": "MinorCourses"
+  },
+  {
+    "name": "Algorithms and Data Structures",
+    "credits": "7\u00a0credits",
+    "id": 162076,
+    "sem": false,
+    "category": "First Year Examinations"
+  },
+  {
+    "name": "Physics I",
+    "credits": "7\u00a0credits",
+    "id": 161894,
+    "sem": false,
+    "category": "MinorCourses"
+  },
+  {
+    "name": "Linear Algebra",
+    "credits": "7\u00a0credits",
+    "id": 163637,
+    "sem": false,
+    "category": "First Year Examinations"
+  }
+]

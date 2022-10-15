@@ -1,4 +1,4 @@
-export type SubjectTableRowData = {
+export type SubjectData = {
   name: string;
   ects: number;
   grade: number;
@@ -9,11 +9,11 @@ export type SubjectTableRowData = {
 
 export type SubjectGroup = {
   name: string;
-  data: SubjectTableRowData[];
+  data: SubjectData[];
   information: string;
 };
 
-export const subjectTableRowData: SubjectTableRowData[] = [
+export const SubjectData: SubjectData[] = [
   {
     name: "Diskrete Mathematik",
     ects: 7,
@@ -51,12 +51,12 @@ export const subjectTableRowData: SubjectTableRowData[] = [
 export const subjectGroups: SubjectGroup[] = [
   {
     name: "Basisjahr",
-    data: subjectTableRowData,
+    data: SubjectData,
     information: "Kacke",
   },
   {
     name: "Grundlagenfächer",
-    data: subjectTableRowData,
+    data: SubjectData,
     information: "noch mehr kacke",
   },
 ];

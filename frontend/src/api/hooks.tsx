@@ -1,4 +1,5 @@
 import { useRequest } from "ahooks";
+import { SubjectData } from "../data";
 import { TestWord } from "./interfaces";
 
 async function postLogin(email: string, password: string) {
@@ -46,3 +47,9 @@ export function useTestHello() {
   const { error, loading, data, run } = useRequest(() => loadTestHello());
   return { error, loading, data, run } as const;
 }
+
+export const createSubject = async (s: SubjectData) => {
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  console.log(s);
+  return { success: true };
+};
