@@ -6,6 +6,7 @@ import { Yanick } from "./pages/Yanick";
 import HomePage from "./pages/HomePage";
 import AccountPage from "./pages/AccountPage";
 import LoginPage from "./pages/LoginPage";
+import CreateAccount from "./pages/CreateAccount";
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/account" element={<AccountPage />}></Route>
+        <Route path="/createPage" element={<CreateAccount />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/cre" element={<LoginPage />}></Route>
         <Route path="/example" element={<TestHome />}></Route>
         <Route path="/konsti" element={<Konsti />}></Route>
         <Route path="/yanick" element={<Yanick />}></Route>
