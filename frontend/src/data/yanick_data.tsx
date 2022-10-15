@@ -42,4 +42,8 @@ export const requirementsData: RequirementsData[] = [
     name: "Bachelorarbeit = 10 KP",
     fullfilled: false,
   },
+  {
+    name: "Gesamt  >= 180 KP",
+    fullfilled: false,
+  },
 ];
