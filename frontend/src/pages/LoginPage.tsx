@@ -1,5 +1,5 @@
-import React from "react";
-import { useLogin } from "../api/hooks";
+import React, { useState } from "react";
+import { loginUser, useLogin } from "../api/hooks";
 import katze from "../data/IMG_8581.jpg"; // with import
 
 type Props = {};
@@ -12,6 +12,14 @@ type Props = {};
 
 const LoginPage = (props: Props) => {
   const image = require("../data/IMG_8581.jpg").default;
+  const [token, setToken] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleSubmit = async () => {
+    console.log("aaaaaaaaaaaaaaaaah");
+    setToken(await loginUser(email, password));
+    console.log(token);
+  };
   /*   const {login}
   const {data} = useLogin() */
 
@@ -26,7 +34,7 @@ const LoginPage = (props: Props) => {
               BibStreetBoys
             </h2>
             <p className="mt-2 text-center text-sm text-gray-600">
-              The Smart Study Planner
+              Plan your studies
             </p>
           </div>
           <form className="mt-6">
@@ -44,6 +52,9 @@ const LoginPage = (props: Props) => {
                   required
                   className="block p-2 pl-4 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Email address"
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
                 />
               </div>
               <div>
@@ -58,16 +69,18 @@ const LoginPage = (props: Props) => {
                   required
                   className="mt-2 block p-2 pl-4 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Password"
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
                 />
               </div>
             </div>
 
             <div>
               <button
-                type="submit"
                 //className="mt-2 block p-2 pl-4 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 className="mt-4 group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-grey-900 hover:bg-indigo-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                //onClick={}
+                onClick={handleSubmit}
               >
                 Sign in
               </button>
