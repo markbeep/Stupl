@@ -10,6 +10,7 @@ export type SubjectTableRowData = {
 export type SubjectGroup = {
   name: string;
   data: SubjectTableRowData[];
+  information: string;
 };
 
 export const subjectTableRowData: SubjectTableRowData[] = [
@@ -51,9 +52,11 @@ export const subjectGroups: SubjectGroup[] = [
   {
     name: "Basisjahr",
     data: subjectTableRowData,
+    information: "Kacke",
   },
   {
     name: "Grundlagenfächer",
     data: subjectTableRowData,
+    information: "noch mehr kacke",
   },
 ];

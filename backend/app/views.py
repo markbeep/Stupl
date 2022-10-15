@@ -22,41 +22,34 @@ def list_temporary(request):
     })
 
 @api_view(["POST","GET"])
-def load_main_info(request):
+def load_user_sub(request):
     # From UserSubjects return list with all information for certain user
-    user = request.user
-    #subs = UserSubjects.objects.all().filter(user=user)
-    return JsonResponse({"name": "Linear Algebra", "credits": "7\u00a0credits", "id": 163637, "sem": False, "category": "First Year Examinations"})
+    usersub = UserSubjects.objects.all().filter(user=request.user)
+    return JsonResponse(usersub)
+
+def load_vvz(request):
+    vvz = VVZSubjects.objects.al()
+    return JsonResponse(vvz)
 
 @api_view(["POST"])
 def add_subject(request):
-    name = "Hello"
-    credits = 7
-    vvz_subject = None
-    lesson_number = "Hello"
-    category = "c"
-    semester = 1
-    grade = 5
+    name = request.POST["name"]
+    credits = request.POST["credits"]
+    vvz_subject = request.POST["vvz_subject"]
+    category = request.POST["category"]
+    semester = request.POST["semester"]
+    grade = request.POST["grade"]
     count_grade = True
     count_credits = True
-    year = 1
-    sub = UserSubjects.objects.create(name=name,credits=credits,vvz_subject=vvz_subject,grade=grade,semester=semester,year=year,user=None,count_grade=count_grade,count_credits=count_credits)
+    year = 2022
+    sub = UserSubjects.objects.create(name=name,credits=credits,category=category,vvz_subject=vvz_subject,grade=grade,semester=semester,year=year,user=None,count_grade=count_grade,count_credits=count_credits)
     sub.save()
-    # Add subject to UserSubjects
-    #user = UserSubjects.objects.create()
-    #user.name = 
-    #user.credits = request.POST["credits"]
-    #user.category = request.POST["category"]
-    #user.semester = request.POST["semester"]
-    #user.grade = request.POST["grade"]
-    #user.count_grade = True
-    #user.count_credits = True
-    return JsonResponse(request)
+    return Response("Success")
 
 def del_subject(request):
     # Delete subject from UserSubjects
     subjid = request.POST["subjid"]
-    UserSubjects.objects.filter(id=subjid).delete()
+    UserSubjects.objects.filter(id=subjid, user=request.user).delete()
     return Response("Success")
 
 

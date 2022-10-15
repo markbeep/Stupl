@@ -23,11 +23,11 @@ class UserSubjects(models.Model):
     category = models.CharField(max_length=256)
     semester = models.BooleanField()
     year = models.IntegerField()
-    vvz_subject = models.ForeignKey(VVZSubjects, on_delete=models.CASCADE, related_name="user_subjects")
+    vvz_subject = models.ForeignKey(VVZSubjects, on_delete=models.CASCADE, related_name="user_subjects",null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="subjects")
-    grade = models.FloatField()
-    count_grade = models.BooleanField()
-    count_credits = models.BooleanField()
+    grade = models.FloatField(null=True)
+    count_grade = models.BooleanField(null=True)
+    count_credits = models.BooleanField(null=True)
 
     class Meta:
         app_label = "app"
