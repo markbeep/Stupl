@@ -1,3 +1,4 @@
+import { group } from "console";
 import { useState } from "react";
 import Collapsible from "../components/Collapsible";
 import { Navbar } from "../components/Navbar";
@@ -20,8 +21,28 @@ const HomePage = () => {
           <div className="flex justify-between w-full">
             <h3 className="font-bold">Total</h3>
             <div className="flex">
-              <p className="mr-8">37/54</p>
-              <p className="mr-10">5.37</p>
+              <p className="mr-8">
+                {Number(
+                  totalCredits({
+                    includePlanned: includePlanned,
+                    subjectGroups: subjectGroups,
+                  })
+                ) + "/180"}
+              </p>
+              <p className="mr-10">
+                {Number(
+                  totalWsum({
+                    includePlanned: includePlanned,
+                    subjectGroups: subjectGroups,
+                  })
+                ) /
+                  Number(
+                    totalCredits({
+                      includePlanned: includePlanned,
+                      subjectGroups: subjectGroups,
+                    })
+                  )}
+              </p>
             </div>
           </div>
         </div>
@@ -139,6 +160,56 @@ const avgGrades = ({
         })
       )
     ).toFixed(2);
+  }
+};
+
+//compute total credits
+const totalCredits = ({
+  includePlanned,
+  subjectGroups,
+}: {
+  includePlanned: boolean;
+  subjectGroups: SubjectGroup[];
+}) => {
+  {
+    return Number(
+      subjectGroups.reduce((accumulator, currentValue) => {
+        return (
+          accumulator +
+          Number(
+            sumEcts({
+              includePlanned: includePlanned,
+              subjectGroup: currentValue,
+            })
+          )
+        );
+      }, 0)
+    );
+  }
+};
+
+//compute the total sum of weighted grades
+const totalWsum = ({
+  includePlanned,
+  subjectGroups,
+}: {
+  includePlanned: boolean;
+  subjectGroups: SubjectGroup[];
+}) => {
+  {
+    return Number(
+      subjectGroups.reduce((accumulator, currentValue) => {
+        return (
+          accumulator +
+          Number(
+            wsumGrades({
+              includePlanned: includePlanned,
+              subjectGroup: currentValue,
+            })
+          )
+        );
+      }, 0)
+    );
   }
 };
 

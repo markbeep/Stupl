@@ -1,9 +1,4 @@
 
-from curses.ascii import US
-from operator import countOf
-from unicodedata import category
-from django.shortcuts import render
-from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import json
@@ -14,7 +9,7 @@ from .models import VVZSubjects, UserSubjects
 def list_temporary(request):
     subjects = VVZSubjects.objects.all()
     sub2 = UserSubjects.objects.all()
-    return JsonResponse({
+    return Response({
         "data": len(subjects),
         "data2": len(sub2)
     })
@@ -23,11 +18,11 @@ def list_temporary(request):
 def load_user_sub(request):
     # From UserSubjects return list with all information for certain user
     usersub = UserSubjects.objects.all().filter(user=request.user)
-    return JsonResponse(usersub)
+    return Response(usersub)
 
 def load_vvz(request):
     vvz = VVZSubjects.objects.al()
-    return JsonResponse(vvz)
+    return Response(vvz)
 
 @api_view(["POST"])
 def add_subject(request):
@@ -69,3 +64,4 @@ def fill_db(request):
         lec.semester = data[i]["semester"]
         lec.year = data[i]["year"]
         lec.save()
+    return Response("Done")

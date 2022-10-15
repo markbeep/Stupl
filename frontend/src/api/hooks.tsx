@@ -19,9 +19,12 @@ export async function loginUser(email: string, password: string) {
   }
 }
 
-async function loadTestHello() {
-  const response = await fetch("/api/hello/");
+export async function loadTestHello() {
+  const response = await fetch("/sdapi/hello");
+  console.log(response);
+  console.log(response.body);
   const data = await response.json();
+  console.log("why syntax error", response);
   return { word: data } as TestWord;
 }
 export function useTestHello() {
@@ -29,24 +32,28 @@ export function useTestHello() {
   return { error, loading, data, run } as const;
 }
 
-async function loadRestricted(token: string) {
-  const options = {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Token " + token,
-    },
-  };
-  const response = await fetch("/auth/required/", options);
-  return response.status;
-}
-
-export function useRestricted(token: string) {
-  const { data, loading, error, run } = useRequest(() => loadRestricted(token));
-  return { data, loading, error, run };
-}
 export const createSubject = async (s: SubjectData) => {
   await new Promise((resolve) => setTimeout(resolve, 500));
   console.log(s);
   return { success: true };
+};
+
+export const registerUser = async (email: string, password: string) => {
+  console.log(email, password);
+  const options = {
+    method: "POST",
+    body: JSON.stringify({ email, password }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await fetch("/auth/register/", options);
+  console.log("test");
+  console.log(response);
+  if (response.status == 200) {
+    const data = await response.json();
+    return data["token"] as string;
+  } else {
+    return "invalid login";
+  }
 };
