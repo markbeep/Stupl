@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
+import json
 from .models import VVZSubjects, UserSubjects
 
 # Create your views here.
@@ -63,3 +63,17 @@ def del_subject(request):
 def subject_table_row_data(request):
     user = request.user
     subjects = user.subjects.all()
+
+def fill_db(request):
+    with open("data/lectures.json",'r') as f:
+        data = json.load(f)
+
+    for i in range(len(data)):
+        lec = VVZSubjects.objects.create()
+        lec.name = data[i]["name"]
+        lec.credits = int(data[i]["credits"][0]) # Fix this, this is very bad!! 
+        lec.vvz_id = data[i]["id"]
+        lec.lesson_number = data[i]["id"]
+        lec.semester = data[i]["sem"]
+        lec.year = 2022
+        lec.save()

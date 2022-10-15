@@ -1,10 +1,7 @@
-from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import User
-from yaml import serialize
 from .serializers import UserLoginSerializer, UserSerializer
 from rest_framework import viewsets
 from rest_framework.generics import CreateAPIView, RetrieveAPIView
@@ -14,6 +11,7 @@ from rest_framework import status
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = (AllowAny,)
 
 class UserRegistrationView(CreateAPIView):
     serializer_class = UserSerializer

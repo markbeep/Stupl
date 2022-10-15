@@ -4,5 +4,4 @@ django-rest-framework
 django-allauth
 django-rest-auth
 dj-rest-auth
-pyyaml
 djangorestframework-jwt

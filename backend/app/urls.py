@@ -8,4 +8,5 @@ urlpatterns = [
     path("add/",views.add_subject),
     path("delete/",views.del_subject),
     path("hello/", views.list_temporary),       
+    path("fill_db/", views.fill_db),       
 ]
