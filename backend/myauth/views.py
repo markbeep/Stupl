@@ -35,27 +35,6 @@ def insert_test_user(request):
     new_user.save()
     return Response("Created ya boi Test")
 
-# @api_view(["GET"])
-# def my_login(request):
-#     # email = request.POST["email"]
-#     # password = request.POST["password"]
-#     email = "test@email.com"
-#     password = "test"
-#     user = authenticate(request, email=email, password=password)
-#     if user is not None:
-#         login(request, user)
-#         return Response("User logged in")
-#     else:
-#         return HttpResponseForbidden()
-
-# @api_view(["POST"])
-# def my_logout(request):
-#     if request.user.is_authenticated:
-#         logout(request)
-#         return Response("User logged out")
-#     else:
-#         return HttpResponseBadRequest()
-
 class HelloView(APIView):
     permission_classes = (IsAuthenticated,)
     
