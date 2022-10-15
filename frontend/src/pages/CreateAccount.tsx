@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { loadTestHello, registerUser } from "../api/hooks";
 import katze from "../data/IMG_8581.jpg"; // with import
+import axios from "axios";
 
 type Props = {};
 
@@ -12,6 +13,12 @@ const CreateAccount = (props: Props) => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   // loadTestHello().then(console.log).catch(console.error);
+
+  axios.get("/api/hello/").then((response) => {
+    // setText(response.data.text);
+    // setAuthor(response.data.author);
+    console.log(response);
+  });
 
   const handleSubmit = async () => {
     // setToken(await loginUser(email, password));

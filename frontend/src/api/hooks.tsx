@@ -20,7 +20,7 @@ export async function loginUser(email: string, password: string) {
 }
 
 export async function loadTestHello() {
-  const response = await fetch("/api/hello");
+  const response = await fetch("/sdapi/hello");
   console.log(response);
   console.log(response.body);
   const data = await response.json();
