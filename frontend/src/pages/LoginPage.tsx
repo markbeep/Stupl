@@ -75,30 +75,29 @@ const LoginPage = (props: Props) => {
                 />
               </div>
             </div>
-
-            <div>
-              <button
-                //className="mt-2 block p-2 pl-4 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                className="mt-4 group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-grey-900 hover:bg-indigo-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                onClick={handleSubmit}
-              >
-                Sign in
-              </button>
-            </div>
-            <div className="mt-2 flex justify-end">
-              <div className="text-sm mr-4">
-                <a className="font-medium text-grey-900">No Account yet?</a>
-              </div>
-              <div className="text-sm">
-                <a
-                  href="/createAccount"
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
-                >
-                  Register now
-                </a>
-              </div>
-            </div>
           </form>
+          <div>
+            <button
+              //className="mt-2 block p-2 pl-4 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="mt-4 group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-grey-900 hover:bg-indigo-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              onClick={handleSubmit}
+            >
+              Sign in
+            </button>
+          </div>
+          <div className="mt-2 flex justify-end">
+            <div className="text-sm mr-4">
+              <a className="font-medium text-grey-900">No Account yet?</a>
+            </div>
+            <div className="text-sm">
+              <a
+                href="/createAccount"
+                className="font-medium text-indigo-600 hover:text-indigo-500"
+              >
+                Register now
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </>
