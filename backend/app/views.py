@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework import status
 import json
 
-from backend.app.categories import category_to_enum, enum_to_category_german
+from app.categories import category_to_enum, enum_to_category_german
 from .models import VVZSubjects, UserSubjects
 from django.shortcuts import get_object_or_404
 
