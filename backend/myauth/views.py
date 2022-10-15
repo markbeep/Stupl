@@ -57,9 +57,9 @@ def insert_test_user(request):
 #     else:
 #         return HttpResponseBadRequest()
 
-# @login_required(login_url="/auth/login")
-# def logged_in():
-#     return Response("Logged in successfully")
+@login_required(login_url="/auth/login")
+def logged_in():
+    return Response("Logged in successfully")
 
 # def register(request):
 #     ...
