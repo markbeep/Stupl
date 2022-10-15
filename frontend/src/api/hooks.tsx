@@ -3,23 +3,6 @@ import axios, { AxiosError } from "axios";
 import { SubjectData } from "../data";
 import { TestWord } from "./interfaces";
 
-// export async function loginUser(email: string, password: string) {
-//   const options = {
-//     method: "POST",
-//     body: JSON.stringify({ email, password }),
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   };
-//   const response = await fetch("/auth/login/", options);
-//   if (response.status == 200) {
-//     const data = await response.json();
-//     return data["token"] as string;
-//   } else {
-//     return "invalid login";
-//   }
-// }
-
 export async function loadTestHello() {
   const response = await fetch("/sdapi/hello");
   console.log(response);
@@ -51,14 +34,14 @@ export const loginUser = async (email: string, password: string) => {
   return response.data;
 };
 
-// export const getAllSubjects = async () => {
-//   console.log("is this working?");
-//   const response = axios.get("api/get_subjects/");
-//   console.log(response);
-// };
-
-// export const getAllRequirements = async () => {
-//   console.log("is this working?");
-//   const response = axios.get("api/get_requirements/");
-//   console.log(response);
-// };
+export const getAllSubjects = async (token: string | null | undefined) => {
+  console.log("is this working?");
+  const response = await axios.get("api/get_subjects/", {
+    headers: {
+      authorization: "Token " + token,
+    },
+  });
+  // console.log("herejal<f<dasfkd<alkfj kl<j<i");
+  // console.log(response);
+  return response.data;
+};
