@@ -71,6 +71,18 @@ export const subjectGroups: SubjectGroup[] = [
     name: "Gess",
     data: subjectTableRowData,
     information:
-      "Courses"
+      "These courses are often courses from other departments which can also be relevant for CS students. Some of them are bachelor's courses. Some of them are master's courses. You can also take other (master) courses that are not on the list but they need to be accepted by the study administration.",
+  },
+  {
+    name: "Wahlfächer",
+    data: subjectTableRowData,
+    information:
+      "Computer Science courses which are not in any of the other categories. Requirements: None need to be taken, but you can take some of them instead of taking more Kernfächer or if you just see something interesting of course.",
+  },
+  {
+    name: "Bachelor Thesis",
+    data: subjectTableRowData,
+    information:
+      "Thesis usually done at the end of your Bachelor studies. Requirements: At least five Grundlagenfächer need to be passed to start.",
   },
 ];
