@@ -115,20 +115,31 @@ const avgGrades = ({
       })
     )
   );
-  return (
-    Number(
-      wsumGrades({
-        includePlanned: includePlanned,
-        subjectGroup: subjectGroup,
-      })
-    ) /
+  if (
     Number(
       sumEcts({
         includePlanned: includePlanned,
         subjectGroup: subjectGroup,
       })
-    )
-  ).toFixed(2);
+    ) === 0
+  ) {
+    return 0;
+  } else {
+    return (
+      Number(
+        wsumGrades({
+          includePlanned: includePlanned,
+          subjectGroup: subjectGroup,
+        })
+      ) /
+      Number(
+        sumEcts({
+          includePlanned: includePlanned,
+          subjectGroup: subjectGroup,
+        })
+      )
+    ).toFixed(2);
+  }
 };
 
 const SubjectGroupCollapsible = ({
@@ -146,8 +157,28 @@ const SubjectGroupCollapsible = ({
             <h3>{subjectGroup.name}</h3>
           </div>
           <div className="flex">
-            {collapsed && <p className="mr-8">37/54</p>}
-            {collapsed && <p className="mr-2">5.37</p>}
+            {collapsed && (
+              <p className="mr-8">
+                {Number(
+                  sumEcts({
+                    includePlanned: includePlanned,
+                    subjectGroup: subjectGroup,
+                  })
+                )}
+                /54
+              </p>
+            )}
+            {collapsed && (
+              <p className="mr-2">
+                {" "}
+                {Number(
+                  avgGrades({
+                    includePlanned: includePlanned,
+                    subjectGroup: subjectGroup,
+                  })
+                )}
+              </p>
+            )}
           </div>
         </div>
       )}
