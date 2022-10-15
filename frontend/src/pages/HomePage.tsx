@@ -30,18 +30,21 @@ const HomePage = () => {
                 ) + "/180"}
               </p>
               <p className="mr-10">
-                {Number(
-                  totalWsum({
-                    includePlanned: includePlanned,
-                    subjectGroups: subjectGroups,
-                  })
-                ) /
+                {/* compute the total average */}
+                {(
+                  Number(
+                    totalWsum({
+                      includePlanned: includePlanned,
+                      subjectGroups: subjectGroups,
+                    })
+                  ) /
                   Number(
                     totalCredits({
                       includePlanned: includePlanned,
                       subjectGroups: subjectGroups,
                     })
-                  )}
+                  )
+                ).toFixed(2)}
               </p>
             </div>
           </div>
