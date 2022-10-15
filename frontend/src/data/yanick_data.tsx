@@ -9,27 +9,28 @@ export type RequirementsData = {
 export const requirementsData: RequirementsData[] = [
   {
     requirementsId: 1,
-    name: "Fächer des Basisjahres = 56 KP",
+    name: "First Year Courses = 56 KP",
     fullfilled: true,
   },
   {
-    requirementsId: 2,
-    name: "Grundlagenfächer und Kernfächer >= 84 KP",
-    fullfilled: false,
-  },
-  {
     requirementsId: 3,
-    name: "Grundlagenfächer >= 45 KP",
+    name: "Basic Courses >= 45 KP",
     fullfilled: false,
   },
   {
     requirementsId: 4,
-    name: "Kernfächer >= 32 KP",
+    name: "Core Courses >= 32 KP",
+    fullfilled: false,
+  },
+
+  {
+    requirementsId: 2,
+    name: "Basic Courses + Core Courses >= 84 KP",
     fullfilled: false,
   },
   {
     requirementsId: 6,
-    name: "Grundlagenfächer, Kernfächer und Wahlfächer >= 96 KP",
+    name: "Basic Courses + Core Courses + Electives >= 96 KP",
     fullfilled: true,
   },
   {
@@ -39,17 +40,17 @@ export const requirementsData: RequirementsData[] = [
   },
   {
     requirementsId: 8,
-    name: "Ergänzung >= 5 KP",
+    name: "Minor Courses >= 5 KP",
     fullfilled: false,
   },
   {
     requirementsId: 9,
-    name: "Wissenschaft im Kontext >= 6 KP",
+    name: "Science in Perspective >= 6 KP",
     fullfilled: false,
   },
   {
     requirementsId: 10,
-    name: "Bachelorarbeit = 10 KP",
+    name: "Bachelor's Thesis = 10 KP",
     fullfilled: false,
   },
   {
