@@ -26,7 +26,10 @@ const SearchBar = (props: Props) => {
       {vvzSubjectPreset && (
         <AddSubjectModal
           isOpen={modalIsOpen}
-          closeModal={() => setModalIsOpen(false)}
+          closeModal={() => {
+            setModalIsOpen(false);
+            setVvzSubjectPreset(null);
+          }}
           subjectPreset={vvzSubjectPreset!}
         ></AddSubjectModal>
       )}

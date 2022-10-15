@@ -21,6 +21,22 @@ export const getAllSubjects = async (token: string | null | undefined) => {
       authorization: "Token " + token,
     },
   });
+
+  // get_requirements
+  // console.log("herejal<f<dasfkd<alkfj kl<j<i");
+  // console.log(response);
+  return response.data;
+};
+
+export const getAllRequirements = async (token: string | null | undefined) => {
+  console.log("is this working?");
+  const response = await axios.get("api/get_requirements/", {
+    headers: {
+      authorization: "Token " + token,
+    },
+  });
+
+  // get_requirements
   // console.log("herejal<f<dasfkd<alkfj kl<j<i");
   // console.log(response);
   return response.data;
