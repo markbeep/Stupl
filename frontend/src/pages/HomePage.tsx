@@ -2,7 +2,12 @@ import Collapsible from "../components/Collapsible";
 import { Navbar } from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
 import SemesterPill from "../components/SemesterPill";
-import { SubjectGroup, subjectGroups, subjectTableRowData } from "../data";
+import {
+  SubjectGroup,
+  subjectGroups,
+  SubjectTableRowData,
+  subjectTableRowData,
+} from "../data";
 
 const HomePage = () => {
   return (
@@ -35,6 +40,85 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+// function that checks if a certain subject should be included in calculations
+const showSubject = ({
+  includePlanned,
+  subjectTableRowData,
+}: {
+  includePlanned: boolean;
+  subjectTableRowData: SubjectTableRowData;
+}) => {
+  return includePlanned ? true : subjectTableRowData.planned ? false : true;
+};
+
+//compute sum of ECTS per category (that are to be included based on includePlanned)
+const sumEcts = ({
+  includePlanned,
+  subjectGroup,
+}: {
+  includePlanned: boolean;
+  subjectGroup: SubjectGroup;
+}) => {
+  return subjectGroup.data
+    .reduce((accumulator, currentValue) => {
+      return (
+        accumulator +
+        (showSubject({
+          includePlanned: includePlanned,
+          subjectTableRowData: currentValue,
+        })
+          ? currentValue.ects
+          : 0)
+      );
+    }, 0)
+    .toFixed(2);
+};
+
+//compute the weigthed sum of grades * ECTS per category
+const wsumGrades = ({
+  includePlanned,
+  subjectGroup,
+}: {
+  includePlanned: boolean;
+  subjectGroup: SubjectGroup;
+}) => {
+  return subjectGroup.data.reduce((accumulator, currentValue) => {
+    return (
+      accumulator +
+      (showSubject({
+        includePlanned: includePlanned,
+        subjectTableRowData: currentValue,
+      })
+        ? currentValue.grade * currentValue.ects
+        : 0)
+    );
+  }, 0);
+};
+
+//compute the average grade based one includePlanned per category
+const avgGrades = ({
+  includePlanned,
+  subjectGroup,
+}: {
+  includePlanned: boolean;
+  subjectGroup: SubjectGroup;
+}) => {
+  return (
+    Number(
+      wsumGrades({
+        includePlanned: includePlanned,
+        subjectGroup: subjectGroup,
+      })
+    ) /
+    Number(
+      sumEcts({
+        includePlanned: includePlanned,
+        subjectGroup: subjectGroup,
+      })
+    )
+  ).toFixed(2);
+};
 
 const SubjectGroupCollapsible = ({
   subjectGroup,
