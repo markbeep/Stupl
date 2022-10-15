@@ -38,3 +38,11 @@ const Counter = () => {
 };
 
 export default Counter;
+
+// type test = {x: number, y: number}
+// const func = ({x, y}:test) => {
+//     console.log("sdf")
+// }
+
+// const param:test = {x: 1, y: 2}
+// func(param)
