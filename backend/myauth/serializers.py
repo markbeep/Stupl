@@ -28,12 +28,12 @@ class UserLoginSerializer(serializers.Serializer):
         if user is None:
             raise serializers.ValidationError("Invalid login")
         try:
-            token = Token.objects.filter(user=user).get()
-            if not token:
-                token = Token.objects.create(user=user)
-            update_last_login(None, user)
+            token = Token.objects.get(user=user)
         except User.DoesNotExist:
             raise serializers.ValidationError("User doesn't exist")
+        except Token.DoesNotExist:
+            token = Token.objects.create(user=user)            
+        update_last_login(None, user)
         return {
             "email": user.email,
             "token": token.key,

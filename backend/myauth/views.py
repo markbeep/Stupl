@@ -8,6 +8,7 @@ from rest_framework.generics import CreateAPIView, RetrieveAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework import status
 from rest_framework.views import APIView
+from rest_framework.authtoken.models import Token
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -64,6 +65,6 @@ class UserLogoutView(RetrieveAPIView):
     serializer_class = UserLoginSerializer
     
     def post(self, request):
-        
+        Token.objects.get(user=request.user).delete()
         logout(request)
         return Response("Successfully logged out")
