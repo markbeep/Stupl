@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { loginUser } from "../api/hooks";
 import { saveToken, useAuth } from "../authHanlder";
-import katze from "../data/IMG_8581.jpg"; // with import
+import logo from "../data/logo2.png";
 
 type Props = {};
 
 const LoginPage = (props: Props) => {
-  const image = require("../data/IMG_8581.jpg").default;
+  const image = require("../data/logo2.png").default;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { token, setToken } = useAuth();
@@ -34,7 +34,7 @@ const LoginPage = (props: Props) => {
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div>
-            <img className="mx-auto h-14 w-auto" src={katze} />
+            <img className="mx-auto h-14 w-auto" src={logo} />
 
             <h1 className="mt-6 text-center text-5xl font-bold tracking-tight text-accent-content">
               BibStreetBoys

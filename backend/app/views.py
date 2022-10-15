@@ -93,7 +93,31 @@ def delete_subject(request):
     subject.delete()
     return Response("Success")
 
+def sumCreditsCategories(user, categoryList):
+    sum = 0
+    for cat in categoryList:
+        credits = 0
+        for sub in UserSubjects.objects.filter(user=user, category=cat):
+            credits = credits + sub.credits
+        sum = sum + credits
+    return sum
 
+@api_view(["GET"])
+def requirements(request):
+    user = request.user
+    return Response({
+        {
+            "1": sumCreditsCategories(user, []) >= 100,
+            "2": True,
+            "3": True,
+            "4": True,
+            "5": True,
+            "6": True,
+            "7": True,
+            "8": True,
+            "9": True,
+        }
+    })
 
 @api_view(["GET"])
 def fill_db(request):
