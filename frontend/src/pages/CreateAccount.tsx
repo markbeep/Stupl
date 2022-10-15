@@ -84,6 +84,21 @@ const CreateAccount = (props: Props) => {
                 Register
               </button>
             </div>
+            <div className="mt-2 flex justify-end">
+              <div className="text-sm mr-4">
+                <a className="font-medium text-grey-900">
+                  Already have an account?
+                </a>
+              </div>
+              <div className="text-sm">
+                <a
+                  href="/login"
+                  className="font-medium text-indigo-600 hover:text-indigo-500"
+                >
+                  Sign in now
+                </a>
+              </div>
+            </div>
           </form>
         </div>
       </div>
