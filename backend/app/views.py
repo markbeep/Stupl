@@ -21,27 +21,48 @@ def list_temporary(request):
         "data": len(subjects),
         "data2": len(sub2)
     })
-    
+def sumCreditsCategories(user, categoryList):
+    sum = 0
+    for cat in categoryList:
+        credits = 0
+        for sub in UserSubjects.objects.filter(user=user, category=cat):
+            credits = credits + sub.credits
+        sum = sum + credits
+    return sum
+
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def get_subjects_per_user(request):
     user = request.user
     subjects = user.subjects.all()
-    return Response([
-        {
-            "id": x.id,
-            "name": x.name,
-            "credits": x.credits,
-            "category_id": x.category,
-            "category": enum_to_category_german(x.category),
-            "semester": x.semester,
-            "year": x.year,
-            "grade": x.grade,
-            "planned": x.planned,
-            
+    return Response({
+        "subjects": [
+            {
+                "id": x.id,
+                "name": x.name,
+                "credits": x.credits,
+                "category_id": x.category,
+                "category": enum_to_category_german(x.category),
+                "semester": x.semester,
+                "year": x.year,
+                "grade": x.grade,
+                "planned": x.planned,
+        } for x in subjects], 
+        "requirements": {
+            "1": sumCreditsCategories(user, []) == 56,
+            "2": sumCreditsCategories(user, []) >= 84,
+            "3": sumCreditsCategories(user, []) >= 45,
+            "4": sumCreditsCategories(user, []) >= 32,
+            "5": sumCreditsCategories(user, []) >= 84,
+            "6": sumCreditsCategories(user, []) >= 96,
+            "7": sumCreditsCategories(user, []) >= 2,
+            "8": sumCreditsCategories(user, []) >= 5,
+            "9": sumCreditsCategories(user, []) >= 6,
+            "10": sumCreditsCategories(user, []) >= 10,
+            "11": sumCreditsCategories(user, []) >= 180,
         }
-        for x in subjects
-    ])
+
+    })
 
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
@@ -101,31 +122,6 @@ def delete_subject(request):
     subject.delete()
     return Response("Success")
 
-def sumCreditsCategories(user, categoryList):
-    sum = 0
-    for cat in categoryList:
-        credits = 0
-        for sub in UserSubjects.objects.filter(user=user, category=cat):
-            credits = credits + sub.credits
-        sum = sum + credits
-    return sum
-
-@api_view(["GET"])
-def requirements(request):
-    user = request.user
-    return Response({
-        {
-            "1": sumCreditsCategories(user, []) >= 100,
-            "2": True,
-            "3": True,
-            "4": True,
-            "5": True,
-            "6": True,
-            "7": True,
-            "8": True,
-            "9": True,
-        }
-    })
 
 @api_view(["GET"])
 def fill_db(request):

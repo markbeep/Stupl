@@ -1,6 +1,8 @@
 import { group } from "console";
 import React, { useContext, useEffect, useState } from "react";
+import { getAllSubjects } from "../api/hooks";
 import { totalCredits, totalWsum } from "../api/subjectMath";
+import { useAuth } from "../authHanlder";
 // import { getAllSubjects } from "../api/hooks";
 import Collapsible from "../components/Collapsible";
 import { Navbar } from "../components/Navbar";
@@ -24,10 +26,15 @@ export const useDisplayOptions = () => useContext(DisplayOptionsContext);
 const HomePage = () => {
   const [includePlanned, setIncludePlanned] = useState(false);
   const [groupByCategory, setGroupByCategory] = useState(true);
-
+  const { token } = useAuth();
   // useEffect(() => {
   //   getAllSubjects();
   // }, []);
+
+  const getSubjets = async () => {
+    const subs = await getAllSubjects(token);
+    console.log(subs);
+  };
 
   return (
     <DisplayOptionsContext.Provider
@@ -38,7 +45,9 @@ const HomePage = () => {
     >
       <div className="pb-12">
         <Navbar></Navbar>
-
+        <button className="btn btn-primary" onClick={getSubjets}>
+          Click me
+        </button>
         <div className="mt-12 max-w-lg mx-auto">
           <SearchBar></SearchBar>
         </div>
