@@ -1,858 +1,965 @@
 [
   {
-    "name": "Introduction to Neuroinformatics",
-    "credits": 6,
-    "vvz_id": 163066,
-    "semester": false,
-    "year": 2022,
-    "category": "Electives"
+      "name": "Introduction to Neuroinformatics",
+      "credits": 6,
+      "vvz_id": 163066,
+      "semester": "w",
+      "year": 2022,
+      "category": "Electives",
+      "subjectGroupId": 5
   },
   {
-    "name": "Signals and Systems",
-    "credits": 4,
-    "vvz_id": 162478,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Signals and Systems",
+      "credits": 4,
+      "vvz_id": 162478,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Algorithms, Probability, and Computing",
-    "credits": 8,
-    "vvz_id": 162148,
-    "semester": false,
-    "year": 2022,
-    "category": "Core Courses"
+      "name": "Algorithms, Probability, and Computing",
+      "credits": 8,
+      "vvz_id": 162148,
+      "semester": "w",
+      "year": 2022,
+      "category": "Core Courses",
+      "subjectGroupId": 3
   },
   {
-    "name": "Didactic Basics for Student Teaching Assistants",
-    "credits": 1,
-    "vvz_id": 162262,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Didactic Basics for Student Teaching Assistants",
+      "credits": 1,
+      "vvz_id": 162262,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Computational Systems Biology",
-    "credits": 6,
-    "vvz_id": 163393,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Computational Systems Biology",
+      "credits": 6,
+      "vvz_id": 163393,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Numerical Modelling I and II: Theory and Applications",
-    "credits": 6,
-    "vvz_id": 163307,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Numerical Modelling I and II: Theory and Applications",
+      "credits": 6,
+      "vvz_id": 163307,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Linear Algebra",
-    "credits": 7,
-    "vvz_id": 163637,
-    "semester": false,
-    "year": 2022,
-    "category": "First Year Examinations"
+      "name": "Linear Algebra",
+      "credits": 7,
+      "vvz_id": 163637,
+      "semester": "w",
+      "year": 2022,
+      "category": "First Year Examinations",
+      "subjectGroupId": 1
   },
   {
-    "name": "Stochastic Methods for Engineers and Natural Scientists",
-    "credits": 4,
-    "vvz_id": 163510,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Stochastic Methods for Engineers and Natural Scientists",
+      "credits": 4,
+      "vvz_id": 163510,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Algorithms and Data Structures",
-    "credits": 7,
-    "vvz_id": 162076,
-    "semester": false,
-    "year": 2022,
-    "category": "First Year Examinations"
+      "name": "Algorithms and Data Structures",
+      "credits": 7,
+      "vvz_id": 162076,
+      "semester": "w",
+      "year": 2022,
+      "category": "First Year Examinations",
+      "subjectGroupId": 1
   },
   {
-    "name": "Seminar in Computer Architecture",
-    "credits": 2,
-    "vvz_id": 163474,
-    "semester": false,
-    "year": 2022,
-    "category": "Seminar"
+      "name": "Seminar in Computer Architecture",
+      "credits": 2,
+      "vvz_id": 163474,
+      "semester": "w",
+      "year": 2022,
+      "category": "Seminar",
+      "subjectGroupId": 7
   },
   {
-    "name": "Systems Dynamics and Complexity",
-    "credits": 3,
-    "vvz_id": 162922,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Systems Dynamics and Complexity",
+      "credits": 3,
+      "vvz_id": 162922,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "High Performance Computing for Science and Engineering (HPCSE) I",
-    "credits": 4,
-    "vvz_id": 163373,
-    "semester": false,
-    "year": 2022,
-    "category": "Electives"
+      "name": "High Performance Computing for Science and Engineering (HPCSE) I",
+      "credits": 4,
+      "vvz_id": 163373,
+      "semester": "w",
+      "year": 2022,
+      "category": "Electives",
+      "subjectGroupId": 5
   },
   {
-    "name": "Analysis 3",
-    "credits": 4,
-    "vvz_id": 163429,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Analysis 3",
+      "credits": 4,
+      "vvz_id": 163429,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Seminar on Media Innovation",
-    "credits": 2,
-    "vvz_id": 161914,
-    "semester": false,
-    "year": 2022,
-    "category": "Seminar"
+      "name": "Seminar on Media Innovation",
+      "credits": 2,
+      "vvz_id": 161914,
+      "semester": "w",
+      "year": 2022,
+      "category": "Seminar",
+      "subjectGroupId": 7
   },
   {
-    "name": "Computer Systems",
-    "credits": 8,
-    "vvz_id": 163788,
-    "semester": false,
-    "year": 2022,
-    "category": "Core Courses"
+      "name": "Computer Systems",
+      "credits": 8,
+      "vvz_id": 163788,
+      "semester": "w",
+      "year": 2022,
+      "category": "Core Courses",
+      "subjectGroupId": 3
   },
   {
-    "name": "Human Computer Interaction",
-    "credits": 6,
-    "vvz_id": 162112,
-    "semester": false,
-    "year": 2022,
-    "category": "Electives"
+      "name": "Human Computer Interaction",
+      "credits": 6,
+      "vvz_id": 162112,
+      "semester": "w",
+      "year": 2022,
+      "category": "Electives",
+      "subjectGroupId": 5
   },
   {
-    "name": "Software Engineering Seminar",
-    "credits": 2,
-    "vvz_id": 163725,
-    "semester": false,
-    "year": 2022,
-    "category": "Seminar"
+      "name": "Software Engineering Seminar",
+      "credits": 2,
+      "vvz_id": 163725,
+      "semester": "w",
+      "year": 2022,
+      "category": "Seminar",
+      "subjectGroupId": 7
   },
   {
-    "name": "Embedded Systems",
-    "credits": 6,
-    "vvz_id": 163808,
-    "semester": false,
-    "year": 2022,
-    "category": "Electives"
+      "name": "Embedded Systems",
+      "credits": 6,
+      "vvz_id": 163808,
+      "semester": "w",
+      "year": 2022,
+      "category": "Electives",
+      "subjectGroupId": 5
   },
   {
-    "name": "Neural Networks and Computational Complexity",
-    "credits": 2,
-    "vvz_id": 164215,
-    "semester": false,
-    "year": 2022,
-    "category": "Seminar"
+      "name": "Neural Networks and Computational Complexity",
+      "credits": 2,
+      "vvz_id": 164215,
+      "semester": "w",
+      "year": 2022,
+      "category": "Seminar",
+      "subjectGroupId": 7
   },
   {
-    "name": "Computational Astrophysics (University of Zurich)",
-    "credits": 6,
-    "vvz_id": 162722,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Computational Astrophysics (University of Zurich)",
+      "credits": 6,
+      "vvz_id": 162722,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Enabling Entrepreneurship: From Science to Startup",
-    "credits": 3,
-    "vvz_id": 162998,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Enabling Entrepreneurship: From Science to Startup",
+      "credits": 3,
+      "vvz_id": 162998,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Compiler Design",
-    "credits": 8,
-    "vvz_id": 162320,
-    "semester": false,
-    "year": 2022,
-    "category": "Core Courses"
+      "name": "Compiler Design",
+      "credits": 8,
+      "vvz_id": 162320,
+      "semester": "w",
+      "year": 2022,
+      "category": "Core Courses",
+      "subjectGroupId": 3
   },
   {
-    "name": "Introduction to Programming",
-    "credits": 7,
-    "vvz_id": 163718,
-    "semester": false,
-    "year": 2022,
-    "category": "First Year Examinations"
+      "name": "Introduction to Programming",
+      "credits": 7,
+      "vvz_id": 163718,
+      "semester": "w",
+      "year": 2022,
+      "category": "First Year Examinations",
+      "subjectGroupId": 1
   },
   {
-    "name": "Discrete Mathematics",
-    "credits": 7,
-    "vvz_id": 163342,
-    "semester": false,
-    "year": 2022,
-    "category": "First Year Examinations"
+      "name": "Discrete Mathematics",
+      "credits": 7,
+      "vvz_id": 163342,
+      "semester": "w",
+      "year": 2022,
+      "category": "First Year Examinations",
+      "subjectGroupId": 1
   },
   {
-    "name": "Seminar on Machine Learning Systems",
-    "credits": 2,
-    "vvz_id": 163863,
-    "semester": false,
-    "year": 2022,
-    "category": "Seminar"
+      "name": "Seminar on Machine Learning Systems",
+      "credits": 2,
+      "vvz_id": 163863,
+      "semester": "w",
+      "year": 2022,
+      "category": "Seminar",
+      "subjectGroupId": 7
   },
   {
-    "name": "Systems Analysis and Mathematical Modeling in Urban Water Management",
-    "credits": 6,
-    "vvz_id": 163586,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Systems Analysis and Mathematical Modeling in Urban Water Management",
+      "credits": 6,
+      "vvz_id": 163586,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Human Factors I",
-    "credits": 3,
-    "vvz_id": 162753,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Human Factors I",
+      "credits": 3,
+      "vvz_id": 162753,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Introduction to Microeconomics",
-    "credits": 3,
-    "vvz_id": 163569,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Introduction to Microeconomics",
+      "credits": 3,
+      "vvz_id": 163569,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Applied Analysis of Variance and Experimental Design",
-    "credits": 5,
-    "vvz_id": 162754,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Applied Analysis of Variance and Experimental Design",
+      "credits": 5,
+      "vvz_id": 162754,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Systems Programming and Computer Architecture",
-    "credits": 7,
-    "vvz_id": 162562,
-    "semester": false,
-    "year": 2022,
-    "category": "Basic Courses"
+      "name": "Systems Programming and Computer Architecture",
+      "credits": 7,
+      "vvz_id": 162562,
+      "semester": "w",
+      "year": 2022,
+      "category": "Basic Courses",
+      "subjectGroupId": 2
   },
   {
-    "name": "Control Systems I",
-    "credits": 4,
-    "vvz_id": 163254,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Control Systems I",
+      "credits": 4,
+      "vvz_id": 163254,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "VLSI 1: HDL Based Design for FPGAs",
-    "credits": 6,
-    "vvz_id": 162387,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "VLSI 1: HDL Based Design for FPGAs",
+      "credits": 6,
+      "vvz_id": 162387,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Theory of Robotics and Mechatronics",
-    "credits": 4,
-    "vvz_id": 162151,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Theory of Robotics and Mechatronics",
+      "credits": 4,
+      "vvz_id": 162151,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Wireless Networking and Mobile Computing",
-    "credits": 4,
-    "vvz_id": 163182,
-    "semester": false,
-    "year": 2022,
-    "category": "Electives"
+      "name": "Wireless Networking and Mobile Computing",
+      "credits": 4,
+      "vvz_id": 163182,
+      "semester": "w",
+      "year": 2022,
+      "category": "Electives",
+      "subjectGroupId": 5
   },
   {
-    "name": "Quantum Physics for Non-Physicists",
-    "credits": 6,
-    "vvz_id": 162574,
-    "semester": false,
-    "year": 2022,
-    "category": "Electives"
+      "name": "Quantum Physics for Non-Physicists",
+      "credits": 6,
+      "vvz_id": 162574,
+      "semester": "w",
+      "year": 2022,
+      "category": "Electives",
+      "subjectGroupId": 5
   },
   {
-    "name": "Numerical Methods for Computer Science",
-    "credits": 7,
-    "vvz_id": 162598,
-    "semester": false,
-    "year": 2022,
-    "category": "Basic Courses"
+      "name": "Numerical Methods for Computer Science",
+      "credits": 7,
+      "vvz_id": 162598,
+      "semester": "w",
+      "year": 2022,
+      "category": "Basic Courses",
+      "subjectGroupId": 2
   },
   {
-    "name": "System Modeling",
-    "credits": 4,
-    "vvz_id": 162383,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "System Modeling",
+      "credits": 4,
+      "vvz_id": 162383,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Developing Digital Biomarkers",
-    "credits": 3,
-    "vvz_id": 164643,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Developing Digital Biomarkers",
+      "credits": 3,
+      "vvz_id": 164643,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Introduction to Computational Physics",
-    "credits": 8,
-    "vvz_id": 163462,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Introduction to Computational Physics",
+      "credits": 8,
+      "vvz_id": 163462,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Visualization, Simulation and Interaction - Virtual Reality II",
-    "credits": 4,
-    "vvz_id": 163457,
-    "semester": false,
-    "year": 2022,
-    "category": "Electives"
+      "name": "Visualization, Simulation and Interaction - Virtual Reality II",
+      "credits": 4,
+      "vvz_id": 163457,
+      "semester": "w",
+      "year": 2022,
+      "category": "Electives",
+      "subjectGroupId": 5
   },
   {
-    "name": "Power Market I - Portfolio and Risk Management",
-    "credits": 6,
-    "vvz_id": 162233,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Power Market I - Portfolio and Risk Management",
+      "credits": 6,
+      "vvz_id": 162233,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Machine Learning Seminar",
-    "credits": 2,
-    "vvz_id": 163859,
-    "semester": false,
-    "year": 2022,
-    "category": "Seminar"
+      "name": "Machine Learning Seminar",
+      "credits": 2,
+      "vvz_id": 163859,
+      "semester": "w",
+      "year": 2022,
+      "category": "Seminar",
+      "subjectGroupId": 7
   },
   {
-    "name": "Discovering Management",
-    "credits": 3,
-    "vvz_id": 163319,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Discovering Management",
+      "credits": 3,
+      "vvz_id": 163319,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Theoretical Computer Science",
-    "credits": 7,
-    "vvz_id": 163672,
-    "semester": false,
-    "year": 2022,
-    "category": "Basic Courses"
+      "name": "Theoretical Computer Science",
+      "credits": 7,
+      "vvz_id": 163672,
+      "semester": "w",
+      "year": 2022,
+      "category": "Basic Courses",
+      "subjectGroupId": 2
   },
   {
-    "name": "Mathematics III: Systems Analysis",
-    "credits": 4,
-    "vvz_id": 163440,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Mathematics III: Systems Analysis",
+      "credits": 4,
+      "vvz_id": 163440,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Time Series Analysis",
-    "credits": 4,
-    "vvz_id": 163331,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Time Series Analysis",
+      "credits": 4,
+      "vvz_id": 163331,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Analysis II",
-    "credits": 5,
-    "vvz_id": 162699,
-    "semester": false,
-    "year": 2022,
-    "category": "Basic Courses"
+      "name": "Analysis II",
+      "credits": 5,
+      "vvz_id": 162699,
+      "semester": "w",
+      "year": 2022,
+      "category": "Basic Courses",
+      "subjectGroupId": 2
   },
   {
-    "name": "ETH Week 2022: Urban Futures",
-    "credits": 1,
-    "vvz_id": 164298,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "ETH Week 2022: Urban Futures",
+      "credits": 1,
+      "vvz_id": 164298,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Physics I",
-    "credits": 7,
-    "vvz_id": 161894,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Physics I",
+      "credits": 7,
+      "vvz_id": 161894,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Cell and Molecular Biology for Engineers I",
-    "credits": 3,
-    "vvz_id": 163187,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Cell and Molecular Biology for Engineers I",
+      "credits": 3,
+      "vvz_id": 163187,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Physical Modelling and Simulation",
-    "credits": 6,
-    "vvz_id": 163555,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Physical Modelling and Simulation",
+      "credits": 6,
+      "vvz_id": 163555,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Discovering Management (Exercises)",
-    "credits": 1,
-    "vvz_id": 162507,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Discovering Management (Exercises)",
+      "credits": 1,
+      "vvz_id": 162507,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Electrical Engineering II",
-    "credits": 4,
-    "vvz_id": 162280,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Electrical Engineering II",
+      "credits": 4,
+      "vvz_id": 162280,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Solving Partial Differential Equations in Parallel on GPUs",
-    "credits": 4,
-    "vvz_id": 162403,
-    "semester": false,
-    "year": 2022,
-    "category": "Minor Courses"
+      "name": "Solving Partial Differential Equations in Parallel on GPUs",
+      "credits": 4,
+      "vvz_id": 162403,
+      "semester": "w",
+      "year": 2022,
+      "category": "Minor Courses",
+      "subjectGroupId": 8
   },
   {
-    "name": "Case Studies from Practice Seminar",
-    "credits": 4,
-    "vvz_id": 163632,
-    "semester": false,
-    "year": 2022,
-    "category": "Seminar"
+      "name": "Case Studies from Practice Seminar",
+      "credits": 4,
+      "vvz_id": 163632,
+      "semester": "w",
+      "year": 2022,
+      "category": "Seminar",
+      "subjectGroupId": 7
   },
   {
-    "name": "Visual Computing",
-    "credits": 8,
-    "vvz_id": 162436,
-    "semester": false,
-    "year": 2022,
-    "category": "Core Courses"
+      "name": "Visual Computing",
+      "credits": 8,
+      "vvz_id": 162436,
+      "semester": "w",
+      "year": 2022,
+      "category": "Core Courses",
+      "subjectGroupId": 3
   },
   {
-    "name": "Bachelor's Thesis",
-    "credits": 10,
-    "vvz_id": 163034,
-    "semester": false,
-    "year": 2022,
-    "category": "Bachelor's Thesis"
+      "name": "Bachelor's Thesis",
+      "credits": 10,
+      "vvz_id": 163034,
+      "semester": "w",
+      "year": 2022,
+      "category": "Bachelor's Thesis",
+      "subjectGroupId": 6
   },
   {
     "name": "Cell and Molecular Biology for Engineers II",
     "credits": 3,
     "vvz_id": 159044,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Computing Platforms",
     "credits": 2,
     "vvz_id": 157669,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Seminar"
-  },
-  {
+    "category": "Seminar",
+    "subjectGroupId": 7
+},
+{
     "name": "High Performance Computing for Science and Engineering (HPCSE) for Engineers II",
     "credits": 4,
     "vvz_id": 157569,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Electives"
-  },
-  {
+    "category": "Electives",
+    "subjectGroupId": 5
+},
+{
     "name": "Rigorous Software Engineering",
     "credits": 8,
     "vvz_id": 157592,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Core Courses"
-  },
-  {
+    "category": "Core Courses",
+    "subjectGroupId": 3
+},
+{
     "name": "Digital Design and Computer Architecture",
     "credits": 7,
     "vvz_id": 159117,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "First Year Examinations"
-  },
-  {
+    "category": "First Year Examinations",
+    "subjectGroupId": 1
+},
+{
     "name": "Natural Language Processing for Law and Social Science (Course Project)",
     "credits": 2,
     "vvz_id": 157572,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Bachelor's Thesis",
     "credits": 10,
     "vvz_id": 157812,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Bachelor's Thesis"
-  },
-  {
+    "category": "Bachelor's Thesis",
+    "subjectGroupId": 6
+},
+{
     "name": "Natural Language Processing for Law and Social Science",
     "credits": 3,
     "vvz_id": 157283,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Digitalization for Circular Construction (D4C^2)",
     "credits": 4,
     "vvz_id": 160598,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Parallel Programming",
     "credits": 7,
     "vvz_id": 157750,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "First Year Examinations"
-  },
-  {
+    "category": "First Year Examinations",
+    "subjectGroupId": 1
+},
+{
     "name": "Understanding Context-Free Parsing Algorithms",
     "credits": 2,
     "vvz_id": 161058,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Seminar"
-  },
-  {
+    "category": "Seminar",
+    "subjectGroupId": 7
+},
+{
     "name": "Complex Analysis",
     "credits": 4,
     "vvz_id": 158712,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Shaping a DCent.Society: Assessing Societal Implications of Bitcoin, Blockchains & Smart Contracts",
     "credits": 3,
     "vvz_id": 159548,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Energy, Resources, Environment: Risks and Prospects",
     "credits": 6,
     "vvz_id": 158249,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Introduction to Machine Learning",
     "credits": 8,
     "vvz_id": 158028,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Core Courses"
-  },
-  {
+    "category": "Core Courses",
+    "subjectGroupId": 3
+},
+{
     "name": "Computational Statistical Physics",
     "credits": 8,
     "vvz_id": 158542,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Presenting Theoretical Computer Science",
     "credits": 2,
     "vvz_id": 157140,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Seminar"
-  },
-  {
+    "category": "Seminar",
+    "subjectGroupId": 7
+},
+{
     "name": "Probability and Statistics",
     "credits": 5,
     "vvz_id": 158830,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Basic Courses"
-  },
-  {
+    "category": "Basic Courses",
+    "subjectGroupId": 2
+},
+{
     "name": "Computer Networks",
     "credits": 7,
     "vvz_id": 158829,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Basic Courses"
-  },
-  {
+    "category": "Basic Courses",
+    "subjectGroupId": 2
+},
+{
     "name": "Randomized Algorithms",
     "credits": 2,
     "vvz_id": 158048,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Seminar"
-  },
-  {
+    "category": "Seminar",
+    "subjectGroupId": 7
+},
+{
     "name": "Electrical Engineering I",
     "credits": 3,
     "vvz_id": 157758,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Physics II",
     "credits": 7,
     "vvz_id": 158728,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Algorithms and Probability",
     "credits": 7,
     "vvz_id": 157731,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "First Year Examinations"
-  },
-  {
+    "category": "First Year Examinations",
+    "subjectGroupId": 1
+},
+{
     "name": "Optimization Methods for Engineers",
     "credits": 3,
     "vvz_id": 157315,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Sustainability Start-Up Seminar",
     "credits": 3,
     "vvz_id": 158135,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Didactic Basics for Student Teaching Assistants",
     "credits": 1,
     "vvz_id": 159275,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Formal Methods and Functional Programming",
     "credits": 7,
     "vvz_id": 158523,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Basic Courses"
-  },
-  {
+    "category": "Basic Courses",
+    "subjectGroupId": 2
+},
+{
     "name": "From Entrepreneurial Thinking to Market Relevance - How Startups Scale",
     "credits": 3,
     "vvz_id": 158833,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Introduction to Economic Policy",
     "credits": 2,
     "vvz_id": 158065,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Seminar on Systems Security",
     "credits": 2,
     "vvz_id": 157132,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Seminar"
-  },
-  {
+    "category": "Seminar",
+    "subjectGroupId": 7
+},
+{
     "name": "PRISMA Capstone - Rethinking Sustainable Cities and Communities",
     "credits": 4,
     "vvz_id": 157889,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Information Retrieval",
     "credits": 4,
     "vvz_id": 158045,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Electives"
-  },
-  {
+    "category": "Electives",
+    "subjectGroupId": 5
+},
+{
     "name": "Information Technology in Practice",
     "credits": 5,
     "vvz_id": 158255,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Electives"
-  },
-  {
+    "category": "Electives",
+    "subjectGroupId": 5
+},
+{
     "name": "Mechatronics",
     "credits": 6,
     "vvz_id": 158510,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Computational Quantum Physics",
     "credits": 8,
     "vvz_id": 158733,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Autonomous Mobile Robots",
     "credits": 5,
     "vvz_id": 157230,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Information Security",
     "credits": 8,
     "vvz_id": 157666,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Core Courses"
-  },
-  {
+    "category": "Core Courses",
+    "subjectGroupId": 3
+},
+{
     "name": "Advanced Topics in Mixed Reality",
     "credits": 2,
     "vvz_id": 158379,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Seminar"
-  },
-  {
+    "category": "Seminar",
+    "subjectGroupId": 7
+},
+{
     "name": "Seminar in Computer Architecture",
     "credits": 2,
     "vvz_id": 157135,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Seminar"
-  },
-  {
+    "category": "Seminar",
+    "subjectGroupId": 7
+},
+{
     "name": "Statistical Models in Computational Biology",
     "credits": 6,
     "vvz_id": 158019,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Datacenter Network Monitoring and Management",
     "credits": 2,
     "vvz_id": 157203,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Seminar"
-  },
-  {
+    "category": "Seminar",
+    "subjectGroupId": 7
+},
+{
     "name": "Soccer Analytics",
     "credits": 3,
     "vvz_id": 159862,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "What Kind of AI Do We Want? Bringing Artistic and Technological Practices Together",
     "credits": 2,
     "vvz_id": 161538,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Analysis I",
     "credits": 7,
     "vvz_id": 158644,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "First Year Examinations"
-  },
-  {
+    "category": "First Year Examinations",
+    "subjectGroupId": 1
+},
+{
     "name": "Data Science in Techno-Socio-Economic Systems",
     "credits": 3,
     "vvz_id": 158972,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Visualization, Simulation and Interaction - Virtual Reality I",
     "credits": 4,
     "vvz_id": 158351,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Electives"
-  },
-  {
+    "category": "Electives",
+    "subjectGroupId": 5
+},
+{
     "name": "Data Modelling and Databases",
     "credits": 7,
     "vvz_id": 158987,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Basic Courses"
-  },
-  {
+    "category": "Basic Courses",
+    "subjectGroupId": 2
+},
+{
     "name": "Computer Simulations of Sensory Systems",
     "credits": 3,
     "vvz_id": 158528,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  },
-  {
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+},
+{
     "name": "Numerical Methods for Partial Differential Equations",
     "credits": 10,
     "vvz_id": 158353,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Electives"
-  },
-  {
+    "category": "Electives",
+    "subjectGroupId": 5
+},
+{
     "name": "Biomechatronics",
     "credits": 4,
     "vvz_id": 157395,
-    "semester": true,
+    "semester": "s",
     "year": 2022,
-    "category": "Minor Courses"
-  }
+    "category": "Minor Courses",
+    "subjectGroupId": 8
+}
 ]
