@@ -1,4 +1,12 @@
-import { SubjectData, SubjectGroup } from "../data";
+import {
+  SubjectData,
+  SubjectDataGroupedByCategory,
+  SubjectDataGroupedBySemester,
+} from "./schemas";
+
+type SubjectDataGroupedGeneric =
+  | SubjectDataGroupedByCategory
+  | SubjectDataGroupedBySemester;
 
 // function that checks if a certain subject should be included in calculations
 export const showSubject = (
@@ -11,12 +19,12 @@ export const showSubject = (
 //compute sum of ECTS per category (that are to be included based on includePlanned)
 export const sumEcts = (
   includePlanned: boolean,
-  subjectGroup: SubjectGroup
+  subjectGroup: SubjectDataGroupedGeneric
 ) => {
-  return subjectGroup.data.reduce((accumulator, currentValue) => {
+  return subjectGroup.subjects.reduce((accumulator, currentValue) => {
     return (
       accumulator +
-      (showSubject(includePlanned, currentValue) ? currentValue.ects : 0)
+      (showSubject(includePlanned, currentValue) ? currentValue.credits : 0)
     );
   }, 0);
 };
@@ -24,13 +32,13 @@ export const sumEcts = (
 //compute the weigthed sum of grades * ECTS per category
 export const wsumGrades = (
   includePlanned: boolean,
-  subjectGroup: SubjectGroup
+  subjectGroup: SubjectDataGroupedGeneric
 ) => {
-  return subjectGroup.data.reduce((accumulator, currentValue) => {
+  return subjectGroup.subjects.reduce((accumulator, currentValue) => {
     return (
       accumulator +
       (showSubject(includePlanned, currentValue)
-        ? currentValue.grade * currentValue.ects
+        ? currentValue.grade * currentValue.credits
         : 0)
     );
   }, 0);
@@ -42,7 +50,7 @@ export const avgGrades = ({
   subjectGroup,
 }: {
   includePlanned: boolean;
-  subjectGroup: SubjectGroup;
+  subjectGroup: SubjectDataGroupedGeneric;
 }) => {
   if (Number(sumEcts(includePlanned, subjectGroup)) === 0) {
     return 0;
@@ -57,7 +65,7 @@ export const avgGrades = ({
 //compute total credits
 export const totalCredits = (
   includePlanned: boolean,
-  subjectGroups: SubjectGroup[]
+  subjectGroups: SubjectDataGroupedGeneric[]
 ) => {
   {
     return Number(
@@ -71,7 +79,7 @@ export const totalCredits = (
 //compute the total sum of weighted grades
 export const totalWsum = (
   includePlanned: boolean,
-  subjectGroups: SubjectGroup[]
+  subjectGroups: SubjectDataGroupedGeneric[]
 ) => {
   {
     return Number(

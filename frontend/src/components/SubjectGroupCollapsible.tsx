@@ -1,6 +1,10 @@
 import { useState } from "react";
+import {
+  getCategoryWithId,
+  SubjectData,
+  SubjectDataGroupedByCategory,
+} from "../api/schemas";
 import { avgGrades, sumEcts } from "../api/subjectMath";
-import { SubjectData, SubjectGroup } from "../data";
 import { useDisplayOptions } from "../pages/HomePage";
 import Collapsible from "./Collapsible";
 import SemesterPill from "./SemesterPill";
@@ -8,15 +12,18 @@ import SemesterPill from "./SemesterPill";
 const SubjectGroupCollapsible = ({
   subjectGroup,
 }: {
-  subjectGroup: SubjectGroup;
+  subjectGroup: SubjectDataGroupedByCategory;
 }) => {
   const { includePlanned } = useDisplayOptions();
   return (
     <Collapsible
       headerBuilder={(collapsed) => (
         <div className="flex justify-between">
-          <div className="tooltip" data-tip={subjectGroup.information}>
-            <h3>{subjectGroup.name}</h3>
+          <div
+            className="tooltip"
+            data-tip={getCategoryWithId(subjectGroup.category_id)?.information}
+          >
+            <h3>{getCategoryWithId(subjectGroup.category_id)?.german_name}</h3>
           </div>
           <div className="flex">
             {collapsed && (
@@ -51,7 +58,7 @@ const SubjectGroupCollapsible = ({
           </tr>
         </thead>
         <tbody>
-          {subjectGroup.data.map((subject) => (
+          {subjectGroup.subjects.map((subject) => (
             <SubjectTableRow subject={subject}></SubjectTableRow>
           ))}
           <tr className="">
@@ -93,7 +100,7 @@ const SubjectTableRow = ({ subject }: { subject: SubjectData }) => {
       <td className="pr-2">
         <SemesterPill semester={subject.semester}></SemesterPill>
       </td>
-      <td className="text-right pr-2">{subject.ects}</td>
+      <td className="text-right pr-2">{subject.credits}</td>
       <td className="text-right pr-2">{subject.grade}</td>
       {/* was macht das hover hier*/}
 

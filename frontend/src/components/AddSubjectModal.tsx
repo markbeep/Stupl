@@ -4,6 +4,7 @@ import { addSubject } from "../api/api";
 import { categories, VVZSubject } from "../api/schemas";
 import { useAuth } from "../authHanlder";
 import { SubjectData } from "../data";
+import { useDisplayOptions } from "../pages/HomePage";
 import SemesterPill from "./SemesterPill";
 import Stepper from "./Stepper";
 
@@ -22,8 +23,6 @@ type Props = {
 };
 
 const AddSubjectModal = ({ isOpen, closeModal, subjectPreset }: Props) => {
-  console.log("fadas<fdja", subjectPreset);
-
   const [ectsStepper, setEctsStepper] = useState(subjectPreset.credits);
   const [semesterStepper, setSemesterStepper] = useState(1);
   const [gradeStepper, setGradeStepper] = useState(5);
@@ -31,7 +30,9 @@ const AddSubjectModal = ({ isOpen, closeModal, subjectPreset }: Props) => {
   const [category, setCategory] = useState(subjectPreset.category_id);
   const [completedCheckbox, setCompletedCheckbox] = useState(true);
   const [submitLoading, setSubmitLoading] = useState(false);
+
   const { token } = useAuth();
+  const { requestRefresh } = useDisplayOptions();
 
   const onSubmit = async () => {
     const data: any = {
@@ -43,13 +44,12 @@ const AddSubjectModal = ({ isOpen, closeModal, subjectPreset }: Props) => {
       planned: completedCheckbox,
     };
 
-    console.log("Add Subject", data);
-
     setSubmitLoading(true);
     const result = await addSubject(token!, data);
     setSubmitLoading(false);
     console.log(result);
-    // closeModal();
+    requestRefresh();
+    closeModal();
   };
 
   return (
