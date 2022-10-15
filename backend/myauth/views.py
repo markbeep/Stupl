@@ -5,8 +5,10 @@ from .models import User
 from .serializers import UserLoginSerializer, UserSerializer
 from rest_framework import viewsets
 from rest_framework.generics import CreateAPIView, RetrieveAPIView
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -55,12 +57,13 @@ def insert_test_user(request):
 #     else:
 #         return HttpResponseBadRequest()
 
-@login_required(login_url="/auth/login")
-def logged_in():
-    return Response("Logged in successfully")
-
-# def register(request):
-#     ...
+class HelloView(APIView):
+    permission_classes = (IsAuthenticated,)
+    
+    def get(self, request):
+        print(request.headers)
+        content = {"user": str(request.user)}
+        return Response(content)
 
 class UserLoginView(RetrieveAPIView):
     permission_classes = (AllowAny,)
