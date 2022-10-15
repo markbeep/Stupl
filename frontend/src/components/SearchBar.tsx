@@ -4,8 +4,6 @@ import AddSubjectModal from "./AddSubjectModal";
 
 type Props = {};
 
-const lectureNames = lectureData.map((l) => l.name);
-
 const getLecturesStartingWith = (prefix: string) =>
   lectureData.filter((d) => d.name.toLowerCase().startsWith(prefix));
 

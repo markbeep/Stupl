@@ -40,12 +40,12 @@ const HomePage = () => {
     >
       <div className="pb-12">
         <Navbar></Navbar>
-        {/* <button
+        <button
           className="btn btn-primary"
           onClick={() => getAllSubjects(token).then(console.log)}
         >
           Click me
-        </button> */}
+        </button>
         <div className="mt-12 max-w-lg mx-auto">
           <SearchBar></SearchBar>
         </div>
