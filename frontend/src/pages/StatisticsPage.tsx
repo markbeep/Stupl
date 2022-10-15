@@ -8,6 +8,11 @@ const StatisticsPage = (props: Props) => {
     <div>
       <Navbar></Navbar>
       <div>StatisticsPage</div>
+      <div>
+        <button className="mt-4 btn btn-primary flex w-full justify-center">
+          Sign in
+        </button>
+      </div>
     </div>
   );
 };

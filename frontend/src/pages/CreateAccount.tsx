@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { loadTestHello, registerUser } from "../api/hooks";
-import katze from "../data/IMG_8581.jpg"; // with import
 import axios from "axios";
 import { saveToken, useAuth } from "../authHanlder";
 import { Navigate } from "react-router-dom";
+import logo from "../data/logo2.png";
 
 type Props = {};
 
 const CreateAccount = (props: Props) => {
-  const image = require("../data/IMG_8581.jpg").default;
+  const logo = require("../data/logo2.png").default;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -50,7 +50,7 @@ const CreateAccount = (props: Props) => {
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div>
-            <img className="mx-auto h-14 w-auto" src={katze} />
+            <img className="mx-auto h-14 w-auto" src={logo} />
 
             <h1 className="mt-6 text-center text-5xl font-bold tracking-tight text-accent-content">
               BibStreetBoys
