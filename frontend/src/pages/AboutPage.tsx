@@ -3,13 +3,13 @@ import { Navbar } from "../components/Navbar";
 
 type Props = {};
 
-const AccountPage = (props: Props) => {
+const AboutPage = (props: Props) => {
   return (
     <div>
       <Navbar></Navbar>
-      <div>AccountPage</div>
+      <div>AboutPage</div>
     </div>
   );
 };
 
-export default AccountPage;
+export default AboutPage;

@@ -1,45 +1,61 @@
 import { FlashOnRounded } from "@mui/icons-material";
 
 export type RequirementsData = {
+  requirementsId: number;
   name: string;
   fullfilled: boolean;
 };
 
 export const requirementsData: RequirementsData[] = [
   {
-    name: "Fächer des Basisjahres = 56 KP",
+    requirementsId: 1,
+    name: "First Year Courses = 56 KP",
     fullfilled: true,
   },
   {
-    name: "Grundlagenfächer und Kernfächer >= 84 KP",
+    requirementsId: 3,
+    name: "Basic Courses >= 45 KP",
     fullfilled: false,
   },
   {
-    name: "Grundlagenfächer >= 45 KP",
+    requirementsId: 4,
+    name: "Core Courses >= 32 KP",
+    fullfilled: false,
+  },
+
+  {
+    requirementsId: 2,
+    name: "Basic Courses + Core Courses >= 84 KP",
     fullfilled: false,
   },
   {
-    name: "Kernfächer >= 32 KP",
-    fullfilled: false,
-  },
-  {
-    name: "Grundlagenfächer, Kernfächer und Wahlfächer >= 96 KP",
+    requirementsId: 6,
+    name: "Basic Courses + Core Courses + Electives >= 96 KP",
     fullfilled: true,
   },
   {
+    requirementsId: 7,
     name: "Seminar = 2KP",
     fullfilled: false,
   },
   {
-    name: "Ergänzung >= 5 KP",
+    requirementsId: 8,
+    name: "Minor Courses >= 5 KP",
     fullfilled: false,
   },
   {
-    name: "Wissenschaft im Kontext >= 6 KP",
+    requirementsId: 9,
+    name: "Science in Perspective >= 6 KP",
     fullfilled: false,
   },
   {
-    name: "Bachelorarbeit = 10 KP",
+    requirementsId: 10,
+    name: "Bachelor's Thesis = 10 KP",
+    fullfilled: false,
+  },
+  {
+    requirementsId: 11,
+    name: "Gesamt  >= 180 KP",
     fullfilled: false,
   },
 ];

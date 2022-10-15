@@ -1,5 +1,5 @@
 
-from unicodedata import category
+import django
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -117,12 +117,15 @@ def fill_db(request):
     with open("data/lectures.json",'r') as f:
         data = json.load(f)
 
-    for i in range(len(data)):
-        lec = VVZSubjects.objects.create()
-        lec.name = data[i]["name"]
-        lec.credits = data[i]["credits"]
-        lec.vvz_id = data[i]["vvz_id"]
-        lec.semester = data[i]["semester"]
-        lec.year = data[i]["year"]
-        lec.save()
+    for i, x in enumerate(data):
+        try:
+            lec = VVZSubjects.objects.create()
+            lec.name = x["name"]
+            lec.credits = x["credits"]
+            lec.vvz_id = x["vvz_id"]
+            lec.semester = x["semester"]
+            lec.year = x["year"]
+            lec.save()
+        except django.db.utils.IntegrityError:
+            print(f"Error {i = } | {x = }")
     return Response("Done")
