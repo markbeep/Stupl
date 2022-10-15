@@ -20,13 +20,18 @@ def list_temporary(request):
         "data": len(subjects),
         "data2": len(sub2)
     })
-def sumCreditsCategories(user, categoryList):
+def sumCreditsCategories(user, categoryList, maxList):
     sum = 0
+    i = 0
     for cat in categoryList:
         credits = 0
         for sub in UserSubjects.objects.filter(user=user, category=cat):
             credits = credits + sub.credits
-        sum = sum + credits
+        if credits > maxList[i]:
+            sum += maxList[i]
+        else:
+            sum = sum + credits
+        i = i+1
     return sum
 
 @api_view(["GET"])
@@ -48,23 +53,21 @@ def get_subjects_per_user(request):
                 "planned": x.planned,
         } for x in subjects], 
         "requirements": {
-            "1": sumCreditsCategories(user, []) == 56,
-            "2": sumCreditsCategories(user, []) >= 84,
-            "3": sumCreditsCategories(user, []) >= 45,
-            "4": sumCreditsCategories(user, []) >= 32,
-            "5": sumCreditsCategories(user, []) >= 84,
-            "6": sumCreditsCategories(user, []) >= 96,
-            "7": sumCreditsCategories(user, []) >= 2,
-            "8": sumCreditsCategories(user, []) >= 5,
-            "9": sumCreditsCategories(user, []) >= 6,
-            "10": sumCreditsCategories(user, []) >= 10,
-            "11": sumCreditsCategories(user, []) >= 180,
+            "1": sumCreditsCategories(user, [4],[180]) == 56,
+            "2": sumCreditsCategories(user, [1,3],[180,180]) >= 84,
+            "3": sumCreditsCategories(user, [1],[180]) >= 45,
+            "4": sumCreditsCategories(user, [3],[180]) >= 32,
+            "6": sumCreditsCategories(user, [1,3,6],[180,180,180]) >= 96,
+            "7": sumCreditsCategories(user, [5],[180]) >= 2,
+            "8": sumCreditsCategories(user, [2], [180]) >= 5,
+            "9": sumCreditsCategories(user, [8], [180]) >= 6,
+            "10": sumCreditsCategories(user, [7],[180]) >= 10,
+            "11": sumCreditsCategories(user, [0,1,2,3,4,5,6,7,8],[180,180,10,180,180,2,180,10,6]) >= 180,
         }
 
     })
 
 @api_view(["GET"])
-@permission_classes([IsAuthenticated])
 def load_vvz(request):
     category = request.GET.get("category", None)
     if category:
