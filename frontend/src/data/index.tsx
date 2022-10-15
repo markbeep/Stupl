@@ -35,7 +35,7 @@ export const subjectData: SubjectData[] = [
     ects: 7,
     grade: 5.25,
     semester: 3,
-    planned: true,
+    planned: false,
     id: 1,
   },
   {
@@ -43,7 +43,7 @@ export const subjectData: SubjectData[] = [
     ects: 7,
     grade: 5.25,
     semester: 1,
-    planned: true,
+    planned: false,
     id: 1,
   },
 ];
