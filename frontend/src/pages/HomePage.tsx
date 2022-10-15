@@ -68,7 +68,7 @@ const HomePage = () => {
         <div className="mt-12 max-w-lg mx-auto">
           <SearchBar></SearchBar>
         </div>
-        <div className="form-contorl mt-12 max-w-lg mx-auto">
+        <div className="form-contorl mt-12 max-w-xs mx-auto">
           <label className="label cursor-pointer">
             <span className="label-text">Include planned subjects.</span>
             <input
@@ -79,7 +79,7 @@ const HomePage = () => {
             />
           </label>
         </div>
-        <div className="form-contorl mt-12 max-w-lg mx-auto">
+        <div className="form-contorl mt-2 max-w-xs mx-auto">
           <label className="label cursor-pointer">
             <span className="label-text">Group by Category</span>
             <input
