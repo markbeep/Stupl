@@ -1,38 +1,48 @@
-import { useRequest } from 'ahooks'
-import { TestWord } from './interfaces';
-
-async function loadTestHello() {
-    const response = await fetch('/api/hello')
-    const data = await response.json();
-    return { word: data } as TestWord;
-}
-
-export function useTestHello() {
-    const { error, loading, data, run } = useRequest(() =>
-        loadTestHello(),
-    )
-    return { error, loading, data, run } as const;
-}
+import { useRequest } from "ahooks";
+import { TestWord } from "./interfaces";
 
 async function postLogin(email: string, password: string) {
-    // backend auth requires email, username and password, so username
-    // is just the email again lol
-    const options = {
-        method: "POST",
-        body: JSON.stringify({ email, password, username: email }),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    }
-    const response = await fetch("/auth/login", options)
-    const data = await response.json()
-
-    return data as string;
+  const options = {
+    method: "POST",
+    body: JSON.stringify({ email, password }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await fetch("/auth/login", options);
+  const data = await response.json();
+  return data["token"] as string;
+}
+export function useLogin(email: string, password: string) {
+  const { error, loading, data, run } = useRequest(() =>
+    postLogin(email, password)
+  );
+  return { error, loading, data, run } as const;
 }
 
-export function useLogin(email: string, password: string) {
-    const { error, loading, data, run } = useRequest(() => (
-        postLogin(email, password)
-    ))
-    return { error, loading, data, run } as const;
+export async function loginUser(email: string, password: string) {
+  const options = {
+    method: "POST",
+    body: JSON.stringify({ email, password }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await fetch("/auth/login", options);
+  if (response.status == 200) {
+    const data = await response.json();
+    return data["token"] as string;
+  } else {
+    return "invalid login";
+  }
+}
+
+async function loadTestHello() {
+  const response = await fetch("/api/hello");
+  const data = await response.json();
+  return { word: data } as TestWord;
+}
+export function useTestHello() {
+  const { error, loading, data, run } = useRequest(() => loadTestHello());
+  return { error, loading, data, run } as const;
 }

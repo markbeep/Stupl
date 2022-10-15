@@ -1,17 +1,24 @@
+
+from curses.ascii import US
+from operator import countOf
 from unicodedata import category
 from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
+import json
 from .models import VVZSubjects, UserSubjects
 
 # Create your views here.
 
 def list_temporary(request):
+    sub = VVZSubjects.objects.create(name="Test",credits=7,vvz_id=1,lesson_number="d",semester=1,year=1)
+    sub.save()
     subjects = VVZSubjects.objects.all()
+    sub2 = UserSubjects.objects.all()
     return JsonResponse({
-        "data": len(subjects)
+        "data": len(subjects),
+        "data2": len(sub2)
     })
 
 @api_view(["POST","GET"])
@@ -23,9 +30,21 @@ def load_main_info(request):
 
 @api_view(["POST"])
 def add_subject(request):
+    name = "Hello"
+    credits = 7
+    vvz_subject = None
+    lesson_number = "Hello"
+    category = "c"
+    semester = 1
+    grade = 5
+    count_grade = True
+    count_credits = True
+    year = 1
+    sub = UserSubjects.objects.create(name=name,credits=credits,vvz_subject=vvz_subject,grade=grade,semester=semester,year=year,user=None,count_grade=count_grade,count_credits=count_credits)
+    sub.save()
     # Add subject to UserSubjects
     #user = UserSubjects.objects.create()
-    #user.name = request.POST["name"]
+    #user.name = 
     #user.credits = request.POST["credits"]
     #user.category = request.POST["category"]
     #user.semester = request.POST["semester"]
@@ -39,3 +58,22 @@ def del_subject(request):
     subjid = request.POST["subjid"]
     UserSubjects.objects.filter(id=subjid).delete()
     return Response("Success")
+
+
+def subject_table_row_data(request):
+    user = request.user
+    subjects = user.subjects.all()
+
+def fill_db(request):
+    with open("data/lectures.json",'r') as f:
+        data = json.load(f)
+
+    for i in range(len(data)):
+        lec = VVZSubjects.objects.create()
+        lec.name = data[i]["name"]
+        lec.credits = int(data[i]["credits"][0]) # Fix this, this is very bad!! 
+        lec.vvz_id = data[i]["id"]
+        lec.lesson_number = data[i]["id"]
+        lec.semester = data[i]["sem"]
+        lec.year = 2022
+        lec.save()

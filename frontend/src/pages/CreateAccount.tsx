@@ -25,78 +25,51 @@ const CreateAccount = (props: Props) => {
               The Smart Study Planner
             </p>
           </div>
-          <form className="" action="#" method="POST">
+
+          <form className="mt-6">
             <input type="hidden" name="remember" defaultValue="true" />
-
-            <div className="rounded-md shadow-sm">
-              <label htmlFor="email-address" className="mt-10">
-                Name
-              </label>
-              <input
-                id="name"
-                name="Name"
-                type="Name"
-                autoComplete="Name"
-                required
-                className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                placeholder="Name"
-              />
-
-              <label htmlFor="email-address" className="sr-only">
-                Current Semester
-              </label>
-              <input
-                id="currentSemester"
-                name="currentSemester"
-                type="currentSemester"
-                autoComplete="currentSemester"
-                required
-                className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                placeholder="Current Semester"
-              />
-
+            <div className="mt-10 rounded-md shadow-sm">
               <div>
-                <label htmlFor="email-address" className="sr-only">
+                {/* <label htmlFor="email-address" className="">
                   Email address
-                </label>
+                </label> */}
                 <input
                   id="email-address"
                   name="email"
                   type="email"
                   autoComplete="email"
                   required
-                  className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  className="block p-2 pl-4 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Email address"
                 />
               </div>
-
               <div>
-                <label htmlFor="password" className="sr-only">
+                {/* <label htmlFor="password" className="mt-10">
                   Password
-                </label>
+                </label> */}
                 <input
                   id="password"
                   name="password"
                   type="password"
-                  //autoComplete="current-password"
+                  autoComplete="current-password"
                   required
-                  className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  className="mt-2 block p-2 pl-4 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Password"
                 />
               </div>
 
               <div>
-                <label htmlFor="password" className="sr-only">
-                  Confirm Password
-                </label>
+                {/* <label htmlFor="password" className="mt-10">
+                  Password
+                </label> */}
                 <input
-                  id="confirmPassword"
-                  name="confirmPassword"
+                  id="password"
+                  name="password"
                   type="password"
-                  //autoComplete="current-password"
+                  autoComplete="current-password"
                   required
-                  className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                  placeholder="ConfirmPassword"
+                  className="mt-2 block p-2 pl-4 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Confirm Password"
                 />
               </div>
             </div>
@@ -104,14 +77,10 @@ const CreateAccount = (props: Props) => {
             <div>
               <button
                 type="submit"
-                className="group relative flex w-full justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                //className="mt-2 block p-2 pl-4 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="mt-4 group relative flex w-full justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white-800 hover:bg-green-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                //onClick={}
               >
-                {/* <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                  <LockClosedIcon
-                    className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                    aria-hidden="true"
-                  />
-                </span> */}
                 Register
               </button>
             </div>

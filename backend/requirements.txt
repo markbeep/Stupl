@@ -1,7 +1,7 @@
 Django
-psycopg2
 django-cors-headers
 django-rest-framework
 django-allauth
 django-rest-auth
 dj-rest-auth
+djangorestframework-jwt

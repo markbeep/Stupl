@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from myauth.models import User
 
 
 class VVZSubjects(models.Model):

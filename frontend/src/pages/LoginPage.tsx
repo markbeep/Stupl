@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { loginUser, useLogin } from "../api/hooks";
 import katze from "../data/IMG_8581.jpg"; // with import
 
 type Props = {};
@@ -11,6 +12,17 @@ type Props = {};
 
 const LoginPage = (props: Props) => {
   const image = require("../data/IMG_8581.jpg").default;
+  const [token, setToken] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleSubmit = async () => {
+    console.log("aaaaaaaaaaaaaaaaah");
+    setToken(await loginUser(email, password));
+    console.log(token);
+  };
+  /*   const {login}
+  const {data} = useLogin() */
+
   return (
     <>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -22,71 +34,70 @@ const LoginPage = (props: Props) => {
               BibStreetBoys
             </h2>
             <p className="mt-2 text-center text-sm text-gray-600">
-              The Smart Study Planner
+              Plan your studies
             </p>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
+          <form className="mt-6">
             <input type="hidden" name="remember" defaultValue="true" />
-            <div className="-space-y-px rounded-md shadow-sm">
+            <div className="mt-10 rounded-md shadow-sm">
               <div>
-                <label htmlFor="email-address" className="sr-only">
+                {/* <label htmlFor="email-address" className="">
                   Email address
-                </label>
+                </label> */}
                 <input
                   id="email-address"
                   name="email"
                   type="email"
                   autoComplete="email"
                   required
-                  className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  className="block p-2 pl-4 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Email address"
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
                 />
               </div>
               <div>
-                <label htmlFor="password" className="sr-only">
+                {/* <label htmlFor="password" className="mt-10">
                   Password
-                </label>
+                </label> */}
                 <input
                   id="password"
                   name="password"
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  className="mt-2 block p-2 pl-4 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Password"
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
                 />
               </div>
             </div>
-
-            <div>
-              <button
-                type="submit"
-                className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              >
-                {/* <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                  <LockClosedIcon
-                    className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                    aria-hidden="true"
-                  />
-                </span> */}
-                Sign in
-              </button>
-            </div>
-
-            <div className="flex justify-end">
-              <div className="text-sm mr-4">
-                <a className="font-medium text-black-600">No Account yet?</a>
-              </div>
-              <div className="text-sm">
-                <a
-                  href="#"
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
-                >
-                  Register now
-                </a>
-              </div>
-            </div>
           </form>
+          <div>
+            <button
+              //className="mt-2 block p-2 pl-4 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="mt-4 group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-grey-900 hover:bg-indigo-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              onClick={handleSubmit}
+            >
+              Sign in
+            </button>
+          </div>
+          <div className="mt-2 flex justify-end">
+            <div className="text-sm mr-4">
+              <a className="font-medium text-grey-900">No Account yet?</a>
+            </div>
+            <div className="text-sm">
+              <a
+                href="/createAccount"
+                className="font-medium text-indigo-600 hover:text-indigo-500"
+              >
+                Register now
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </>
