@@ -16,7 +16,13 @@ const HomePage = () => {
       <div className="mt-12 max-w-lg mx-auto">
         <SearchBar></SearchBar>
       </div>
-      <div className="max-w-2xl mx-auto mt-24">
+      <div className="mt-12 max-w-lg mx-auto">
+        <label className="label cursor-pointer">
+          <span className="label-text">Include planned subjects.</span>
+          <input type="checkbox" className="toggle toggle-accent" checked />
+        </label>
+      </div>
+      <div className="max-w-2xl mx-auto mt-12">
         <div className="alert alert-">
           <div className="flex justify-between w-full">
             <h3 className="font-bold">Total</h3>
