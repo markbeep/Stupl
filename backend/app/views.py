@@ -39,3 +39,8 @@ def del_subject(request):
     subjid = request.POST["subjid"]
     UserSubjects.objects.filter(id=subjid).delete()
     return Response("Success")
+
+
+def subject_table_row_data(request):
+    user = request.user
+    subjects = user.subjects.all()
