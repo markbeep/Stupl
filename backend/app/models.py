@@ -23,7 +23,7 @@ class UserSubjects(models.Model):
     category = models.CharField(max_length=256)
     semester = models.BooleanField()
     year = models.IntegerField()
-    vvz_subject = models.ForeignKey(VVZSubjects, on_delete=models.CASCADE, related_name="user_subjects",null=True)
+    vvz_subject = models.ForeignKey(VVZSubjects, on_delete=models.CASCADE, related_name="user_subjects",null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="subjects")
     grade = models.FloatField()
     count_grade = models.BooleanField()
