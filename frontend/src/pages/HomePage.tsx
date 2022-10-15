@@ -1,6 +1,8 @@
 import { group } from "console";
 import React, { useContext, useEffect, useState } from "react";
+import { getAllSubjects } from "../api/hooks";
 import { totalCredits, totalWsum } from "../api/subjectMath";
+import { useAuth } from "../authHanlder";
 // import { getAllSubjects } from "../api/hooks";
 import Collapsible from "../components/Collapsible";
 import { Navbar } from "../components/Navbar";
@@ -24,7 +26,7 @@ export const useDisplayOptions = () => useContext(DisplayOptionsContext);
 const HomePage = () => {
   const [includePlanned, setIncludePlanned] = useState(false);
   const [groupByCategory, setGroupByCategory] = useState(true);
-
+  const { token } = useAuth();
   // useEffect(() => {
   //   getAllSubjects();
   // }, []);
@@ -38,7 +40,12 @@ const HomePage = () => {
     >
       <div className="pb-12">
         <Navbar></Navbar>
-
+        {/* <button
+          className="btn btn-primary"
+          onClick={() => getAllSubjects(token).then(console.log)}
+        >
+          Click me
+        </button> */}
         <div className="mt-12 max-w-lg mx-auto">
           <SearchBar></SearchBar>
         </div>

@@ -6,12 +6,19 @@ type Props = {};
 
 const lectureNames = lectureData.map((l) => l.name);
 
-const getLectureNamesStartingWith = (prefix: string) =>
-  lectureNames.filter((n) => n.toLowerCase().startsWith(prefix));
+const getLecturesStartingWith = (prefix: string) =>
+  lectureData.filter((d) => d.name.toLowerCase().startsWith(prefix));
 
 const SearchBar = (props: Props) => {
   const [searchText, setSearchText] = useState<string>();
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = (lecture: any) => {
+    console.log(lecture);
+    setSearchText("");
+    setModalIsOpen(true);
+  };
+
   return (
     <div className="w-full z-10">
       <AddSubjectModal
@@ -19,14 +26,14 @@ const SearchBar = (props: Props) => {
         closeModal={() => setModalIsOpen(false)}
         subjectPresets={{ name: "Diskmath", ects: 7 }}
       ></AddSubjectModal>
-      <button
+      {/* <button
         className="btn btn-primary"
         onClick={() => {
           setModalIsOpen(true);
         }}
       >
         click
-      </button>
+      </button> */}
       <div className="relative">
         <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
           <svg
@@ -48,8 +55,8 @@ const SearchBar = (props: Props) => {
         <input
           type="search"
           id="default-search"
-          className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Search Mockups, Logos..."
+          className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-primary focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Search Subjects"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
@@ -58,18 +65,23 @@ const SearchBar = (props: Props) => {
             tabIndex={0}
             className="absolute dropdown-content menu p-2 shadow-md bg-base-200 rounded-box w-full"
           >
-            {getLectureNamesStartingWith(searchText!).length > 0 ? (
-              getLectureNamesStartingWith(searchText!).map((name) => (
+            {getLecturesStartingWith(searchText!).length > 0 ? (
+              getLecturesStartingWith(searchText!).map((lecture) => (
                 <li>
-                  <a>{name}</a>
+                  <button onClick={() => openModal(lecture)}>
+                    {lecture.name}
+                  </button>
                 </li>
               ))
             ) : (
               <li>
-                <div className="flex justify-between">
+                <button
+                  className="flex justify-between"
+                  onClick={() => console.log("TODO")}
+                >
                   <p>🍔 Nothing here...</p>
                   <p>Click to create Custom Subject</p>
-                </div>
+                </button>
               </li>
             )}
           </ul>
