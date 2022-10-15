@@ -29,7 +29,20 @@ const HomePage = () => {
                   })
                 ) + "/180"}
               </p>
-              <p className="mr-10">5.37</p>
+              <p className="mr-10">
+                {Number(
+                  totalWsum({
+                    includePlanned: includePlanned,
+                    subjectGroups: subjectGroups,
+                  })
+                ) /
+                  Number(
+                    totalCredits({
+                      includePlanned: includePlanned,
+                      subjectGroups: subjectGroups,
+                    })
+                  )}
+              </p>
             </div>
           </div>
         </div>
@@ -165,6 +178,31 @@ const totalCredits = ({
           accumulator +
           Number(
             sumEcts({
+              includePlanned: includePlanned,
+              subjectGroup: currentValue,
+            })
+          )
+        );
+      }, 0)
+    );
+  }
+};
+
+//compute the total sum of weighted grades
+const totalWsum = ({
+  includePlanned,
+  subjectGroups,
+}: {
+  includePlanned: boolean;
+  subjectGroups: SubjectGroup[];
+}) => {
+  {
+    return Number(
+      subjectGroups.reduce((accumulator, currentValue) => {
+        return (
+          accumulator +
+          Number(
+            wsumGrades({
               includePlanned: includePlanned,
               subjectGroup: currentValue,
             })
