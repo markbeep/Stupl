@@ -1,10 +1,13 @@
 
+from unicodedata import category
 import django
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 import json
+
+from backend.app.categories import category_to_enum, enum_to_category_german
 from .models import VVZSubjects, UserSubjects
 from django.shortcuts import get_object_or_404
 
@@ -33,13 +36,17 @@ def get_subjects_per_user(request):
     user = request.user
     subjects = user.subjects.all()
     return Response({
-        "subjects": [{
-                    "id": x.id,
-                    "name": x.name,
-                    "credits": x.credits,
-                    "category": x.category,
-                    "semester": x.semester,
-                    "grade": x.grade
+        "subjects": [
+            {
+                "id": x.id,
+                "name": x.name,
+                "credits": x.credits,
+                "category_id": x.category,
+                "category": enum_to_category_german(x.category),
+                "semester": x.semester,
+                "year": x.year,
+                "grade": x.grade,
+                "planned": x.planned,
         } for x in subjects], 
         "requirements": {
             "1": sumCreditsCategories(user, []) == 56,
@@ -69,10 +76,13 @@ def load_vvz(request):
         {
             "id": x.id,
             "name": x.name,
+            "vvz_id": x.vvz_id,
+            "lesson_number": x.lesson_number,
             "credits": x.credits,
-            "category": x.category,
+            "category_id": x.category,
+            "category": enum_to_category_german(x.category),
             "semester": x.semester,
-            "grade": x.grade,
+            "year": x.year,
         }
         for x in vvz
     ])
@@ -82,25 +92,23 @@ def load_vvz(request):
 def add_subject(request):
     name = request.data.get("name", None)
     credits = request.data.get("credits", None)
-    vvz_subject = None #request.POST["vvz_subject"]
     category = request.data.get("category", None)
     semester = request.data.get("semester", None)
+    year = request.data.get("year", None)
     grade = request.data.get("grade", None)
+    planned = request.data.get("planned", None)
+    if None in [name, credits, category, semester, year, grade, planned]:
+        return Response("Post field missing", status=status.HTTP_400_BAD_REQUEST)
     user = request.user
-    count_grade = True
-    count_credits = True
-    year = 2022
     sub = UserSubjects.objects.create(
         name=name,
         user=user,
         credits=credits,
         category=category,
-        vvz_subject=vvz_subject,
         grade=grade,
         semester=semester,
         year=year,
-        count_grade=count_grade,
-        count_credits=count_credits
+        planned=planned,
     )
     sub.save()
     return Response("Success")
@@ -123,13 +131,15 @@ def fill_db(request):
 
     for i, x in enumerate(data):
         try:
-            lec = VVZSubjects.objects.create()
-            lec.name = x["name"]
-            lec.credits = x["credits"]
-            lec.vvz_id = x["vvz_id"]
-            lec.semester = x["semester"]
-            lec.year = x["year"]
+            lec = VVZSubjects.objects.create(
+                name=x["name"],
+                credits=x["credits"],
+                vvz_id=x["vvz_id"],
+                semester=x["semester"],
+                year=x["year"],
+                category=category_to_enum(x["category"]).value,
+            )
             lec.save()
-        except django.db.utils.IntegrityError:
-            print(f"Error {i = } | {x = }")
+        except django.db.utils.IntegrityError as e:
+            print(f"Error {e} | {x = }")
     return Response("Done")
