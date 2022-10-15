@@ -1,4 +1,5 @@
 from enum import Enum
+from sre_parse import CATEGORIES
 
 class Categories(Enum):
     Other = 0
@@ -9,6 +10,7 @@ class Categories(Enum):
     Seminar = 5
     Electives = 6
     BachelorThesis = 7
+    GESS = 8
 
 
 def category_to_enum(category: str) -> Categories:
@@ -27,6 +29,8 @@ def category_to_enum(category: str) -> Categories:
         return Categories.Electives
     if c == "bachelor's thesis":
         return Categories.BachelorThesis
+    if c == "gess":
+        return Categories.GESS
     return Categories.Other
     
     
@@ -40,4 +44,5 @@ def enum_to_category_german(cat: Categories) -> str:
         Categories.Seminar: "Seminar",
         Categories.Electives: "Wahlfächer",
         Categories.BachelorThesis: "Bachelor Thesis",
+        Categories.GESS: "GESS",
     }[cat]

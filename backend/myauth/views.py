@@ -1,6 +1,6 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from django.contrib.auth import logout
+from django.contrib.auth import logout, authenticate
 from .models import User
 from .serializers import UserLoginSerializer, UserSerializer
 from rest_framework import viewsets
@@ -9,7 +9,6 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
-from django.contrib.auth import authenticate
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
