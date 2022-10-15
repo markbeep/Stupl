@@ -1,29 +1,35 @@
+import { useRequest } from "ahooks";
 import React, { useState } from "react";
+import { getAllVVZLectures } from "../api/api";
+import { VVZSubject } from "../api/schemas";
 import lectureData from "../data/lectures";
 import AddSubjectModal from "./AddSubjectModal";
 
 type Props = {};
 
-const getLecturesStartingWith = (prefix: string) =>
-  lectureData.filter((d) => d.name.toLowerCase().startsWith(prefix));
-
 const SearchBar = (props: Props) => {
   const [searchText, setSearchText] = useState<string>();
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [vvzSubjectPreset, setVvzSubjectPreset] = useState<VVZSubject | null>(
+    null
+  );
 
-  const openModal = (lecture: any) => {
-    console.log(lecture);
+  const openModal = (subject: VVZSubject) => {
+    console.log(subject);
     setSearchText("");
+    setVvzSubjectPreset(subject);
     setModalIsOpen(true);
   };
 
   return (
     <div className="w-full z-10">
-      <AddSubjectModal
-        isOpen={modalIsOpen}
-        closeModal={() => setModalIsOpen(false)}
-        subjectPresets={{ name: "Diskmath", ects: 7 }}
-      ></AddSubjectModal>
+      {vvzSubjectPreset && (
+        <AddSubjectModal
+          isOpen={modalIsOpen}
+          closeModal={() => setModalIsOpen(false)}
+          subjectPreset={vvzSubjectPreset!}
+        ></AddSubjectModal>
+      )}
       {/* <button
         className="btn btn-primary"
         onClick={() => {
@@ -58,34 +64,63 @@ const SearchBar = (props: Props) => {
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
-        {searchText != null && searchText.length != 0 && (
-          <ul
-            tabIndex={0}
-            className="absolute dropdown-content menu p-2 shadow-md bg-base-200 rounded-box w-full"
-          >
-            {getLecturesStartingWith(searchText!).length > 0 ? (
-              getLecturesStartingWith(searchText!).map((lecture) => (
-                <li>
-                  <button onClick={() => openModal(lecture)}>
-                    {lecture.name}
-                  </button>
-                </li>
-              ))
-            ) : (
-              <li>
-                <button
-                  className="flex justify-between"
-                  onClick={() => console.log("TODO")}
-                >
-                  <p>🍔 Nothing here...</p>
-                  <p>Click to create Custom Subject</p>
-                </button>
-              </li>
-            )}
-          </ul>
-        )}
+        <SearchBarNameList
+          searchText={searchText}
+          openModal={openModal}
+        ></SearchBarNameList>
       </div>
     </div>
+  );
+};
+
+type SearchBarNameListProps = {
+  searchText?: string;
+  openModal: (subject: VVZSubject) => void;
+};
+
+const SearchBarNameList = ({
+  searchText,
+  openModal,
+}: SearchBarNameListProps) => {
+  const { data, error, loading } = useRequest(getAllVVZLectures);
+  const getLecturesStartingWith = (lectureData: VVZSubject[], prefix: string) =>
+    lectureData.filter((d) => d.name.toLowerCase().startsWith(prefix));
+
+  if (searchText == null || searchText.length == 0) return null;
+
+  if (loading || !!error) return <div>Loading/Error</div>;
+
+  const lectures = getLecturesStartingWith(data, searchText);
+  if (lectures.length == 0) {
+    return (
+      <ul
+        tabIndex={0}
+        className="absolute dropdown-content menu p-2 shadow-md bg-base-200 rounded-box w-full"
+      >
+        <li>
+          <button
+            className="flex justify-between"
+            onClick={() => console.log("TODO")}
+          >
+            <p>🍔 Nothing here...</p>
+            <p>Click to create Custom Subject</p>
+          </button>
+        </li>
+      </ul>
+    );
+  }
+
+  return (
+    <ul
+      tabIndex={0}
+      className="absolute dropdown-content menu p-2 shadow-md bg-base-200 rounded-box w-full"
+    >
+      {lectures.map((lecture) => (
+        <li>
+          <button onClick={() => openModal(lecture)}>{lecture.name}</button>
+        </li>
+      ))}
+    </ul>
   );
 };
 
