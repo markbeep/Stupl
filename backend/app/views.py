@@ -12,8 +12,6 @@ from .models import VVZSubjects, UserSubjects
 # Create your views here.
 
 def list_temporary(request):
-    sub = VVZSubjects.objects.create(name="Test",credits=7,vvz_id=1,lesson_number="d",semester=1,year=1)
-    sub.save()
     subjects = VVZSubjects.objects.all()
     sub2 = UserSubjects.objects.all()
     return JsonResponse({
@@ -64,9 +62,9 @@ def fill_db(request):
     for i in range(len(data)):
         lec = VVZSubjects.objects.create()
         lec.name = data[i]["name"]
-        lec.credits = int(data[i]["credits"][0]) # Fix this, this is very bad!! 
-        lec.vvz_id = data[i]["id"]
-        lec.lesson_number = data[i]["id"]
-        lec.semester = data[i]["sem"]
-        lec.year = 2022
+        lec.credits = data[i]["credits"]
+        lec.vvz_id = data[i]["vvz_id"]
+        #lec.lesson_number = data[i]["id"]
+        lec.semester = data[i]["semester"]
+        lec.year = data[i]["year"]
         lec.save()
