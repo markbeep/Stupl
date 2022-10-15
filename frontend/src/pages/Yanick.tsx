@@ -1,5 +1,8 @@
+import { useRequest } from "ahooks";
 import axios from "axios";
 import { useState } from "react";
+import { getAllRequirements, getAllSubjects } from "../api/api";
+import { useAuth } from "../authHanlder";
 import Collapsible from "../components/Collapsible";
 import { requirementsData, RequirementsData } from "../data/yanick_data";
 
@@ -13,14 +16,14 @@ export const Yanick = () => {
   );
 };
 
-export const getAllRequirements = async (token: string) => {
-  console.log("is this working?");
-  const response = axios.get("api/get_requirements/");
-  console.log(response);
-  return response;
-};
-
 export const RequirementsCollapsible = () => {
+  const { token } = useAuth();
+  const { data, error, loading, refresh } = useRequest(() =>
+    getAllRequirements(token)
+  );
+
+  console.log(data);
+
   return (
     <Collapsible
       headerBuilder={(collapsed) => (
