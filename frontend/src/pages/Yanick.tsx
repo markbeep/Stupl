@@ -12,7 +12,7 @@ export const Yanick = () => {
   );
 };
 
-const RequirementsCollapsible = () => {
+export const RequirementsCollapsible = () => {
   return (
     <Collapsible
       headerBuilder={(collapsed) => (
