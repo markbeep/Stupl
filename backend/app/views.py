@@ -74,11 +74,6 @@ def load_vvz(request):
         vvz = VVZSubjects.objects.filter(category=category).all()
     else:
         vvz = VVZSubjects.objects.all()
-    print(enum_to_category_german(Categories(1)))
-    print(enum_to_category_german(Categories(2)))
-    print(enum_to_category_german(Categories(5)))
-    print(enum_to_category_german(Categories(6)))
-    print(vvz[0].category)
     return Response([
         {
             "id": x.id,
