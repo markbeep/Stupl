@@ -106,7 +106,6 @@ const wsumGrades = ({
   includePlanned: boolean;
   subjectGroup: SubjectGroup;
 }) => {
-  console.log(subjectGroup.data);
   return subjectGroup.data.reduce((accumulator, currentValue) => {
     return (
       accumulator +
@@ -128,14 +127,6 @@ const avgGrades = ({
   includePlanned: boolean;
   subjectGroup: SubjectGroup;
 }) => {
-  console.log(
-    Number(
-      sumEcts({
-        includePlanned: includePlanned,
-        subjectGroup: subjectGroup,
-      })
-    )
-  );
   if (
     Number(
       sumEcts({
