@@ -10,20 +10,26 @@ type Props = {};
 const SearchBar = (props: Props) => {
   const [searchText, setSearchText] = useState<string>();
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [vvzSubjectPreset, setVvzSubjectPreset] = useState<VVZSubject | null>(
+    null
+  );
 
-  const openModal = (lecture: any) => {
-    console.log(lecture);
+  const openModal = (subject: VVZSubject) => {
+    console.log(subject);
     setSearchText("");
+    setVvzSubjectPreset(subject);
     setModalIsOpen(true);
   };
 
   return (
     <div className="w-full z-10">
-      <AddSubjectModal
-        isOpen={modalIsOpen}
-        closeModal={() => setModalIsOpen(false)}
-        subjectPresets={{ name: "Diskmath", ects: 7 }}
-      ></AddSubjectModal>
+      {vvzSubjectPreset && (
+        <AddSubjectModal
+          isOpen={modalIsOpen}
+          closeModal={() => setModalIsOpen(false)}
+          subjectPreset={vvzSubjectPreset!}
+        ></AddSubjectModal>
+      )}
       {/* <button
         className="btn btn-primary"
         onClick={() => {
@@ -58,15 +64,10 @@ const SearchBar = (props: Props) => {
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
-        <ul
-          tabIndex={0}
-          className="absolute dropdown-content menu p-2 shadow-md bg-base-200 rounded-box w-full"
-        >
-          <SearchBarNameList
-            searchText={searchText}
-            openModal={openModal}
-          ></SearchBarNameList>
-        </ul>
+        <SearchBarNameList
+          searchText={searchText}
+          openModal={openModal}
+        ></SearchBarNameList>
       </div>
     </div>
   );
@@ -74,7 +75,7 @@ const SearchBar = (props: Props) => {
 
 type SearchBarNameListProps = {
   searchText?: string;
-  openModal: (l: any) => void;
+  openModal: (subject: VVZSubject) => void;
 };
 
 const SearchBarNameList = ({
@@ -92,26 +93,34 @@ const SearchBarNameList = ({
   const lectures = getLecturesStartingWith(data, searchText);
   if (lectures.length == 0) {
     return (
-      <li>
-        <button
-          className="flex justify-between"
-          onClick={() => console.log("TODO")}
-        >
-          <p>🍔 Nothing here...</p>
-          <p>Click to create Custom Subject</p>
-        </button>
-      </li>
+      <ul
+        tabIndex={0}
+        className="absolute dropdown-content menu p-2 shadow-md bg-base-200 rounded-box w-full"
+      >
+        <li>
+          <button
+            className="flex justify-between"
+            onClick={() => console.log("TODO")}
+          >
+            <p>🍔 Nothing here...</p>
+            <p>Click to create Custom Subject</p>
+          </button>
+        </li>
+      </ul>
     );
   }
 
   return (
-    <div>
+    <ul
+      tabIndex={0}
+      className="absolute dropdown-content menu p-2 shadow-md bg-base-200 rounded-box w-full"
+    >
       {lectures.map((lecture) => (
         <li>
           <button onClick={() => openModal(lecture)}>{lecture.name}</button>
         </li>
       ))}
-    </div>
+    </ul>
   );
 };
 

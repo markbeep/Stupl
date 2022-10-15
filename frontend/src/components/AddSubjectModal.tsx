@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import { addSubject } from "../api/api";
+import { categories, VVZSubject } from "../api/schemas";
 import { useAuth } from "../authHanlder";
 import { SubjectData } from "../data";
 import SemesterPill from "./SemesterPill";
@@ -17,15 +18,17 @@ type SubjectPresets = {
 type Props = {
   isOpen: boolean;
   closeModal: () => void;
-  subjectPresets: SubjectPresets;
+  subjectPreset: VVZSubject;
 };
 
-const AddSubjectModal = ({ isOpen, closeModal, subjectPresets }: Props) => {
-  const [ectsStepper, setEctsStepper] = useState(subjectPresets.ects ?? 7);
+const AddSubjectModal = ({ isOpen, closeModal, subjectPreset }: Props) => {
+  console.log("fadas<fdja", subjectPreset);
+
+  const [ectsStepper, setEctsStepper] = useState(subjectPreset.credits);
   const [semesterStepper, setSemesterStepper] = useState(1);
   const [gradeStepper, setGradeStepper] = useState(5);
-  const [subjectName, setSubjectName] = useState(subjectPresets.name);
-  const [category, setCategory] = useState();
+  const [subjectName, setSubjectName] = useState(subjectPreset.name);
+  const [category, setCategory] = useState(subjectPreset.category_id);
   const [completedCheckbox, setCompletedCheckbox] = useState(true);
   const [submitLoading, setSubmitLoading] = useState(false);
   const { token } = useAuth();
@@ -34,11 +37,13 @@ const AddSubjectModal = ({ isOpen, closeModal, subjectPresets }: Props) => {
     const data: any = {
       name: subjectName!,
       credits: ectsStepper,
-      category: 0,
+      category: category,
       semester: semesterStepper,
       grade: gradeStepper,
       planned: completedCheckbox,
     };
+
+    console.log("Add Subject", data);
 
     setSubmitLoading(true);
     const result = await addSubject(token!, data);
@@ -68,10 +73,15 @@ const AddSubjectModal = ({ isOpen, closeModal, subjectPresets }: Props) => {
         ></input>
 
         <label className="block text-sm font-medium mt-4">Category</label>
-        <select className="select select-bordered w-full mt-1">
-          <option>Kernfach</option>
-          <option>Guess</option>
-          <option>Wahlfach</option>
+        <select
+          className="select select-bordered w-full mt-1"
+          onChange={(e) => setCategory(parseInt(e.target.value))}
+        >
+          {categories.map((cat) => (
+            <option key={cat.id} value={cat.id}>
+              {cat.name}
+            </option>
+          ))}
         </select>
         <div className="flex items-center mt-4">
           <label className="block flex-1 text-sm font-medium">Semester</label>

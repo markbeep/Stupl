@@ -46,6 +46,6 @@ export const addSubject = async (token: string, subject: any) => {
 
 export const getAllVVZLectures = async () => {
   const response = await axios.get("api/load_vvz/", {});
-  console.log(response);
+  console.log("All VVZ lectures:", response.data);
   return response.data;
 };

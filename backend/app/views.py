@@ -96,7 +96,7 @@ def add_subject(request):
     credits = request.data.get("credits", None)
     category = request.data.get("category", None)
     semester = request.data.get("semester", None)
-    year = request.data.get("year", None)
+    year = request.data.get("year", 2022)
     grade = request.data.get("grade", None)
     planned = request.data.get("planned", None)
     if None in [name, credits, category, semester, year, grade, planned]:
