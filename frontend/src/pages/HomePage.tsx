@@ -31,6 +31,11 @@ const HomePage = () => {
   //   getAllSubjects();
   // }, []);
 
+  const getSubjets = async () => {
+    const subs = await getAllSubjects(token);
+    console.log(subs);
+  };
+
   return (
     <DisplayOptionsContext.Provider
       value={{
@@ -40,12 +45,9 @@ const HomePage = () => {
     >
       <div className="pb-12">
         <Navbar></Navbar>
-        {/* <button
-          className="btn btn-primary"
-          onClick={() => getAllSubjects(token).then(console.log)}
-        >
+        <button className="btn btn-primary" onClick={getSubjets}>
           Click me
-        </button> */}
+        </button>
         <div className="mt-12 max-w-lg mx-auto">
           <SearchBar></SearchBar>
         </div>
