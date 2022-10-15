@@ -9,4 +9,5 @@ urlpatterns = [
     path("test/", views.insert_test_user),
     path("get/", views.UserViewSet.as_view({"get": "list"})),
     path("required/", views.HelloView.as_view()),
+    path("logout/", views.UserLogoutView.as_view()),
 ]

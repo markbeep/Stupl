@@ -1,7 +1,6 @@
-from django.contrib.auth.decorators import login_required
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from torch import logical_or
+from django.contrib.auth import logout
 from .models import User
 from .serializers import UserLoginSerializer, UserSerializer
 from rest_framework import viewsets
@@ -9,7 +8,6 @@ from rest_framework.generics import CreateAPIView, RetrieveAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework import status
 from rest_framework.views import APIView
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -81,18 +79,12 @@ class UserLoginView(RetrieveAPIView):
             "token": serializer.data["token"],
         }
         return Response(response, status=status_code)
-
+    
 class UserLogoutView(RetrieveAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = UserLoginSerializer
     
     def post(self, request):
-        serializer = self.serializer_class(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        status_code = status.HTTP_200_OK
-        response = {
-            "success": True,
-            "status code": status_code,
-            "message": "Logged out successfully",
-        }
-        return Response(response, status=status_code)
+        
+        logout(request)
+        return Response("Successfully logged out")
