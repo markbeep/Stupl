@@ -1,25 +1,6 @@
 import { useRequest } from "ahooks";
 import { TestWord } from "./interfaces";
 
-async function postLogin(email: string, password: string) {
-  const options = {
-    method: "POST",
-    body: JSON.stringify({ email, password }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-  const response = await fetch("/auth/login", options);
-  const data = await response.json();
-  return data["token"] as string;
-}
-export function useLogin(email: string, password: string) {
-  const { error, loading, data, run } = useRequest(() =>
-    postLogin(email, password)
-  );
-  return { error, loading, data, run } as const;
-}
-
 export async function loginUser(email: string, password: string) {
   const options = {
     method: "POST",
@@ -28,7 +9,7 @@ export async function loginUser(email: string, password: string) {
       "Content-Type": "application/json",
     },
   };
-  const response = await fetch("/auth/login", options);
+  const response = await fetch("/auth/login/", options);
   if (response.status == 200) {
     const data = await response.json();
     return data["token"] as string;
@@ -38,11 +19,28 @@ export async function loginUser(email: string, password: string) {
 }
 
 async function loadTestHello() {
-  const response = await fetch("/api/hello");
+  const response = await fetch("/api/hello/");
   const data = await response.json();
   return { word: data } as TestWord;
 }
 export function useTestHello() {
   const { error, loading, data, run } = useRequest(() => loadTestHello());
   return { error, loading, data, run } as const;
+}
+
+async function loadRestricted(token: string) {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Token " + token,
+    },
+  };
+  const response = await fetch("/auth/required/", options);
+  return response.status;
+}
+
+export function useRestricted(token: string) {
+  const { data, loading, error, run } = useRequest(() => loadRestricted(token));
+  return { data, loading, error, run };
 }

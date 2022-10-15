@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { loginUser, useLogin } from "../api/hooks";
+import React, { useEffect, useState } from "react";
+import { loginUser, useRestricted } from "../api/hooks";
 import katze from "../data/IMG_8581.jpg"; // with import
 
 type Props = {};
@@ -15,11 +15,19 @@ const LoginPage = (props: Props) => {
   const [token, setToken] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { data, run } = useRestricted(token);
   const handleSubmit = async () => {
-    console.log("aaaaaaaaaaaaaaaaah");
     setToken(await loginUser(email, password));
-    console.log(token);
   };
+  useEffect(() => {
+    if (token !== "") {
+      console.log("Successfully logged in");
+      run();
+    }
+  }, [token])
+  useEffect(() => {
+    console.log(data);
+  }, [data])
   /*   const {login}
   const {data} = useLogin() */
 
