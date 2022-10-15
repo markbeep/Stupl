@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import { addSubject, deleteSubject } from "../api/api";
+import { addSubject, deleteSubject, editSubject } from "../api/api";
 import { categories, SubjectData, VVZSubject } from "../api/schemas";
 import { useAuth } from "../authHanlder";
 import { useDisplayOptions } from "../pages/HomePage";
@@ -39,7 +39,7 @@ const EditSubjectModal = ({ isOpen, closeModal, subject }: Props) => {
     };
 
     setSubmitLoading(true);
-    const result = await addSubject(token!, data);
+    const result = await editSubject(token!, data);
     setSubmitLoading(false);
     console.log(result);
     requestRefresh();
@@ -48,7 +48,7 @@ const EditSubjectModal = ({ isOpen, closeModal, subject }: Props) => {
 
   const onDelete = async () => {
     setDeleteLoading(true);
-    deleteSubject(token!, subject.id);
+    await deleteSubject(token!, subject.id);
     setDeleteLoading(false);
     requestRefresh();
     closeModal();
