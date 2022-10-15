@@ -1,20 +1,6 @@
 import { useRequest } from "ahooks";
 import axios, { AxiosError } from "axios";
 import { SubjectData } from "../data";
-import { TestWord } from "./interfaces";
-
-export async function loadTestHello() {
-  const response = await fetch("/sdapi/hello");
-  console.log(response);
-  console.log(response.body);
-  const data = await response.json();
-  console.log("why syntax error", response);
-  return { word: data } as TestWord;
-}
-export function useTestHello() {
-  const { error, loading, data, run } = useRequest(() => loadTestHello());
-  return { error, loading, data, run } as const;
-}
 
 export const registerUser = async (email: string, password: string) => {
   console.log(email, password);
