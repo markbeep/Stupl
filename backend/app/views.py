@@ -118,7 +118,20 @@ def add_subject(request):
     sub.save()
     return Response("Success")
 
-@api_view(["GET"])
+@api_view(["Post"])
+@permission_classes([IsAuthenticated])
+def edit_subject(request):
+    name = request.data.get("name", None)
+    credits = request.data.get("credits", None)
+    category = request.data.get("category", None)
+    semester = request.data.get("semester", None)
+    year = request.data.get("year", 2022)
+    grade = request.data.get("grade", None)
+    planned = request.data.get("planned", None)
+    print("Leander send help pls")
+    return Response("Success")
+
+@api_view(["DELETE"])
 @permission_classes([IsAuthenticated])
 def delete_subject(request):
     # Delete subject from UserSubjects
