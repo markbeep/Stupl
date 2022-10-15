@@ -18,18 +18,20 @@ export const Navbar = () => {
           <Link to="/">
             <a className="btn btn-ghost normal-case text-xl">Logo</a>
           </Link>
-          <button
-            className="float-right btn btn-ghost normal-case"
-            onClick={logout}
-          >
-            About Us
-          </button>
-          <button
-            className="float-right btn btn-ghost normal-case"
-            onClick={logout}
-          >
-            Log Out
-          </button>
+          <div>
+            <button
+              className="float-right btn btn-ghost normal-case"
+              onClick={logout}
+            >
+              About Us
+            </button>
+            <button
+              className="float-right btn btn-ghost normal-case"
+              onClick={logout}
+            >
+              Log Out
+            </button>
+          </div>
         </div>
       </div>
     </nav>

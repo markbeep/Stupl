@@ -65,9 +65,6 @@ const HomePage = () => {
     >
       <div className="pb-12">
         <Navbar></Navbar>
-        <button className="btn btn-primary" onClick={() => getSubjets()}>
-          Click me
-        </button>
         <div className="mt-12 max-w-lg mx-auto">
           <SearchBar></SearchBar>
         </div>
