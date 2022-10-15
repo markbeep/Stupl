@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { loginUser } from "../api/hooks";
+import { loginUser } from "../api/api";
 import { saveToken, useAuth } from "../authHanlder";
 import logo from "../data/logo2.png";
 

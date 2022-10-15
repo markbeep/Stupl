@@ -1,6 +1,6 @@
 import { group } from "console";
 import React, { useContext, useEffect, useState } from "react";
-import { getAllSubjects } from "../api/hooks";
+import { getAllSubjects } from "../api/api";
 import { totalCredits, totalWsum } from "../api/subjectMath";
 import { useAuth } from "../authHanlder";
 // import { getAllSubjects } from "../api/hooks";

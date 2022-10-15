@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import { addSubject } from "../api/hooks";
+import { addSubject } from "../api/api";
 import { useAuth } from "../authHanlder";
 import { SubjectData } from "../data";
 import SemesterPill from "./SemesterPill";
