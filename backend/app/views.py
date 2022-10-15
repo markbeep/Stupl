@@ -1,5 +1,4 @@
 
-from unicodedata import category
 import django
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -7,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status
 import json
 
-from app.categories import category_to_enum, enum_to_category_german
+from app.categories import Categories, category_to_enum, enum_to_category_german
 from .models import VVZSubjects, UserSubjects
 from django.shortcuts import get_object_or_404
 
@@ -42,7 +41,7 @@ def get_subjects_per_user(request):
                 "name": x.name,
                 "credits": x.credits,
                 "category_id": x.category,
-                "category": enum_to_category_german(x.category),
+                "category": enum_to_category_german(Categories(x.category)),
                 "semester": x.semester,
                 "year": x.year,
                 "grade": x.grade,
@@ -72,6 +71,11 @@ def load_vvz(request):
         vvz = VVZSubjects.objects.filter(category=category).all()
     else:
         vvz = VVZSubjects.objects.all()
+    print(enum_to_category_german(Categories(1)))
+    print(enum_to_category_german(Categories(2)))
+    print(enum_to_category_german(Categories(5)))
+    print(enum_to_category_german(Categories(6)))
+    print(vvz[0].category)
     return Response([
         {
             "id": x.id,
@@ -80,7 +84,7 @@ def load_vvz(request):
             "lesson_number": x.lesson_number,
             "credits": x.credits,
             "category_id": x.category,
-            "category": enum_to_category_german(x.category),
+            "category": enum_to_category_german(Categories(x.category)),
             "semester": x.semester,
             "year": x.year,
         }
@@ -125,7 +129,6 @@ def delete_subject(request):
 
 @api_view(["GET"])
 def fill_db(request):
-    print("HELLO")
     with open("data/lectures.json",'r') as f:
         data = json.load(f)
 
@@ -141,5 +144,5 @@ def fill_db(request):
             )
             lec.save()
         except django.db.utils.IntegrityError as e:
-            print(f"Error {e} | {x = }")
+            print(f"Error filling db: {e} | {x = }")
     return Response("Done")
