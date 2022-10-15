@@ -69,7 +69,6 @@ def get_subjects_per_user(request):
     })
 
 @api_view(["GET"])
-@permission_classes([IsAuthenticated])
 def load_vvz(request):
     category = request.GET.get("category", None)
     if category:
