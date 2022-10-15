@@ -55,7 +55,7 @@ export const requirementsData: RequirementsData[] = [
   },
   {
     requirementsId: 11,
-    name: "Gesamt  >= 180 KP",
+    name: "Total  >= 180 KP",
     fullfilled: false,
   },
 ];

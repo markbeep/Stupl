@@ -37,7 +37,7 @@ export const RequirementsCollapsible = () => {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="feather feather-check"
+                    className="text-green-800 feather feather-check"
                   >
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
@@ -48,11 +48,11 @@ export const RequirementsCollapsible = () => {
                     height="24"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="currentColor"
+                    stroke="CurrentColor"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="feather feather-x "
+                    className="text-red-800 feather feather-x "
                   >
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -78,7 +78,7 @@ export const RequirementsCollapsible = () => {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="feather feather-check"
+                  className="text-red-600 feather feather-check"
                 >
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
@@ -93,22 +93,25 @@ export const RequirementsCollapsible = () => {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="feather feather-x "
+                  className="text-red-600 feather feather-x "
                 >
                   <line x1="18" y1="6" x2="6" y2="18"></line>
                   <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
               )}
             </td>
-            <td className="text-left bg-base-200 pr-2">
+
+            <td className="bg-base-200 text-left pr-2">
               {requirementsData.reduce((accumulator, currentValue) => {
                 return accumulator && currentValue.fullfilled;
               }, true) ? (
-                <p className="bg-base-200 pr-2">
-                  Passed all requirements, congrats
+                <p className="text-green-600 bg-base-200 pr-2">
+                  Passed all requirements, congrats!
                 </p>
               ) : (
-                <p className="bg-base-200 pr-2">Failed some requirements</p>
+                <p className="text-red-600 bg-base-200 pr-2">
+                  Failed some requirements!
+                </p>
               )}
             </td>
           </tr>
