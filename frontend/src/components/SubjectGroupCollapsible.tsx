@@ -19,36 +19,43 @@ const SubjectGroupCollapsible = ({
   return (
     <Collapsible
       headerBuilder={(collapsed) => (
-        <div className="flex justify-between">
+        <div className="flex justify-between select-none w-full">
           <div
             className="tooltip"
             data-tip={getCategoryWithId(subjectGroup.category_id)?.information}
           >
-            <h3>{getCategoryWithId(subjectGroup.category_id)?.german_name}</h3>
+            <h3 className="font-semibold text-lg">
+              {getCategoryWithId(subjectGroup.category_id)?.german_name}
+            </h3>
           </div>
           <div className="flex">
-            {collapsed && (
-              <p className="mr-8">
-                {Number(sumEcts(includePlanned, subjectGroup))}
-                /54
-              </p>
-            )}
-            {collapsed && (
-              <p className="mr-2">
-                {" "}
-                {Number(
-                  avgGrades({
-                    includePlanned: includePlanned,
-                    subjectGroup: subjectGroup,
-                  })
-                )}
-              </p>
-            )}
+            <p
+              className={
+                "mr-8 transition-all " +
+                (collapsed ? " opacity-100" : " opacity-0")
+              }
+            >
+              {Number(sumEcts(includePlanned, subjectGroup))}
+              /54
+            </p>
+            <p
+              className={
+                "mr-8 transition-all " +
+                (collapsed ? " opacity-100" : " opacity-0")
+              }
+            >
+              {Number(
+                avgGrades({
+                  includePlanned: includePlanned,
+                  subjectGroup: subjectGroup,
+                })
+              )}
+            </p>
           </div>
         </div>
       )}
     >
-      <table className="table w-full">
+      <table className="table w-full -mt-4">
         <thead className="rounded-none">
           <tr className="rounded-none">
             <th className="text-left z-index0-force"></th>
