@@ -35,8 +35,8 @@ const SubjectGroupCollapsible = ({
                 (collapsed ? " opacity-100" : " opacity-0")
               }
             >
-              {Number(sumEcts(includePlanned, subjectGroup))}
-              /54
+              {Number(sumEcts(includePlanned, subjectGroup))}/
+              {getCategoryWithId(subjectGroup.category_id)?.requirements}
             </p>
             <p
               className={
@@ -73,8 +73,8 @@ const SubjectGroupCollapsible = ({
             <td className="text-left pr-2 bg-base-200">Total</td>
             <td className="bg-base-200 pr-2"></td>
             <td className="text-right bg-base-200 pr-2">
-              {Number(sumEcts(includePlanned, subjectGroup))}
-              /54
+              {Number(sumEcts(includePlanned, subjectGroup))}/
+              {getCategoryWithId(subjectGroup.category_id)?.requirements}
             </td>
             {/* compute average grade per component */}
             <td className="text-right bg-base-200 pr-2">
