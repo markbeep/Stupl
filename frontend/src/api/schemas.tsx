@@ -51,21 +51,21 @@ export const categories = [
       "Courses usually done in first year They're split into two block exams. (All other courses have to be passed individually)",
   },
   {
-    name: "Basic Course",
+    name: "Basic Courses",
     german_name: "Grundlagenfächer",
     id: 1,
     information:
       "Courses usually done in second year. Requirements: All courses need to be taken, but only seven of eight have to be passed. If you don't pass all, you need to take an additional core subject instead.",
   },
   {
-    name: "Minor Course",
+    name: "Minor Courses",
     german_name: "Ergänzungsfächer",
     information:
       "In this category five credits can be done. Additional credits can count towards the Bacehlor.",
     id: 2,
   },
   {
-    name: "Core Course",
+    name: "Core Courses",
     german_name: "Kernfächer",
     information:
       "Courses usually done in THIRD year. Requirements: At least four courses need to be taken. You can also take more.",
