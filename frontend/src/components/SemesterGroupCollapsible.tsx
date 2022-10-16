@@ -119,9 +119,11 @@ const SubjectTableRow = ({ subject }: { subject: SubjectData }) => {
         className={"cursor-pointer " + (subject.planned ? "opacity-30" : "")}
       >
         <td className="truncate text-left pr-2">{subject.name}</td>
-        <td className="truncate pr-2">{subject.category}</td>
-        <td className="pr-2">{subject.credits}</td>
-        <td className="pr-2">{subject.grade}</td>
+        <td className="truncate pr-2">
+          {getCategoryWithId(subject.category_id)?.name}
+        </td>
+        <td className="pr-2 text-right">{subject.credits}</td>
+        <td className="pr-2 text-right">{subject.grade}</td>
         {/* was macht das hover hier*/}
 
         <td

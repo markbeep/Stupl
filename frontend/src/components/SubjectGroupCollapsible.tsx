@@ -128,8 +128,8 @@ const SubjectTableRow = ({ subject }: { subject: SubjectData }) => {
         <td className="truncate pr-2">
           <SemesterPill semester={subject.semester}></SemesterPill>
         </td>
-        <td className="pr-2">{subject.credits}</td>
-        <td className="pr-2">{subject.grade}</td>
+        <td className="pr-2 text-right">{subject.credits}</td>
+        <td className="pr-2 text-right">{subject.grade}</td>
 
         <td
           className={

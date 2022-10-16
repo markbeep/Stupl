@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { addSubject } from "../api/api";
 import { categories, VVZSubject } from "../api/schemas";
@@ -34,6 +34,39 @@ const AddSubjectModal = ({ isOpen, closeModal, subjectPreset }: Props) => {
   const { token } = useAuth();
   const { requestRefresh } = useDisplayOptions();
 
+  const [mode, setMode] = useState("#2A303C");
+
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      background: "#2A303C",
+      // background: window.matchMedia("(prefers-color-scheme: dark)").matches
+      //   ? "#2A303C"
+      //   : "#FFFFFF",
+      border: "none",
+    },
+    overlay: {
+      overlay: { zIndex: 1000 },
+      background: "rgba(0, 0,0 , 0.4)",
+    },
+  };
+
+  useEffect(() => {
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (event) => {
+        console.log("Changed");
+        const colorScheme = event.matches ? "dark" : "light";
+        console.log(colorScheme); // "dark" or "light"
+        setMode(colorScheme ? "#2A303C" : "#FFFFFF");
+      });
+  }, []);
+
   const onSubmit = async () => {
     const data: any = {
       name: subjectName!,
@@ -58,7 +91,6 @@ const AddSubjectModal = ({ isOpen, closeModal, subjectPreset }: Props) => {
       onAfterOpen={() => {}}
       onRequestClose={closeModal}
       style={customStyles}
-      contentLabel="Example Modal"
     >
       <div className="container mx-auto w-96 p-4">
         <h1 className="text-2xl font-medium">Add Subject</h1>
@@ -144,23 +176,6 @@ const AddSubjectModal = ({ isOpen, closeModal, subjectPreset }: Props) => {
       </div>
     </Modal>
   );
-};
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    background: "#2A303C",
-    border: "none",
-  },
-  overlay: {
-    overlay: { zIndex: 1000 },
-    background: "rgba(0, 0,0 , 0.4)",
-  },
 };
 
 export default AddSubjectModal;

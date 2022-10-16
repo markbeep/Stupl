@@ -61,7 +61,7 @@ const HomePage = () => {
         refreashId,
       }}
     >
-      <div className="pb-12">
+      <div className="pb-12 px-4">
         <Navbar></Navbar>
         <div className="mt-8 max-w-lg mx-auto">
           <SearchBar></SearchBar>

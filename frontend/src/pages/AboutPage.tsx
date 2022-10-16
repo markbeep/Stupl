@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
-import logo from "../data/logo4.png";
+import logo from "../data/logo5.png";
 
 type Props = {};
 
