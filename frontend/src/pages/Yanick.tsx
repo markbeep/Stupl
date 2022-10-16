@@ -25,12 +25,12 @@ export const RequirementsCollapsible = () => {
 
   console.log("data", data);
 
-  type Requirementt = {
+  type Requirement = {
     satisfieda: boolean;
     satisfiedb: boolean;
     name: string;
   };
-  const requis: Requirementt[] = data;
+  const requis: Requirement[] = data;
 
   console.log("requis: ", requis);
 
@@ -87,7 +87,8 @@ export const RequirementsCollapsible = () => {
 
           <tr className="">
             <td className="bg-base-200 pr-2">
-              {requis.reduce((accumulator, currentValue) => {
+              {requis &&
+              requis.reduce((accumulator, currentValue) => {
                 return accumulator && currentValue.satisfieda;
               }, true) ? (
                 <svg
@@ -124,7 +125,8 @@ export const RequirementsCollapsible = () => {
             </td>
 
             <td className="bg-base-200 text-left pr-2">
-              {requis.reduce((accumulator, currentValue) => {
+              {requis &&
+              requis.reduce((accumulator, currentValue) => {
                 return accumulator && currentValue.satisfieda;
               }, true) ? (
                 <p className="text-green-600 bg-base-200 pr-2">
