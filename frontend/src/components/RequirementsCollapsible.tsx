@@ -37,7 +37,7 @@ export const RequirementsCollapsible = ({
   return (
     <Collapsible
       headerBuilder={(collapsed) => (
-        <div className="flex justify-between">
+        <div className="font-semibold text-lg">
           <h3>Requirements</h3>
         </div>
       )}

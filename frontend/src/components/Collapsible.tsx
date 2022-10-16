@@ -56,7 +56,7 @@ const Collapsible2 = ({ headerBuilder, children }: Props) => {
   );
 };
 const Collapsible3 = ({ headerBuilder, children }: Props) => {
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
   // console.log(collapsed);
   return (
     <div className="">
