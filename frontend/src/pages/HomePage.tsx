@@ -105,11 +105,15 @@ const HomePage = () => {
 };
 
 const groupSubjectsByCategory = (subjects: SubjectData[]) => {
-  const ret: SubjectDataGroupedByCategory[] = [];
+  let ret: SubjectDataGroupedByCategory[] = [];
+  const orderedSubs = subjects.sort((a, b) =>
+    a.planned || (!a.planned && b.planned) ? 1 : -1
+  );
   for (const c of categories) ret.push({ category_id: c.id, subjects: [] });
-  for (const s of subjects)
+  for (const s of orderedSubs)
     ret.find((group) => group.category_id === s.category_id)?.subjects.push(s);
-  return ret.filter((group) => group.subjects.length > 0);
+  ret = ret.filter((group) => group.subjects.length > 0);
+  return ret;
 };
 
 const groupSubjectsBySemester = (subjects: SubjectData[]) => {
@@ -117,11 +121,15 @@ const groupSubjectsBySemester = (subjects: SubjectData[]) => {
     return self.indexOf(value) === index;
   }
 
-  const ret: SubjectDataGroupedBySemester[] = [];
+  let ret: SubjectDataGroupedBySemester[] = [];
   const allSems = subjects.map((s) => s.semester).filter(onlyUnique);
 
+  const orderedSubs = subjects.sort((a, b) =>
+    a.planned || (!a.planned && b.planned) ? 1 : -1
+  );
+
   for (const sem of allSems) ret.push({ semester: sem, subjects: [] });
-  for (const s of subjects)
+  for (const s of orderedSubs)
     ret.find((group) => group.semester === s.semester)?.subjects.push(s);
   return ret
     .filter((group) => group.subjects.length > 0)
