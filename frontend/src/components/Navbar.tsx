@@ -16,7 +16,7 @@ export const Navbar = () => {
       container mx-auto"
       >
         <div className="flex justify-between items-baseline w-full">
-          <Link to="/">
+          <Link to="/home">
             <a className="btn btn-ghost normal-case text-xl">Logo</a>
           </Link>
           <div>
