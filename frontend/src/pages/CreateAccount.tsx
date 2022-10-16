@@ -38,10 +38,10 @@ const CreateAccount = (props: Props) => {
     }
 
     const response = await registerUser(email, password);
-    console.log(response);
+    // console.log(response);
     saveToken(response.token);
     setToken(response.token);
-    console.log("auth successfull");
+    // console.log("auth successfull");
   };
 
   return (

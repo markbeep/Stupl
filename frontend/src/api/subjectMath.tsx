@@ -2,11 +2,8 @@ import {
   SubjectData,
   SubjectDataGroupedByCategory,
   SubjectDataGroupedBySemester,
+  SubjectDataGroupedGeneric,
 } from "./schemas";
-
-type SubjectDataGroupedGeneric =
-  | SubjectDataGroupedByCategory
-  | SubjectDataGroupedBySemester;
 
 // function that checks if a certain subject should be included in calculations
 export const showSubject = (

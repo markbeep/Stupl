@@ -14,7 +14,7 @@ const SearchBar = (props: Props) => {
   );
 
   const openModal = (subject: VVZSubject) => {
-    console.log(subject);
+    // console.log(subject);
     setSearchText("");
     setVvzSubjectPreset(subject);
     setModalIsOpen(true);

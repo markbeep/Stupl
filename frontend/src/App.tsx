@@ -16,6 +16,8 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Navigate to="/home"></Navigate>}></Route>
+
           <Route path="/createAccount" element={<CreateAccount />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
           <Route
@@ -40,7 +42,6 @@ function App() {
 const ProtectedRoute = ({ children }: { children: React.ReactElement }) => {
   const { token } = useAuth();
 
-  console.log("Does token exist? ", token);
   if (!token) {
     return <Navigate to="/login" replace />;
   }
