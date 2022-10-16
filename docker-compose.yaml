@@ -1,7 +1,7 @@
 version: "1"
 
 services:
-  gunicorn:
+  django:
     build: .
     restart: always
     ports:

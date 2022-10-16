@@ -21,7 +21,8 @@ const CreateAccount = (props: Props) => {
   //   console.log(response.data);
   // });
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // prevents refresh
     // setToken(await loginUser(email, password));
 
     if (setToken == null) return;
@@ -58,7 +59,7 @@ const CreateAccount = (props: Props) => {
               Plan your studies
             </h4>
           </div>
-          <form className="mt-6">
+          <form className="mt-6" onSubmit={handleSubmit}>
             <div className="mt-10 rounded-md shadow-sm">
               <div>
                 <input
@@ -103,16 +104,15 @@ const CreateAccount = (props: Props) => {
                 />
               </div>
             </div>
+            <div>
+              <button
+                type="submit"
+                className="mt-4 btn btn-primary flex w-full justify-center"
+              >
+                Register
+              </button>
+            </div>
           </form>
-
-          <div>
-            <button
-              className="mt-4 btn btn-primary flex w-full justify-center"
-              onClick={() => handleSubmit()}
-            >
-              Register
-            </button>
-          </div>
           <div className="mt-2 flex justify-end items-baseline">
             <div className="text-sm mr-4">
               <a className="">Already have an Account?</a>

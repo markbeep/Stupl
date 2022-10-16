@@ -11,7 +11,8 @@ const LoginPage = (props: Props) => {
   const [password, setPassword] = useState("");
   const { token, setToken } = useAuth();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // prevents refresh
     if (setToken == null) return;
 
     if (email.length === 0 || password.length === 0) {
@@ -42,7 +43,7 @@ const LoginPage = (props: Props) => {
               Plan your studies
             </h4>
           </div>
-          <form className="mt-6">
+          <form className="mt-6" onSubmit={handleSubmit}>
             <div className="mt-10 rounded-md shadow-sm">
               <div>
                 <input
@@ -73,15 +74,15 @@ const LoginPage = (props: Props) => {
                 />
               </div>
             </div>
+            <div>
+              <button
+                type="submit"
+                className="mt-4 btn btn-primary flex w-full justify-center"
+              >
+                Sign in
+              </button>
+            </div>
           </form>
-          <div>
-            <button
-              className="mt-4 btn btn-primary flex w-full justify-center"
-              onClick={handleSubmit}
-            >
-              Sign in
-            </button>
-          </div>
           <div className="mt-2 flex justify-end items-baseline">
             <div className="text-sm mr-4">
               <a className="">No Account yet?</a>
