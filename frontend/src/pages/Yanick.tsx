@@ -108,7 +108,7 @@ export const RequirementsCollapsible = ({
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="text-red-600 feather feather-check"
+                  className="text-green-600 feather feather-check"
                 >
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>

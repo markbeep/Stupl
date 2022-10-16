@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, Route, Routes } from "react-router-dom";
 import { removeToken, useAuth } from "../authHanlder";
 
 export const Navbar = () => {
@@ -8,6 +8,7 @@ export const Navbar = () => {
     removeToken();
     setToken(null);
   };
+
   return (
     <nav className="navbar bg-transparent">
       <div
@@ -23,14 +24,13 @@ export const Navbar = () => {
               className="float-right btn btn-ghost normal-case"
               onClick={logout}
             >
-              About Us
-            </button>
-            <button
-              className="float-right btn btn-ghost normal-case"
-              onClick={logout}
-            >
               Log Out
             </button>
+            <Link to="/About">
+              <button className="float-right btn btn-ghost normal-case">
+                About Us
+              </button>
+            </Link>
           </div>
         </div>
       </div>
