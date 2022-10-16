@@ -49,6 +49,7 @@ export const categories = [
     id: 0,
     information:
       "Courses usually done in first year They're split into two block exams. (All other courses have to be passed individually)",
+    requirements: 2,
   },
   {
     name: "Basic Courses",
@@ -56,6 +57,7 @@ export const categories = [
     id: 1,
     information:
       "Courses usually done in second year. Requirements: All courses need to be taken, but only seven of eight have to be passed. If you don't pass all, you need to take an additional core subject instead.",
+    requirements: 2,
   },
   {
     name: "Minor Courses",
@@ -63,6 +65,7 @@ export const categories = [
     information:
       "In this category five credits can be done. Additional credits can count towards the Bacehlor.",
     id: 2,
+    requirements: 2,
   },
   {
     name: "Core Courses",
@@ -70,6 +73,7 @@ export const categories = [
     information:
       "Courses usually done in THIRD year. Requirements: At least four courses need to be taken. You can also take more.",
     id: 3,
+    requirements: 2,
   },
   {
     name: "First Year Examinations",
@@ -77,6 +81,7 @@ export const categories = [
     information:
       "Courses usually done in first year They're split into two block exams. (All other courses have to be passed individually)",
     id: 4,
+    requirements: 2,
   },
   {
     name: "Seminar",
@@ -84,6 +89,7 @@ export const categories = [
     information:
       "In thsi course you will present a scientific paper for two credits.",
     id: 5,
+    requirements: 2,
   },
   {
     name: "Electives",
@@ -91,6 +97,7 @@ export const categories = [
     information:
       "Computer Science courses which are not in any of the other categories. Requirements: None need to be taken, but you can take some of them instead of taking more Kernfächer or if you just see something interesting of course.",
     id: 6,
+    requirements: 2,
   },
   {
     name: "Bachelor Thesis",
@@ -98,6 +105,7 @@ export const categories = [
     id: 7,
     information:
       "Thesis usually done at the end of your Bachelor studies. Requirements: At least five Grundlagenfächer need to be passed to start.",
+    requirements: 2,
   },
   {
     name: "Science in Perspective",
@@ -105,6 +113,7 @@ export const categories = [
     id: 8,
     information:
       "These courses are often courses from other departments which can also be relevant for CS students. Some of them are bachelor's courses. Some of them are master's courses. You can also take other (master) courses that are not on the list but they need to be accepted by the study administration.",
+    requirements: 2,
   },
 ];
 
