@@ -21,12 +21,12 @@ export const Navbar = () => {
             <img className="h-12" src={logo} />
           </Link>
           <div>
-            <button
+            <Link to="/login"
               className="float-right btn btn-ghost normal-case"
               onClick={logout}
             >
               Log Out
-            </button>
+            </Link>
             <Link to="/About">
               <button className="float-right btn btn-ghost normal-case">
                 About Us
