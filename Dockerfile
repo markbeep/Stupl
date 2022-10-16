@@ -2,9 +2,6 @@ FROM python:3.10-alpine
 
 ENV PYTHONUNBUFFERED=1
 
-RUN apt-get update \
-    && apt-get -y install libpq-dev gcc
-
 RUN pip3 install --no-cache --upgrade pip
 
 WORKDIR /app
