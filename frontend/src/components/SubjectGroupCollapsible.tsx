@@ -25,7 +25,7 @@ const SubjectGroupCollapsible = ({
             data-tip={getCategoryWithId(subjectGroup.category_id)?.information}
           >
             <h3 className="font-semibold text-lg">
-              {getCategoryWithId(subjectGroup.category_id)?.german_name}
+              {getCategoryWithId(subjectGroup.category_id)?.name}
             </h3>
           </div>
           <div className="flex">
@@ -55,41 +55,42 @@ const SubjectGroupCollapsible = ({
         </div>
       )}
     >
-      <table className="table w-full -mt-4">
-        <thead className="rounded-none">
-          <tr className="rounded-none">
-            <th className="text-left z-index0-force"></th>
-            <th className="pr-2">Semester</th>
-            <th className="pr-2">ECTS</th>
-            <th className="pr-2">Grade</th>
-            <th className=""></th>
-          </tr>
-        </thead>
-        <tbody>
-          {subjectGroup.subjects.map((subject) => (
-            <SubjectTableRow subject={subject}></SubjectTableRow>
-          ))}
-          <tr className="">
-            <td className="text-left pr-2 bg-base-200">Total</td>
-            <td className="bg-base-200 pr-2"></td>
-            <td className="text-right bg-base-200 pr-2">
-              {Number(sumEcts(includePlanned, subjectGroup))}/
-              {getCategoryWithId(subjectGroup.category_id)?.requirements}
-              /54
-            </td>
-            {/* compute average grade per component */}
-            <td className="text-right bg-base-200 pr-2">
-              {Number(
-                avgGrades({
-                  includePlanned: includePlanned,
-                  subjectGroup: subjectGroup,
-                })
-              )}
-            </td>
-            <td className="bg-base-200 "></td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="overflow-x-auto">
+        <table className="table table-fixed w-full -mt-4">
+          <thead className="">
+            <tr className="">
+              <th className="w-5/12 text-left z-index0-force"></th>
+              <th className="w-1/6 pr-2">Categories</th>
+              <th className="w-1/12 pr-2">ECTS</th>
+              <th className="w-1/12 pr-2">Grade</th>
+              <th className="w-1/12"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {subjectGroup.subjects.map((subject) => (
+              <SubjectTableRow subject={subject}></SubjectTableRow>
+            ))}
+            <tr className="">
+              <td className="text-left pr-2 bg-base-200">Total</td>
+              <td className="bg-base-200 pr-2"></td>
+              <td className="text-right bg-base-200 pr-2">
+                {Number(sumEcts(includePlanned, subjectGroup))}
+                /54
+              </td>
+              {/* compute average grade per component */}
+              <td className="text-right bg-base-200 pr-2">
+                {Number(
+                  avgGrades({
+                    includePlanned: includePlanned,
+                    subjectGroup: subjectGroup,
+                  })
+                )}
+              </td>
+              <td className="bg-base-200 "></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </Collapsible>
   );
 };
@@ -124,7 +125,7 @@ const SubjectTableRow = ({ subject }: { subject: SubjectData }) => {
         className={" cursor-pointer " + (subject.planned ? "opacity-30" : "")}
       >
         <td className="truncate text-left pr-2">{subject.name}</td>
-        <td className="pr-2">
+        <td className="truncate pr-2">
           <SemesterPill semester={subject.semester}></SemesterPill>
         </td>
         <td className="pr-2">{subject.credits}</td>
