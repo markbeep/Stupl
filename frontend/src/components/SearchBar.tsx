@@ -2,7 +2,6 @@ import { useRequest } from "ahooks";
 import React, { useState } from "react";
 import { getAllVVZLectures } from "../api/api";
 import { VVZSubject } from "../api/schemas";
-import lectureData from "../data/lectures";
 import AddSubjectModal from "./AddSubjectModal";
 
 type Props = {};
@@ -87,7 +86,9 @@ const SearchBarNameList = ({
 }: SearchBarNameListProps) => {
   const { data, error, loading } = useRequest(getAllVVZLectures);
   const getLecturesStartingWith = (lectureData: VVZSubject[], prefix: string) =>
-    lectureData.filter((d) => d.name.toLowerCase().startsWith(prefix));
+    lectureData.filter((d) =>
+      d.name.toLowerCase().includes(prefix.toLowerCase())
+    );
 
   if (searchText == null || searchText.length == 0) return null;
 
@@ -118,7 +119,7 @@ const SearchBarNameList = ({
       tabIndex={0}
       className="absolute dropdown-content menu p-2 shadow-md bg-base-200 rounded-box w-full"
     >
-      {lectures.map((lecture) => (
+      {lectures.slice(0, 5).map((lecture) => (
         <li>
           <button onClick={() => openModal(lecture)}>{lecture.name}</button>
         </li>

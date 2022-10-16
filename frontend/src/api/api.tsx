@@ -29,7 +29,7 @@ export const getAllSubjects = async (token: string | null | undefined) => {
 };
 
 export const getAllRequirements = async (token: string | null | undefined) => {
-  console.log("is this working?");
+  console.log("Warum liegt hier Stroh?");
   const response = await axios.get("api/get_requirements/", {
     headers: {
       authorization: "Token " + token,
@@ -49,7 +49,6 @@ export const getAllRequirements = async (token: string | null | undefined) => {
 // };
 
 export const addSubject = async (token: string, subject: any) => {
-  console.log("is this working?");
   const response = await axios.post("api/add_subject/", subject, {
     headers: {
       authorization: "Token " + token,
@@ -57,6 +56,28 @@ export const addSubject = async (token: string, subject: any) => {
   });
   // console.log("herejal<f<dasfkd<alkfj kl<j<i");
   // console.log(response);
+  return response.data;
+};
+
+export const editSubject = async (token: string, subject: any) => {
+  const response = await axios.post("api/edit_subject/", subject, {
+    headers: {
+      authorization: "Token " + token,
+    },
+  });
+  return response.data;
+};
+
+export const deleteSubject = async (token: string, subject_id: number) => {
+  const response = await axios.post(
+    "api/delete_subject/",
+    { subject_id: subject_id },
+    {
+      headers: {
+        authorization: "Token " + token,
+      },
+    }
+  );
   return response.data;
 };
 
