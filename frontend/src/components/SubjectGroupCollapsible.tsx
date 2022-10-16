@@ -25,7 +25,7 @@ const SubjectGroupCollapsible = ({
             data-tip={getCategoryWithId(subjectGroup.category_id)?.information}
           >
             <h3 className="font-semibold text-lg">
-              {getCategoryWithId(subjectGroup.category_id)?.german_name}
+              {getCategoryWithId(subjectGroup.category_id)?.name}
             </h3>
           </div>
           <div className="flex">
