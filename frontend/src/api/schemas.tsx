@@ -60,7 +60,8 @@ export const categories = [
   {
     name: "MinorCourse",
     german_name: "Ergänzungsfächer",
-    information: "TODO",
+    information:
+      "In this category five credits can be done. Additional credits can count towards the Bacehlor.",
     id: 2,
   },
   {
@@ -77,7 +78,13 @@ export const categories = [
       "Courses usually done in first year They're split into two block exams. (All other courses have to be passed individually)",
     id: 4,
   },
-  { name: "Seminar", german_name: "Seminar", information: "TODO", id: 5 },
+  {
+    name: "Seminar",
+    german_name: "Seminar",
+    information:
+      "In thsi course you will present a scientific paper for two credits.",
+    id: 5,
+  },
   {
     name: "Electives",
     german_name: "Wahlfächer",
