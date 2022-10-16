@@ -21,14 +21,13 @@ const AboutPage = (props: Props) => {
           <div>
             <h1 className="text-5xl font-bold">I plan it that way!</h1>
             <p className="py-6">
-              Get to know our webapplication "Plan Your Studies" that enables
-              every D-INFK Bachelor student to plan her/his studies. The DINFK
-              Bachelor regulations are one above all: complicated! Loosing
-              overview over what is done and what needs to be done to get you
-              Bachlor in time happens very easily. To prevent that from
-              happening "Plan your studies" provides a simple way to plan
-              everything and make sure that the plan satisifies all
-              requirements.
+              Get to know our webapplication "Stupl" that enables every D-INFK
+              Bachelor student to plan her/his studies. The DINFK Bachelor
+              regulations are one above all: complicated! Loosing overview over
+              what is done and what needs to be done to get you Bachlor in time
+              happens very easily. To prevent that from happening "Plan your
+              studies" provides a simple way to plan everything and make sure
+              that the plan satisifies all requirements.
             </p>
             <p className="py-6">
               This application was developed by the Bibstreet Boys during VIScon
