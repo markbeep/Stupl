@@ -64,7 +64,9 @@ export const Konsti = () => {
           </div>
         ))}
         <div className="mt-12">
-          <RequirementsCollapsible></RequirementsCollapsible>
+          <RequirementsCollapsible
+            includePlanned={includePlanned}
+          ></RequirementsCollapsible>
         </div>
       </div>
     </div>

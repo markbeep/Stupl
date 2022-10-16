@@ -10,14 +10,18 @@ import { requirementsData, RequirementsData } from "../data/yanick_data";
 export const Yanick = () => {
   return (
     <div className="container max-w-xl mx-auto mt-32">
-      <div className="mt-12">
+      {/* <div className="mt-12">
         <RequirementsCollapsible></RequirementsCollapsible>
-      </div>
+      </div> */}
     </div>
   );
 };
 
-export const RequirementsCollapsible = () => {
+export const RequirementsCollapsible = ({
+  includePlanned: includePlanned,
+}: {
+  includePlanned: boolean;
+}) => {
   const { token } = useAuth();
   const { data, error, loading, refresh } = useRequest(() =>
     getAllRequirements(token)
@@ -48,7 +52,7 @@ export const RequirementsCollapsible = () => {
             requis.map((re) => (
               <tr>
                 <td className="pr-2">
-                  {re.sat ? (
+                  {(includePlanned ? re.sat : re.sat2) ? (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -89,7 +93,10 @@ export const RequirementsCollapsible = () => {
             <td className="bg-base-200 pr-2">
               {requis &&
               requis.reduce((accumulator, currentValue) => {
-                return accumulator && currentValue.sat;
+                return (
+                  accumulator &&
+                  (includePlanned ? currentValue.sat : currentValue.sat2)
+                );
               }, true) ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -127,7 +134,10 @@ export const RequirementsCollapsible = () => {
             <td className="bg-base-200 text-left pr-2">
               {requis &&
               requis.reduce((accumulator, currentValue) => {
-                return accumulator && currentValue.sat;
+                return (
+                  accumulator &&
+                  (includePlanned ? currentValue.sat : currentValue.sat2)
+                );
               }, true) ? (
                 <p className="text-green-600 bg-base-200 pr-2">
                   Passed all requirements, congrats!
