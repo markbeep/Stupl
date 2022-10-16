@@ -1,29 +1,15 @@
 version: "1"
 
 services:
-  # db:
-  #   image: postgres
-  #   volumes:
-  #     - ./data/db:/var/lib/postgresql/data
-  #   environment:
-  #     - POSTGRES_DB=postgres
-  #     - POSTGRES_USER=postgres
-  #     - POSTGRES_PASSWORD=postgres
-  # gunicorn:
-  #   build: .
-  #   command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic && gunicorn backend<x.wsgi:application --bind 0.0.0.0:8000"
-  #   restart: always
-  #   ports:
-  #     - "8000:8000"
-  #   volumes:
-  #     - ./backend:/app
-  #   network_mode: "host"
+  gunicorn:
+    build: backend
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
   react-nginx:
     build: frontend
     restart: always
     ports:
-      - "3000:80"
-    network_mode: "host"
-
-volumes:
-  data:
+      - "80:3000"
