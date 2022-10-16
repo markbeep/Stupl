@@ -1,5 +1,6 @@
 import { Link, Navigate, Route, Routes } from "react-router-dom";
 import { removeToken, useAuth } from "../authHanlder";
+import logo from "../data/logo2.png";
 
 export const Navbar = () => {
   const { setToken } = useAuth();
@@ -15,10 +16,8 @@ export const Navbar = () => {
         className="
       container mx-auto"
       >
-        <div className="flex justify-between items-baseline w-full">
-          <Link to="/home">
-            <a className="btn btn-ghost normal-case text-xl">Logo</a>
-          </Link>
+        <div className="flex justify-between items-baseline w-full ">
+          <img className="h-12" src={logo} />
           <div>
             <button
               className="float-right btn btn-ghost normal-case"
