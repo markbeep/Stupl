@@ -3,6 +3,7 @@ import {
   getCategoryWithId,
   SubjectData,
   SubjectDataGroupedByCategory,
+  SubjectDataGroupedBySemester,
 } from "../api/schemas";
 import { avgGrades, sumEcts } from "../api/subjectMath";
 import { useDisplayOptions } from "../pages/HomePage";
@@ -10,56 +11,51 @@ import Collapsible from "./Collapsible";
 import EditSubjectModal from "./EditSubjectModal";
 import SemesterPill from "./SemesterPill";
 
-const SubjectGroupCollapsible = ({
+const SemesterGroupCollapsible = ({
   subjectGroup,
 }: {
-  subjectGroup: SubjectDataGroupedByCategory;
+  subjectGroup: SubjectDataGroupedBySemester;
 }) => {
   const { includePlanned } = useDisplayOptions();
   return (
     <Collapsible
       headerBuilder={(collapsed) => (
-        <div className="flex justify-between select-none w-full">
+        <div className="flex justify-between">
           <div
             className="tooltip"
-            data-tip={getCategoryWithId(subjectGroup.category_id)?.information}
+            data-tip={getCategoryWithId(subjectGroup.semester)?.information}
           >
             <h3 className="font-semibold text-lg">
-              {getCategoryWithId(subjectGroup.category_id)?.german_name}
+              Semester {subjectGroup.semester}
             </h3>
           </div>
           <div className="flex">
-            <p
-              className={
-                "mr-8 transition-all " +
-                (collapsed ? " opacity-100" : " opacity-0")
-              }
-            >
-              {Number(sumEcts(includePlanned, subjectGroup))}
-              /54
-            </p>
-            <p
-              className={
-                "mr-8 transition-all " +
-                (collapsed ? " opacity-100" : " opacity-0")
-              }
-            >
-              {Number(
-                avgGrades({
-                  includePlanned: includePlanned,
-                  subjectGroup: subjectGroup,
-                })
-              )}
-            </p>
+            {collapsed && (
+              <p className="mr-8">
+                {Number(sumEcts(includePlanned, subjectGroup))}
+                /54ds
+              </p>
+            )}
+            {collapsed && (
+              <p className="mr-2">
+                {" "}
+                {Number(
+                  avgGrades({
+                    includePlanned: includePlanned,
+                    subjectGroup: subjectGroup,
+                  })
+                )}
+              </p>
+            )}
           </div>
         </div>
       )}
     >
-      <table className="table w-full -mt-4">
+      <table className="table w-full">
         <thead className="rounded-none">
           <tr className="rounded-none">
             <th className="text-left z-index0-force"></th>
-            <th className="pr-2">Semester</th>
+            <th className="pr-2">Categories</th>
             <th className="pr-2">ECTS</th>
             <th className="pr-2">Grade</th>
             <th className=""></th>
@@ -74,7 +70,6 @@ const SubjectGroupCollapsible = ({
             <td className="bg-base-200 pr-2"></td>
             <td className="text-right bg-base-200 pr-2">
               {Number(sumEcts(includePlanned, subjectGroup))}
-              /54
             </td>
             {/* compute average grade per component */}
             <td className="text-right bg-base-200 pr-2">
@@ -93,7 +88,7 @@ const SubjectGroupCollapsible = ({
   );
 };
 
-export default SubjectGroupCollapsible;
+export default SemesterGroupCollapsible;
 
 //Edit button
 const SubjectTableRow = ({ subject }: { subject: SubjectData }) => {
@@ -123,11 +118,10 @@ const SubjectTableRow = ({ subject }: { subject: SubjectData }) => {
         className="cursor-pointer"
       >
         <td className="text-left pr-2">{subject.name}</td>
-        <td className="pr-2">
-          <SemesterPill semester={subject.semester}></SemesterPill>
-        </td>
+        <td className="pr-2">{subject.category}</td>
         <td className="text-right pr-2">{subject.credits}</td>
         <td className="text-right pr-2">{subject.grade}</td>
+        {/* was macht das hover hier*/}
 
         <td
           className={

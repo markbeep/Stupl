@@ -38,6 +38,10 @@ export type SubjectDataGroupedBySemester = {
   subjects: SubjectData[];
 };
 
+export type SubjectDataGroupedGeneric =
+  | SubjectDataGroupedByCategory
+  | SubjectDataGroupedBySemester;
+
 export const categories = [
   {
     name: "Other",

@@ -3,19 +3,16 @@ import axios, { AxiosError } from "axios";
 import { SubjectData } from "../data";
 
 export const registerUser = async (email: string, password: string) => {
-  console.log(email, password);
   const response = await axios.post("/auth/register/", { email, password });
   return response.data;
 };
 
 export const loginUser = async (email: string, password: string) => {
-  console.log(email, password);
   const response = await axios.post("/auth/login/", { email, password });
   return response.data;
 };
 
 export const getAllSubjects = async (token: string | null | undefined) => {
-  console.log("is this working?");
   const response = await axios.get("api/get_subjects/", {
     headers: {
       authorization: "Token " + token,
@@ -83,6 +80,5 @@ export const deleteSubject = async (token: string, subject_id: number) => {
 
 export const getAllVVZLectures = async () => {
   const response = await axios.get("api/load_vvz/", {});
-  console.log("All VVZ lectures:", response.data);
   return response.data;
 };

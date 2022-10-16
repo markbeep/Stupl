@@ -41,7 +41,7 @@ const EditSubjectModal = ({ isOpen, closeModal, subject }: Props) => {
     setSubmitLoading(true);
     const result = await editSubject(token!, data);
     setSubmitLoading(false);
-    console.log(result);
+    // console.log(result);
     requestRefresh();
     closeModal();
   };

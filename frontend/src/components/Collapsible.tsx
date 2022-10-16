@@ -32,7 +32,7 @@ const Collapsible2 = ({ headerBuilder, children }: Props) => {
 
   const contentRef: any = useRef();
 
-  console.log("collapsed: ", collapsed);
+  // console.log("collapsed: ", collapsed);
   return (
     <div className=" rounded-box">
       <div
@@ -57,7 +57,7 @@ const Collapsible2 = ({ headerBuilder, children }: Props) => {
 };
 const Collapsible3 = ({ headerBuilder, children }: Props) => {
   const [collapsed, setCollapsed] = useState(true);
-  console.log(collapsed);
+  // console.log(collapsed);
   return (
     <div className="">
       <div

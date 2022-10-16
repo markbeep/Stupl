@@ -6,6 +6,8 @@ import {
   categories,
   SubjectData,
   SubjectDataGroupedByCategory,
+  SubjectDataGroupedBySemester,
+  SubjectDataGroupedGeneric,
 } from "../api/schemas";
 import { totalCredits, totalWsum } from "../api/subjectMath";
 import { useAuth } from "../authHanlder";
@@ -14,6 +16,7 @@ import Collapsible from "../components/Collapsible";
 import { Navbar } from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
 import SubjectGroupCollapsible from "../components/SubjectGroupCollapsible";
+import SemesterGroupCollapsible from "../components/SemesterGroupCollapsible";
 // import { SubjectGroup, subjectGroups, SubjectData } from "../data";
 import { RequirementsCollapsible } from "./Yanick";
 
@@ -43,7 +46,6 @@ const HomePage = () => {
 
   const getSubjets = async () => {
     const subs = await getAllSubjects(token);
-    console.log("Subjects", subs);
   };
 
   const addRefreshListener = (cb: () => void) => {
@@ -65,30 +67,32 @@ const HomePage = () => {
     >
       <div className="pb-12">
         <Navbar></Navbar>
-        <div className="mt-12 max-w-lg mx-auto">
+        <div className="mt-8 max-w-lg mx-auto">
           <SearchBar></SearchBar>
         </div>
-        <div className="form-contorl mt-12 max-w-xs mx-auto">
-          <label className="label cursor-pointer">
-            <span className="label-text">Include planned subjects.</span>
-            <input
-              type="checkbox"
-              className="toggle toggle-accent"
-              checked={includePlanned}
-              onClick={() => setIncludePlanned(!includePlanned)}
-            />
-          </label>
-        </div>
-        <div className="form-contorl mt-2 max-w-xs mx-auto">
-          <label className="label cursor-pointer">
-            <span className="label-text">Group by Category</span>
-            <input
-              type="checkbox"
-              className="toggle toggle-accent"
-              checked={groupByCategory}
-              onClick={() => setGroupByCategory(!groupByCategory)}
-            />
-          </label>
+        <div className="flex flex-col items-end max-w-lg mx-auto">
+          <div className="form-control mt-4 w-64">
+            <label className="label cursor-pointer">
+              <span className="label-text">Include planned subjects.</span>
+              <input
+                type="checkbox"
+                className="checkbox checkbox-accent"
+                checked={includePlanned}
+                onClick={() => setIncludePlanned(!includePlanned)}
+              />
+            </label>
+          </div>
+          <div className="form-control w-64 ">
+            <label className="label cursor-pointer">
+              <span className="label-text">Group by Category</span>
+              <input
+                type="checkbox"
+                className="checkbox checkbox-accent"
+                checked={groupByCategory}
+                onClick={() => setGroupByCategory(!groupByCategory)}
+              />
+            </label>
+          </div>
         </div>
         <div className="max-w-2xl mx-auto mt-12">
           <SubjectsDataDisplay></SubjectsDataDisplay>
@@ -112,8 +116,25 @@ const groupSubjectsByCategory = (subjects: SubjectData[]) => {
   return ret.filter((group) => group.subjects.length > 0);
 };
 
+const groupSubjectsBySemester = (subjects: SubjectData[]) => {
+  function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+  }
+
+  const ret: SubjectDataGroupedBySemester[] = [];
+  const allSems = subjects.map((s) => s.semester).filter(onlyUnique);
+
+  for (const sem of allSems) ret.push({ semester: sem, subjects: [] });
+  for (const s of subjects)
+    ret.find((group) => group.semester === s.semester)?.subjects.push(s);
+  return ret
+    .filter((group) => group.subjects.length > 0)
+    .sort((a, b) => a.semester - b.semester);
+};
+
 const SubjectsDataDisplay = () => {
   const { addRefreshListener } = useDisplayOptions();
+  const { groupByCategory } = useDisplayOptions();
 
   const { token } = useAuth();
   const { data, error, loading, refresh } = useRequest(() =>
@@ -127,25 +148,39 @@ const SubjectsDataDisplay = () => {
   if (error) return <div>Error ...</div>;
 
   const subjectData: SubjectData[] = data;
-  console.log("subjectData: ", subjectData);
-  const subjectGroups = groupSubjectsByCategory(subjectData);
-  console.log(subjectGroups);
 
-  return (
-    <>
-      <TotalAvgDisplay subjectGroups={subjectGroups}></TotalAvgDisplay>
-      {subjectGroups.map((group) => (
-        <div className="mt-12">
-          <SubjectGroupCollapsible
-            subjectGroup={group}
-          ></SubjectGroupCollapsible>
-        </div>
-      ))}
-    </>
-  );
+  if (groupByCategory) {
+    const subjectGroups = groupSubjectsByCategory(subjectData);
+    return (
+      <>
+        <TotalAvgDisplay subjectGroups={subjectGroups}></TotalAvgDisplay>
+        {subjectGroups.map((group) => (
+          <div className="mt-12">
+            <SubjectGroupCollapsible
+              subjectGroup={group}
+            ></SubjectGroupCollapsible>
+          </div>
+        ))}
+      </>
+    );
+  } else {
+    const subjectGroups = groupSubjectsBySemester(subjectData);
+    return (
+      <>
+        <TotalAvgDisplay subjectGroups={subjectGroups}></TotalAvgDisplay>
+        {subjectGroups.map((group) => (
+          <div className="mt-12">
+            <SemesterGroupCollapsible
+              subjectGroup={group}
+            ></SemesterGroupCollapsible>
+          </div>
+        ))}
+      </>
+    );
+  }
 };
 
-type TotalAvgDisplayProps = { subjectGroups: SubjectDataGroupedByCategory[] };
+type TotalAvgDisplayProps = { subjectGroups: SubjectDataGroupedGeneric[] };
 
 const TotalAvgDisplay = ({ subjectGroups }: TotalAvgDisplayProps) => {
   const { includePlanned } = useDisplayOptions();
@@ -168,5 +203,4 @@ const TotalAvgDisplay = ({ subjectGroups }: TotalAvgDisplayProps) => {
     </div>
   );
 };
-
 export default HomePage;

@@ -40,7 +40,6 @@ function App() {
 const ProtectedRoute = ({ children }: { children: React.ReactElement }) => {
   const { token } = useAuth();
 
-  console.log("Does token exist? ", token);
   if (!token) {
     return <Navigate to="/login" replace />;
   }
