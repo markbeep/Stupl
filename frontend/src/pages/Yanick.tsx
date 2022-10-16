@@ -26,8 +26,8 @@ export const RequirementsCollapsible = () => {
   console.log("data", data);
 
   type Requirement = {
-    satisfieda: boolean;
-    satisfiedb: boolean;
+    sat: boolean;
+    sat2: boolean;
     name: string;
   };
   const requis: Requirement[] = data;
@@ -48,7 +48,7 @@ export const RequirementsCollapsible = () => {
             requis.map((re) => (
               <tr>
                 <td className="pr-2">
-                  {re.satisfieda ? (
+                  {re.sat ? (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -89,7 +89,7 @@ export const RequirementsCollapsible = () => {
             <td className="bg-base-200 pr-2">
               {requis &&
               requis.reduce((accumulator, currentValue) => {
-                return accumulator && currentValue.satisfieda;
+                return accumulator && currentValue.sat;
               }, true) ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -127,7 +127,7 @@ export const RequirementsCollapsible = () => {
             <td className="bg-base-200 text-left pr-2">
               {requis &&
               requis.reduce((accumulator, currentValue) => {
-                return accumulator && currentValue.satisfieda;
+                return accumulator && currentValue.sat;
               }, true) ? (
                 <p className="text-green-600 bg-base-200 pr-2">
                   Passed all requirements, congrats!
