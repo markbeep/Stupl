@@ -33,7 +33,6 @@ const SemesterGroupCollapsible = ({
             {collapsed && (
               <p className="mr-8">
                 {Number(sumEcts(includePlanned, subjectGroup))}
-                /30
               </p>
             )}
             {collapsed && (
