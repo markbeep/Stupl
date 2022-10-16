@@ -25,11 +25,11 @@ export const Navbar = () => {
             >
               Log Out
             </button>
-            <Lito="/About">
+            <Link to="/About">
               <button className="float-right btn btn-ghost normal-case">
                 About Us
               </button>
-            </Lito=>
+            </Link>
           </div>
         </div>
       </div>

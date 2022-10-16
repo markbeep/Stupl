@@ -115,7 +115,7 @@ const SubjectTableRow = ({ subject }: { subject: SubjectData }) => {
         onMouseLeave={() => setShowEditButton(false)}
         onClick={openModal}
         key={subject.id}
-        className="cursor-pointer"
+        className={"cursor-pointer " + (subject.planned ? "opacity-50" : "")}
       >
         <td className="text-left pr-2">{subject.name}</td>
         <td className="pr-2">{subject.category}</td>

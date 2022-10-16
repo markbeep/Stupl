@@ -35,11 +35,28 @@ const DisplayOptionsContext = React.createContext<DisplayOptions>({
 
 export const useDisplayOptions = () => useContext(DisplayOptionsContext);
 
+let prevGetAllSubjectsRequest: any = null;
 const HomePage = () => {
   const [includePlanned, setIncludePlanned] = useState(false);
   const [groupByCategory, setGroupByCategory] = useState(true);
   const { token } = useAuth();
   const [refreshListeners, setRefreshListeners] = useState<(() => void)[]>([]);
+
+  const getAllSubjectsRequest = useRequest(() => getAllSubjects(token), {
+    cacheKey: `request-1234`,
+  });
+
+  let allSubsRequest = getAllSubjectsRequest;
+
+  if (
+    allSubsRequest.loading &&
+    prevGetAllSubjectsRequest &&
+    prevGetAllSubjectsRequest.data != null
+  )
+    allSubsRequest = prevGetAllSubjectsRequest;
+
+  prevGetAllSubjectsRequest = allSubsRequest;
+
   // useEffect(() => {
   //   getAllSubjects();
   // }, []);
@@ -49,11 +66,17 @@ const HomePage = () => {
   };
 
   const addRefreshListener = (cb: () => void) => {
+    console.log("Adding refresh listener");
     setRefreshListeners([...refreshListeners, cb]);
   };
 
   const requestRefresh = () => {
-    for (const cb of refreshListeners) cb();
+    // window.location.reload();
+    getAllSubjectsRequest.refresh();
+    // console.log("requested refresh", refreshListeners.length);
+    // for (const cb of refreshListeners) {
+    //   console.log("callback called");
+    // }
   };
 
   return (
@@ -76,7 +99,7 @@ const HomePage = () => {
               <span className="label-text">Include planned subjects.</span>
               <input
                 type="checkbox"
-                className="checkbox checkbox-accent"
+                className="toggle toggle-accent"
                 checked={includePlanned}
                 onClick={() => setIncludePlanned(!includePlanned)}
               />
@@ -87,7 +110,7 @@ const HomePage = () => {
               <span className="label-text">Group by Category</span>
               <input
                 type="checkbox"
-                className="checkbox checkbox-accent"
+                className="toggle toggle-accent"
                 checked={groupByCategory}
                 onClick={() => setGroupByCategory(!groupByCategory)}
               />
@@ -95,7 +118,9 @@ const HomePage = () => {
           </div>
         </div>
         <div className="max-w-2xl mx-auto mt-12">
-          <SubjectsDataDisplay></SubjectsDataDisplay>
+          <SubjectsDataDisplay
+            getAllSubjectsRequest={allSubsRequest}
+          ></SubjectsDataDisplay>
 
           <div className="mt-12">
             <RequirementsCollapsible
@@ -132,22 +157,18 @@ const groupSubjectsBySemester = (subjects: SubjectData[]) => {
     .sort((a, b) => a.semester - b.semester);
 };
 
-const SubjectsDataDisplay = () => {
+const SubjectsDataDisplay = ({
+  getAllSubjectsRequest,
+}: {
+  getAllSubjectsRequest: any;
+}) => {
   const { addRefreshListener } = useDisplayOptions();
   const { groupByCategory } = useDisplayOptions();
 
-  const { token } = useAuth();
-  const { data, error, loading, refresh } = useRequest(() =>
-    getAllSubjects(token)
-  );
-  useEffect(() => {
-    addRefreshListener(() => refresh());
-  }, []);
+  if (getAllSubjectsRequest.loading) return <div>Loading ...</div>;
+  if (getAllSubjectsRequest.error) return <div>Error ...</div>;
 
-  if (loading) return <div>Loading ...</div>;
-  if (error) return <div>Error ...</div>;
-
-  const subjectData: SubjectData[] = data;
+  const subjectData: SubjectData[] = getAllSubjectsRequest.data;
 
   if (groupByCategory) {
     const subjectGroups = groupSubjectsByCategory(subjectData);

@@ -33,7 +33,7 @@ export const RequirementsCollapsible = ({
     addRefreshListener(() => refresh());
   }, []);
 
-  console.log("data", data);
+  // console.log("data", data);
 
   type Requirement = {
     sat: boolean;
@@ -42,7 +42,7 @@ export const RequirementsCollapsible = ({
   };
   const requis: Requirement[] = data;
 
-  console.log("requis: ", requis);
+  // console.log("requis: ", requis);
 
   return (
     <Collapsible
