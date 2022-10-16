@@ -17,5 +17,5 @@ ENV DJANGO_SETTINGS_MODULE backend.settings
 EXPOSE 8000
 
 RUN python3 manage.py migrate
-RUN python3 manage.py loaddata backend/data/db.json
+RUN python3 manage.py loaddata data/db.json
 CMD python3 manage.py runserver 0.0.0.0:8000
