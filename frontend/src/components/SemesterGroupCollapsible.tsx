@@ -33,7 +33,6 @@ const SemesterGroupCollapsible = ({
             {collapsed && (
               <p className="mr-8">
                 {Number(sumEcts(includePlanned, subjectGroup))}
-                /30
               </p>
             )}
             {collapsed && (
@@ -71,7 +70,6 @@ const SemesterGroupCollapsible = ({
               <td className="bg-base-200 pr-2"></td>
               <td className="text-right bg-base-200 pr-2">
                 {Number(sumEcts(includePlanned, subjectGroup))}
-                /30
               </td>
               {/* compute average grade per component */}
               <td className="text-right bg-base-200 pr-2">
