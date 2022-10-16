@@ -53,7 +53,7 @@ export const categories = [
   },
   {
     name: "Basic Courses",
-    german_name: "Basic Courses",
+    german_name: "Grundlagenfächer",
     id: 1,
     information:
       "Courses usually done in second year. Requirements: All courses need to be taken, but only seven of eight have to be passed. If you don't pass all, you need to take an additional core subject instead.",
