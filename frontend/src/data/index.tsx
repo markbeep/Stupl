@@ -52,21 +52,21 @@ export const subjectData: SubjectData[] = [
 export const subjectGroups: SubjectGroup[] = [
   {
     subjectGroupId: 1,
-    name: "Basisjahr",
+    name: "First Year Examinations",
     data: subjectData,
     information:
       "Courses usually done in first year They're split into two block exams. (All other courses have to be passed individually)",
   },
   {
     subjectGroupId: 2,
-    name: "Grundlagenfächer",
+    name: "Basic Courses",
     data: subjectData,
     information:
       "Courses usually done in second year. Requirements: All courses need to be taken, but only seven of eight have to be passed. If you don't pass all, you need to take an additional core subject instead.",
   },
   {
     subjectGroupId: 3,
-    name: "Kernfächer",
+    name: "Core Subjects",
     data: subjectData,
     information:
       "Courses usually done in second year. Requirements: At least four courses need to be taken. You can also take more.",
@@ -80,7 +80,7 @@ export const subjectGroups: SubjectGroup[] = [
   },
   {
     subjectGroupId: 5,
-    name: "Wahlfächer",
+    name: "Electives",
     data: subjectData,
     information:
       "Computer Science courses which are not in any of the other categories. Requirements: None need to be taken, but you can take some of them instead of taking more Kernfächer or if you just see something interesting of course.",
@@ -101,7 +101,7 @@ export const subjectGroups: SubjectGroup[] = [
   },
   {
     subjectGroupId: 8,
-    name: "Ergänzung",
+    name: "Minor Subjects",
     data: subjectData,
     information:
       "Thesis usually done at the end of your Bachelor studies. Requirements: At least five Grundlagenfächer need to be passed to start.",
