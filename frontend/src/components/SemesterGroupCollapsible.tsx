@@ -20,7 +20,7 @@ const SemesterGroupCollapsible = ({
   return (
     <Collapsible
       headerBuilder={(collapsed) => (
-        <div className="flex justify-between">
+        <div className="flex justify-between select-none w-full">
           <div
             className="tooltip"
             data-tip={getCategoryWithId(subjectGroup.semester)?.information}
@@ -33,7 +33,7 @@ const SemesterGroupCollapsible = ({
             {collapsed && (
               <p className="mr-8">
                 {Number(sumEcts(includePlanned, subjectGroup))}
-                /54ds
+                /30
               </p>
             )}
             {collapsed && (
