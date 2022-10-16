@@ -60,15 +60,14 @@ def get_requirements(request):
     user = request.user
     return Response([
             {"sat":sumCreditsCategories(user, [4], [180], True) == 56,"sat2":sumCreditsCategories(user, [4], [180], False) == 56, "name":"First Year Courses = 56 KP"},
-            {"sat":sumCreditsCategories(user, [4], [180], True) == 56,"sat2":sumCreditsCategories(user, [4], [180], False) == 56, "name":"First Year Courses = 56 KP"},
-            {"sat":sumCreditsCategories(user, [1,3],[180,180],True) >= 84,"sat2":sumCreditsCategories(user, [1,3],[180,180], False) >= 84, "name": "Basic Courses + Core Courses >= 84 KP"},
             {"sat":sumCreditsCategories(user, [1],[180],True) >= 45,"sat2":sumCreditsCategories(user, [1],[180], False) >= 45, "name": "Basic Courses >= 45 KP"},
             {"sat":sumCreditsCategories(user, [3],[180],True) >= 32,"sat2":sumCreditsCategories(user, [3],[180], False) >= 32, "name":"Core Courses >= 32 KP"},
-            {"sat":sumCreditsCategories(user, [1,3,6],[180,180,180],True) >= 96,"sat2":sumCreditsCategories(user, [1,3,6],[180,180,180], False) >= 96,"name": "Basic Courses + Core Courses + Electives >= 96 KP"},
             {"sat":sumCreditsCategories(user, [5],[180],True) >= 2,"sat2":sumCreditsCategories(user, [5],[180], False) >= 2,"name": "Seminar = 2KP"},
             {"sat":sumCreditsCategories(user, [2], [180],True) >= 5,"sat2":sumCreditsCategories(user, [2], [180], False) >= 5, "name": "Minor Courses >= 5 KP"},
             {"sat":sumCreditsCategories(user, [8], [180],True) >= 6,"sat2":sumCreditsCategories(user, [8], [180], False) >= 6, "name": "Science in Perspective >= 6 KP"},
             {"sat":sumCreditsCategories(user, [7],[180],True) >= 10,"sat2":sumCreditsCategories(user, [7],[180], False) >= 10, "name": "Bachelor's Thesis = 10 KP"},
+            {"sat":sumCreditsCategories(user, [1,3],[180,180],True) >= 84,"sat2":sumCreditsCategories(user, [1,3],[180,180], False) >= 84, "name": "Basic Courses + Core Courses >= 84 KP"},
+            {"sat":sumCreditsCategories(user, [1,3,6],[180,180,180],True) >= 96,"sat2":sumCreditsCategories(user, [1,3,6],[180,180,180], False) >= 96,"name": "Basic Courses + Core Courses + Electives >= 96 KP"},
             {"sat":sumCreditsCategories(user, [0,1,2,3,4,5,6,7,8],[180,180,10,180,180,2,180,10,6],True) >= 180,"sat2":sumCreditsCategories(user, [0,1,2,3,4,5,6,7,8],[180,180,10,180,180,2,180,10,6], False) >= 180, "name": "Total  >= 180 KP"},
         ])
 
@@ -120,10 +119,11 @@ def add_subject(request):
     sub.save()
     return Response("Success")
 
+#API that updates the usersubject object
 @api_view(["Post"])
 @permission_classes([IsAuthenticated])
 def edit_subject(request):
-    print("Edit subject called")
+    #Get new information
     name = request.data.get("name", None)
     credits = request.data.get("credits", None)
     category = request.data.get("category", None)
@@ -132,10 +132,10 @@ def edit_subject(request):
     grade = request.data.get("grade", None)
     planned = request.data.get("planned", None)
     subjid = request.data.get("id")
-    print("Deleting subject_id:")
-    print(subjid)
+    #Deleting old usersubject object
     subject = get_object_or_404(UserSubjects, id=subjid)
     subject.delete()
+    #Add new usersubject object
     sub = UserSubjects.objects.create(
         name=name,
         user=subject.user,
@@ -148,6 +148,7 @@ def edit_subject(request):
     )
     sub.save()
     return Response("Success")
+
 
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
