@@ -42,7 +42,7 @@ const LoginPage = (props: Props) => {
             <img className="mx-auto h-14 w-auto" src={logo} />
 
             <h1 className="mt-6 text-center text-5xl font-bold tracking-tight text-accent-content">
-              BibStreetBoys
+              Stupl
             </h1>
             <h4 className="mt-4 text-center text-md text-base-content">
               Plan your studies
@@ -50,7 +50,12 @@ const LoginPage = (props: Props) => {
           </div>
           <form className="mt-6" onSubmit={handleSubmit}>
             <div className="mt-10 rounded-md shadow-sm">
-              <div className={error ? "tooltip tooltip-open tooltip-error w-full" : ""} data-tip="invalid login">
+              <div
+                className={
+                  error ? "tooltip tooltip-open tooltip-error w-full" : ""
+                }
+                data-tip="invalid login"
+              >
                 <div>
                   <input
                     id="email-address"
