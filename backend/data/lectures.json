@@ -1,5 +1,581 @@
 [
     {
+        "name": "Introduction to Neuroinformatics",
+        "credits": 6,
+        "vvz_id": 163066,
+        "semester": "w",
+        "year": 2022,
+        "category": "Electives"
+    },
+    {
+        "name": "Law & Tech",
+        "credits": 3,
+        "vvz_id": 162068,
+        "semester": "w",
+        "year": 2022,
+        "category": "Science in Perspective"
+    },
+    {
+        "name": "Signals and Systems",
+        "credits": 4,
+        "vvz_id": 162478,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Pluralist Philosophy of Mathematics",
+        "credits": 3,
+        "vvz_id": 164518,
+        "semester": "w",
+        "year": 2022,
+        "category": "Science in Perspective"
+    },
+    {
+        "name": "Algorithms, Probability, and Computing",
+        "credits": 8,
+        "vvz_id": 162148,
+        "semester": "w",
+        "year": 2022,
+        "category": "Core Courses"
+    },
+    {
+        "name": "Didactic Basics for Student Teaching Assistants",
+        "credits": 1,
+        "vvz_id": 162262,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Computational Systems Biology",
+        "credits": 6,
+        "vvz_id": 163393,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Numerical Modelling I and II: Theory and Applications",
+        "credits": 6,
+        "vvz_id": 163307,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "E-Business-Law",
+        "credits": 2,
+        "vvz_id": 163471,
+        "semester": "w",
+        "year": 2022,
+        "category": "Science in Perspective"
+    },
+    {
+        "name": "Linear Algebra",
+        "credits": 7,
+        "vvz_id": 163637,
+        "semester": "w",
+        "year": 2022,
+        "category": "First Year Examinations"
+    },
+    {
+        "name": "Stochastic Methods for Engineers and Natural Scientists",
+        "credits": 4,
+        "vvz_id": 163510,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Algorithms and Data Structures",
+        "credits": 7,
+        "vvz_id": 162076,
+        "semester": "w",
+        "year": 2022,
+        "category": "First Year Examinations"
+    },
+    {
+        "name": "Seminar in Computer Architecture",
+        "credits": 2,
+        "vvz_id": 163474,
+        "semester": "w",
+        "year": 2022,
+        "category": "Seminar"
+    },
+    {
+        "name": "Complex Social Systems: Modeling Agents, Learning, and Games",
+        "credits": 3,
+        "vvz_id": 163880,
+        "semester": "w",
+        "year": 2022,
+        "category": "Science in Perspective"
+    },
+    {
+        "name": "Systems Dynamics and Complexity",
+        "credits": 3,
+        "vvz_id": 162922,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "High Performance Computing for Science and Engineering (HPCSE) I",
+        "credits": 4,
+        "vvz_id": 163373,
+        "semester": "w",
+        "year": 2022,
+        "category": "Electives"
+    },
+    {
+        "name": "Analysis 3",
+        "credits": 4,
+        "vvz_id": 163429,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Building a Robot Judge: Data Science for Decision-Making (Course Project)",
+        "credits": 2,
+        "vvz_id": 162029,
+        "semester": "w",
+        "year": 2022,
+        "category": "Science in Perspective"
+    },
+    {
+        "name": "Seminar on Media Innovation",
+        "credits": 2,
+        "vvz_id": 161914,
+        "semester": "w",
+        "year": 2022,
+        "category": "Seminar"
+    },
+    {
+        "name": "Computer Systems",
+        "credits": 8,
+        "vvz_id": 163788,
+        "semester": "w",
+        "year": 2022,
+        "category": "Core Courses"
+    },
+    {
+        "name": "Human Computer Interaction",
+        "credits": 6,
+        "vvz_id": 162112,
+        "semester": "w",
+        "year": 2022,
+        "category": "Electives"
+    },
+    {
+        "name": "Software Engineering Seminar",
+        "credits": 2,
+        "vvz_id": 163725,
+        "semester": "w",
+        "year": 2022,
+        "category": "Seminar"
+    },
+    {
+        "name": "Embedded Systems",
+        "credits": 6,
+        "vvz_id": 163808,
+        "semester": "w",
+        "year": 2022,
+        "category": "Electives"
+    },
+    {
+        "name": "Network Analysis",
+        "credits": 3,
+        "vvz_id": 162466,
+        "semester": "w",
+        "year": 2022,
+        "category": "Science in Perspective"
+    },
+    {
+        "name": "Neural Networks and Computational Complexity",
+        "credits": 2,
+        "vvz_id": 164215,
+        "semester": "w",
+        "year": 2022,
+        "category": "Seminar"
+    },
+    {
+        "name": "Computational Astrophysics (University of Zurich)",
+        "credits": 6,
+        "vvz_id": 162722,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Enabling Entrepreneurship: From Science to Startup",
+        "credits": 3,
+        "vvz_id": 162998,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Contract Design I",
+        "credits": 3,
+        "vvz_id": 163657,
+        "semester": "w",
+        "year": 2022,
+        "category": "Science in Perspective"
+    },
+    {
+        "name": "Compiler Design",
+        "credits": 8,
+        "vvz_id": 162320,
+        "semester": "w",
+        "year": 2022,
+        "category": "Core Courses"
+    },
+    {
+        "name": "Introduction to Programming",
+        "credits": 7,
+        "vvz_id": 163718,
+        "semester": "w",
+        "year": 2022,
+        "category": "First Year Examinations"
+    },
+    {
+        "name": "Discrete Mathematics",
+        "credits": 7,
+        "vvz_id": 163342,
+        "semester": "w",
+        "year": 2022,
+        "category": "First Year Examinations"
+    },
+    {
+        "name": "Seminar on Machine Learning Systems",
+        "credits": 2,
+        "vvz_id": 163863,
+        "semester": "w",
+        "year": 2022,
+        "category": "Seminar"
+    },
+    {
+        "name": "Participatory Resilience",
+        "credits": 3,
+        "vvz_id": 165358,
+        "semester": "w",
+        "year": 2022,
+        "category": "Science in Perspective"
+    },
+    {
+        "name": "Systems Analysis and Mathematical Modeling in Urban Water Management",
+        "credits": 6,
+        "vvz_id": 163586,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Human Factors I",
+        "credits": 3,
+        "vvz_id": 162753,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Introduction to Microeconomics",
+        "credits": 3,
+        "vvz_id": 163569,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Applied Analysis of Variance and Experimental Design",
+        "credits": 5,
+        "vvz_id": 162754,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Building a Robot Judge: Data Science for Decision-Making",
+        "credits": 3,
+        "vvz_id": 162550,
+        "semester": "w",
+        "year": 2022,
+        "category": "Science in Perspective"
+    },
+    {
+        "name": "Systems Programming and Computer Architecture",
+        "credits": 7,
+        "vvz_id": 162562,
+        "semester": "w",
+        "year": 2022,
+        "category": "Basic Courses"
+    },
+    {
+        "name": "Control Systems I",
+        "credits": 4,
+        "vvz_id": 163254,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "VLSI 1: HDL Based Design for FPGAs",
+        "credits": 6,
+        "vvz_id": 162387,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Theory of Robotics and Mechatronics",
+        "credits": 4,
+        "vvz_id": 162151,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Human-Computer Interaction: Cognition and Usability",
+        "credits": 3,
+        "vvz_id": 162257,
+        "semester": "w",
+        "year": 2022,
+        "category": "Science in Perspective"
+    },
+    {
+        "name": "Wireless Networking and Mobile Computing",
+        "credits": 4,
+        "vvz_id": 163182,
+        "semester": "w",
+        "year": 2022,
+        "category": "Electives"
+    },
+    {
+        "name": "Paul Feyerabend's Anarchistic Theory of Knowledge",
+        "credits": 3,
+        "vvz_id": 164424,
+        "semester": "w",
+        "year": 2022,
+        "category": "Science in Perspective"
+    },
+    {
+        "name": "Quantum Physics for Non-Physicists",
+        "credits": 6,
+        "vvz_id": 162574,
+        "semester": "w",
+        "year": 2022,
+        "category": "Electives"
+    },
+    {
+        "name": "Intellectual Property: Introduction",
+        "credits": 2,
+        "vvz_id": 163840,
+        "semester": "w",
+        "year": 2022,
+        "category": "Science in Perspective"
+    },
+    {
+        "name": "Numerical Methods for Computer Science",
+        "credits": 7,
+        "vvz_id": 162598,
+        "semester": "w",
+        "year": 2022,
+        "category": "Basic Courses"
+    },
+    {
+        "name": "System Modeling",
+        "credits": 4,
+        "vvz_id": 162383,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Developing Digital Biomarkers",
+        "credits": 3,
+        "vvz_id": 164643,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Introduction to Computational Physics",
+        "credits": 8,
+        "vvz_id": 163462,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Visualization, Simulation and Interaction - Virtual Reality II",
+        "credits": 4,
+        "vvz_id": 163457,
+        "semester": "w",
+        "year": 2022,
+        "category": "Electives"
+    },
+    {
+        "name": "Power Market I - Portfolio and Risk Management",
+        "credits": 6,
+        "vvz_id": 162233,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Machine Learning Seminar",
+        "credits": 2,
+        "vvz_id": 163859,
+        "semester": "w",
+        "year": 2022,
+        "category": "Seminar"
+    },
+    {
+        "name": "Discovering Management",
+        "credits": 3,
+        "vvz_id": 163319,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Theoretical Computer Science",
+        "credits": 7,
+        "vvz_id": 163672,
+        "semester": "w",
+        "year": 2022,
+        "category": "Basic Courses"
+    },
+    {
+        "name": "From Traffic Modeling to Smart Cities and Digital Democracies",
+        "credits": 3,
+        "vvz_id": 162419,
+        "semester": "w",
+        "year": 2022,
+        "category": "Science in Perspective"
+    },
+    {
+        "name": "Mathematics III: Systems Analysis",
+        "credits": 4,
+        "vvz_id": 163440,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Time Series Analysis",
+        "credits": 4,
+        "vvz_id": 163331,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Analysis II",
+        "credits": 5,
+        "vvz_id": 162699,
+        "semester": "w",
+        "year": 2022,
+        "category": "Basic Courses"
+    },
+    {
+        "name": "ETH Week 2022: Urban Futures",
+        "credits": 1,
+        "vvz_id": 164298,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Physics I",
+        "credits": 7,
+        "vvz_id": 161894,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Cell and Molecular Biology for Engineers I",
+        "credits": 3,
+        "vvz_id": 163187,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Physical Modelling and Simulation",
+        "credits": 6,
+        "vvz_id": 163555,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Discovering Management (Exercises)",
+        "credits": 1,
+        "vvz_id": 162507,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Electrical Engineering II",
+        "credits": 4,
+        "vvz_id": 162280,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Solving Partial Differential Equations in Parallel on GPUs",
+        "credits": 4,
+        "vvz_id": 162403,
+        "semester": "w",
+        "year": 2022,
+        "category": "Minor Courses"
+    },
+    {
+        "name": "Case Studies from Practice Seminar",
+        "credits": 4,
+        "vvz_id": 163632,
+        "semester": "w",
+        "year": 2022,
+        "category": "Seminar"
+    },
+    {
+        "name": "Visual Computing",
+        "credits": 8,
+        "vvz_id": 162436,
+        "semester": "w",
+        "year": 2022,
+        "category": "Core Courses"
+    },
+    {
+        "name": "AI4Good",
+        "credits": 3,
+        "vvz_id": 163124,
+        "semester": "w",
+        "year": 2022,
+        "category": "Science in Perspective"
+    },
+    {
+        "name": "Bachelor's Thesis",
+        "credits": 10,
+        "vvz_id": 163034,
+        "semester": "w",
+        "year": 2022,
+        "category": "Bachelor's Thesis"
+    },
+    {
+        "name": "Network Modeling",
+        "credits": 3,
+        "vvz_id": 161968,
+        "semester": "w",
+        "year": 2022,
+        "category": "Science in Perspective"
+    },
+    {
         "name": "Telecommunications Law",
         "credits": 2,
         "vvz_id": 157527,
