@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
+import logo from "../data/logo4.png";
 
 type Props = {};
 
@@ -12,10 +13,11 @@ const AboutPage = (props: Props) => {
       </div>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row">
-          <img
+          <img className="mx-auto h-25 w-auto" src={logo} />
+          {/* <img
             src="https://placeimg.com/260/400/arch"
             className="max-w-sm rounded-lg shadow-2xl"
-          />
+          /> */}
           <div>
             <h1 className="text-5xl font-bold">I plan it that way!</h1>
             <p className="py-6">
@@ -36,7 +38,9 @@ const AboutPage = (props: Props) => {
               Schimpf.
             </p>
             <p>We hope that you enjoy our application. I you have not</p>
-            <Link to="/home" className="mt-6 btn btn-primary">Plan your Bachelor</Link>
+            <Link to="/home" className="mt-6 btn btn-primary">
+              Plan your Bachelor
+            </Link>
           </div>
         </div>
       </div>
