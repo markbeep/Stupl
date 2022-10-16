@@ -1,11 +1,12 @@
 import { useRequest } from "ahooks";
 import axios from "axios";
 import { type } from "os";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getAllRequirements, getAllSubjects } from "../api/api";
 import { useAuth } from "../authHanlder";
 import Collapsible from "../components/Collapsible";
 import { requirementsData, RequirementsData } from "../data/yanick_data";
+import { useDisplayOptions } from "./HomePage";
 
 export const Yanick = () => {
   return (
@@ -26,6 +27,11 @@ export const RequirementsCollapsible = ({
   const { data, error, loading, refresh } = useRequest(() =>
     getAllRequirements(token)
   );
+  const { addRefreshListener } = useDisplayOptions();
+
+  useEffect(() => {
+    addRefreshListener(() => refresh());
+  }, []);
 
   console.log("data", data);
 
