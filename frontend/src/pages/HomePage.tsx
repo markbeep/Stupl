@@ -17,62 +17,35 @@ import { Navbar } from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
 import SubjectGroupCollapsible from "../components/SubjectGroupCollapsible";
 import SemesterGroupCollapsible from "../components/SemesterGroupCollapsible";
+import { RequirementsCollapsible } from "../components/RequirementsCollapsible";
 // import { SubjectGroup, subjectGroups, SubjectData } from "../data";
-import { RequirementsCollapsible } from "./Yanick";
 
 type DisplayOptions = {
   includePlanned: boolean;
   groupByCategory: boolean;
-  addRefreshListener: (callback: () => void) => void;
   requestRefresh: () => void;
+  refreashId: number;
 };
 const DisplayOptionsContext = React.createContext<DisplayOptions>({
   includePlanned: false,
   groupByCategory: true,
-  addRefreshListener: (_) => {},
   requestRefresh: () => {},
+  refreashId: 0,
 });
 
 export const useDisplayOptions = () => useContext(DisplayOptionsContext);
 
-let prevGetAllSubjectsRequest: any = null;
 const HomePage = () => {
   const [includePlanned, setIncludePlanned] = useState(false);
   const [groupByCategory, setGroupByCategory] = useState(true);
+  const [refreashId, setRefreashId] = useState(0);
+
   const { token } = useAuth();
-  const [refreshListeners, setRefreshListeners] = useState<(() => void)[]>([]);
-
-  const getAllSubjectsRequest = useRequest(() => getAllSubjects(token), {
-    cacheKey: `request-1234`,
-  });
-
-  let allSubsRequest = getAllSubjectsRequest;
-
-  if (
-    allSubsRequest.loading &&
-    prevGetAllSubjectsRequest &&
-    prevGetAllSubjectsRequest.data != null
-  )
-    allSubsRequest = prevGetAllSubjectsRequest;
-
-  prevGetAllSubjectsRequest = allSubsRequest;
-
-  // useEffect(() => {
-  //   getAllSubjects();
-  // }, []);
-
-  const getSubjets = async () => {
-    const subs = await getAllSubjects(token);
-  };
-
-  const addRefreshListener = (cb: () => void) => {
-    console.log("Adding refresh listener");
-    setRefreshListeners([...refreshListeners, cb]);
-  };
 
   const requestRefresh = () => {
     // window.location.reload();
-    getAllSubjectsRequest.refresh();
+    // getAllSubjectsRequest.refresh();
+    setRefreashId(Math.floor(Math.random() * 100000000));
     // console.log("requested refresh", refreshListeners.length);
     // for (const cb of refreshListeners) {
     //   console.log("callback called");
@@ -84,8 +57,8 @@ const HomePage = () => {
       value={{
         includePlanned,
         groupByCategory,
-        addRefreshListener,
         requestRefresh,
+        refreashId,
       }}
     >
       <div className="pb-12">
@@ -118,9 +91,7 @@ const HomePage = () => {
           </div>
         </div>
         <div className="max-w-2xl mx-auto mt-12">
-          <SubjectsDataDisplay
-            getAllSubjectsRequest={allSubsRequest}
-          ></SubjectsDataDisplay>
+          <SubjectsDataDisplay></SubjectsDataDisplay>
 
           <div className="mt-12">
             <RequirementsCollapsible
@@ -157,18 +128,24 @@ const groupSubjectsBySemester = (subjects: SubjectData[]) => {
     .sort((a, b) => a.semester - b.semester);
 };
 
-const SubjectsDataDisplay = ({
-  getAllSubjectsRequest,
-}: {
-  getAllSubjectsRequest: any;
-}) => {
-  const { addRefreshListener } = useDisplayOptions();
-  const { groupByCategory } = useDisplayOptions();
+const SubjectsDataDisplay = () => {
+  const { groupByCategory, refreashId } = useDisplayOptions();
 
-  if (getAllSubjectsRequest.loading) return <div>Loading ...</div>;
-  if (getAllSubjectsRequest.error) return <div>Error ...</div>;
+  const { token } = useAuth();
+  const [prevData, setPrevData] = useState();
 
-  const subjectData: SubjectData[] = getAllSubjectsRequest.data;
+  const { data, error, loading, refresh } = useRequest(() =>
+    getAllSubjects(token)
+  );
+  useEffect(() => {
+    setPrevData(data);
+    refresh();
+  }, [refreashId]);
+
+  const subjectData: SubjectData[] = data ?? prevData;
+
+  if (loading && !subjectData) return <div>Loading ...</div>;
+  if (error) return <div>Error ...</div>;
 
   if (groupByCategory) {
     const subjectGroups = groupSubjectsByCategory(subjectData);

@@ -2,10 +2,10 @@ import { group } from "console";
 import { useState } from "react";
 import Collapsible from "../components/Collapsible";
 import { Navbar } from "../components/Navbar";
+import { RequirementsCollapsible } from "../components/RequirementsCollapsible";
 import SearchBar from "../components/SearchBar";
 import SemesterPill from "../components/SemesterPill";
 import { SubjectGroup, subjectGroups, SubjectData } from "../data";
-import { RequirementsCollapsible } from "./Yanick";
 // bnicht bestanden
 export const Konsti = () => {
   const [includePlanned, setIncludePlanned] = useState(false);
