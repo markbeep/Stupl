@@ -35,8 +35,8 @@ const SubjectGroupCollapsible = ({
                 (collapsed ? " opacity-100" : " opacity-0")
               }
             >
-              {Number(sumEcts(includePlanned, subjectGroup))}
-              /54
+              {Number(sumEcts(includePlanned, subjectGroup))}/
+              {getCategoryWithId(subjectGroup.category_id)?.requirements}
             </p>
             <p
               className={
@@ -55,42 +55,41 @@ const SubjectGroupCollapsible = ({
         </div>
       )}
     >
-      <div className="overflow-x-auto">
-        <table className="table table-fixed w-full -mt-4">
-          <thead className="">
-            <tr className="">
-              <th className="w-1/2 text-left z-index0-force"></th>
-              <th className="w-1/12 pr-2">Sem.</th>
-              <th className="w-1/12">ECTS</th>
-              <th className="w-1/12">Grade</th>
-              <th className="w-1/12"></th>
-            </tr>
-          </thead>
-          <tbody>
-            {subjectGroup.subjects.map((subject) => (
-              <SubjectTableRow subject={subject}></SubjectTableRow>
-            ))}
-            <tr className="">
-              <td className="text-left pr-2 bg-base-200">Total</td>
-              <td className="bg-base-200 pr-2"></td>
-              <td className="text-right bg-base-200 pr-2">
-                {Number(sumEcts(includePlanned, subjectGroup))}
-                /54
-              </td>
-              {/* compute average grade per component */}
-              <td className="text-right bg-base-200 pr-2">
-                {Number(
-                  avgGrades({
-                    includePlanned: includePlanned,
-                    subjectGroup: subjectGroup,
-                  })
-                )}
-              </td>
-              <td className="bg-base-200 "></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <table className="table w-full -mt-4">
+        <thead className="rounded-none">
+          <tr className="rounded-none">
+            <th className="text-left z-index0-force"></th>
+            <th className="pr-2">Semester</th>
+            <th className="pr-2">ECTS</th>
+            <th className="pr-2">Grade</th>
+            <th className=""></th>
+          </tr>
+        </thead>
+        <tbody>
+          {subjectGroup.subjects.map((subject) => (
+            <SubjectTableRow subject={subject}></SubjectTableRow>
+          ))}
+          <tr className="">
+            <td className="text-left pr-2 bg-base-200">Total</td>
+            <td className="bg-base-200 pr-2"></td>
+            <td className="text-right bg-base-200 pr-2">
+              {Number(sumEcts(includePlanned, subjectGroup))}/
+              {getCategoryWithId(subjectGroup.category_id)?.requirements}
+              /54
+            </td>
+            {/* compute average grade per component */}
+            <td className="text-right bg-base-200 pr-2">
+              {Number(
+                avgGrades({
+                  includePlanned: includePlanned,
+                  subjectGroup: subjectGroup,
+                })
+              )}
+            </td>
+            <td className="bg-base-200 "></td>
+          </tr>
+        </tbody>
+      </table>
     </Collapsible>
   );
 };
