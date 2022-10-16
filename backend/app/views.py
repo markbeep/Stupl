@@ -119,10 +119,11 @@ def add_subject(request):
     sub.save()
     return Response("Success")
 
+#API that updates the usersubject object
 @api_view(["Post"])
 @permission_classes([IsAuthenticated])
 def edit_subject(request):
-    print("Edit subject called")
+    #Get new information
     name = request.data.get("name", None)
     credits = request.data.get("credits", None)
     category = request.data.get("category", None)
@@ -131,10 +132,10 @@ def edit_subject(request):
     grade = request.data.get("grade", None)
     planned = request.data.get("planned", None)
     subjid = request.data.get("id")
-    print("Deleting subject_id:")
-    print(subjid)
+    #Deleting old usersubject object
     subject = get_object_or_404(UserSubjects, id=subjid)
     subject.delete()
+    #Add new usersubject object
     sub = UserSubjects.objects.create(
         name=name,
         user=subject.user,
@@ -147,6 +148,7 @@ def edit_subject(request):
     )
     sub.save()
     return Response("Success")
+
 
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
