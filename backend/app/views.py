@@ -59,7 +59,7 @@ def sumCreditsCategories(user, categoryList, maxList, incplanned):
 def get_requirements(request):
     user = request.user
     return Response([
-            {"sat":sumCreditsCategories(user, [4], [180], True) == 56,"sat2":sumCreditsCategories(user, [4], [180], False) == 56, "name":"First Year Courses = 56 KP"}
+            {"sat":sumCreditsCategories(user, [4], [180], True) == 56,"sat2":sumCreditsCategories(user, [4], [180], False) == 56, "name":"First Year Courses = 56 KP"},
             {"sat":sumCreditsCategories(user, [4], [180], True) == 56,"sat2":sumCreditsCategories(user, [4], [180], False) == 56, "name":"First Year Courses = 56 KP"},
             {"sat":sumCreditsCategories(user, [1,3],[180,180],True) >= 84,"sat2":sumCreditsCategories(user, [1,3],[180,180], False) >= 84, "name": "Basic Courses + Core Courses >= 84 KP"},
             {"sat":sumCreditsCategories(user, [1],[180],True) >= 45,"sat2":sumCreditsCategories(user, [1],[180], False) >= 45, "name": "Basic Courses >= 45 KP"},
