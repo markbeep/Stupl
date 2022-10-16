@@ -198,7 +198,7 @@ const TotalAvgDisplay = ({ subjectGroups }: TotalAvgDisplayProps) => {
           <p className="mr-8">
             {totalCredits(includePlanned, subjectGroups) + "/180"}
           </p>
-          <p className="mr-10">
+          <p className="mr-16">
             {(
               totalWsum(includePlanned, subjectGroups) /
               totalCredits(includePlanned, subjectGroups)
