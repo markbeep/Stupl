@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { loginUser } from "../api/api";
 import { saveToken, useAuth } from "../authHanlder";
 import logo from "../data/logo2.png";
@@ -7,7 +7,6 @@ import logo from "../data/logo2.png";
 type Props = {};
 
 const LoginPage = (props: Props) => {
-  const image = require("../data/logo2.png").default;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { token, setToken } = useAuth();
@@ -87,9 +86,9 @@ const LoginPage = (props: Props) => {
             <div className="text-sm mr-4">
               <a className="">No Account yet?</a>
             </div>
-            <a href="/createAccount" className="link text-sm">
+            <Link to="/createAccount" className="link text-sm">
               Register now
-            </a>
+            </Link>
           </div>
         </div>
       </div>

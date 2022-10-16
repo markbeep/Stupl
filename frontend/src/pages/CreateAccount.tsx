@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { registerUser } from "../api/api";
 import axios from "axios";
 import { saveToken, useAuth } from "../authHanlder";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import logo from "../data/logo2.png";
 
 type Props = {};
 
 const CreateAccount = (props: Props) => {
-  const logo = require("../data/logo2.png").default;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -118,9 +117,9 @@ const CreateAccount = (props: Props) => {
             <div className="text-sm mr-4">
               <a className="">Already have an Account?</a>
             </div>
-            <a href="/login" className="link text-sm">
+            <Link to="/login" className="link text-sm">
               Sign in
-            </a>
+            </Link>
           </div>
         </div>
       </div>
