@@ -10,9 +10,11 @@ const LoginPage = (props: Props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { token, setToken } = useAuth();
+  const [error, setError] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // prevents refresh
+    setError(false);
     if (setToken == null) return;
 
     if (email.length === 0 || password.length === 0) {
@@ -21,11 +23,14 @@ const LoginPage = (props: Props) => {
     }
     // setToken(await loginUser(email, password));
 
-    const response = await loginUser(email, password);
-    console.log(response);
-    saveToken(response.token);
-    setToken(response.token);
-    console.log("auth successfull");
+    try {
+      const response = await loginUser(email, password);
+      saveToken(response.token);
+      setToken(response.token);
+      console.log("auth successfull");
+    } catch {
+      setError(true);
+    }
   };
 
   return (
@@ -45,19 +50,21 @@ const LoginPage = (props: Props) => {
           </div>
           <form className="mt-6" onSubmit={handleSubmit}>
             <div className="mt-10 rounded-md shadow-sm">
-              <div>
-                <input
-                  id="email-address"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className="input input-bordered w-full bg-base-200"
-                  placeholder="Email address"
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
-                />
+              <div className={error ? "tooltip tooltip-open tooltip-error w-full" : ""} data-tip="invalid login">
+                <div>
+                  <input
+                    id="email-address"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    required
+                    className="input input-bordered w-full bg-base-200"
+                    placeholder="Email address"
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
+                  />
+                </div>
               </div>
               <div>
                 <input

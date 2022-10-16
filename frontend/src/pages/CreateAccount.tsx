@@ -12,6 +12,7 @@ const CreateAccount = (props: Props) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const { token, setToken } = useAuth();
+  const [error, setError] = useState(false);
 
   // loadTestHello().then(console.log).catch(console.error);
 
@@ -23,6 +24,7 @@ const CreateAccount = (props: Props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // prevents refresh
+    setError(false);
     // setToken(await loginUser(email, password));
 
     if (setToken == null) return;
@@ -37,11 +39,14 @@ const CreateAccount = (props: Props) => {
       return;
     }
 
-    const response = await registerUser(email, password);
-    // console.log(response);
-    saveToken(response.token);
-    setToken(response.token);
-    // console.log("auth successfull");
+    try {
+      const response = await registerUser(email, password);
+      saveToken(response.token);
+      setToken(response.token);
+      console.log("auth successfull");
+    } catch {
+      setError(true);
+    }
   };
 
   return (
@@ -61,19 +66,21 @@ const CreateAccount = (props: Props) => {
           </div>
           <form className="mt-6" onSubmit={handleSubmit}>
             <div className="mt-10 rounded-md shadow-sm">
-              <div>
-                <input
-                  id="email-address"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className="input input-bordered w-full bg-base-200"
-                  placeholder="Email address"
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
-                />
+              <div className={error ? "tooltip tooltip-open tooltip-error w-full" : ""} data-tip="email already in use">
+                <div>
+                  <input
+                    id="email-address"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    required
+                    className="input input-bordered w-full bg-base-200"
+                    placeholder="Email address"
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
+                  />
+                </div>
               </div>
               <div>
                 <input
