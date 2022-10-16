@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
 
 type Props = {};
@@ -35,7 +36,7 @@ const AboutPage = (props: Props) => {
               Schimpf.
             </p>
             <p>We hope that you enjoy our application. I you have not</p>
-            <button className="mt-6 btn btn-primary">Plan your Bachelor</button>
+            <Link to="/home" className="mt-6 btn btn-primary">Plan your Bachelor</Link>
           </div>
         </div>
       </div>

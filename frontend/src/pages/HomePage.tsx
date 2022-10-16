@@ -17,20 +17,20 @@ import { Navbar } from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
 import SubjectGroupCollapsible from "../components/SubjectGroupCollapsible";
 import SemesterGroupCollapsible from "../components/SemesterGroupCollapsible";
+import { RequirementsCollapsible } from "../components/RequirementsCollapsible";
 // import { SubjectGroup, subjectGroups, SubjectData } from "../data";
-import { RequirementsCollapsible } from "./Yanick";
 
 type DisplayOptions = {
   includePlanned: boolean;
   groupByCategory: boolean;
-  addRefreshListener: (callback: () => void) => void;
   requestRefresh: () => void;
+  refreashId: number;
 };
 const DisplayOptionsContext = React.createContext<DisplayOptions>({
   includePlanned: false,
   groupByCategory: true,
-  addRefreshListener: (_) => {},
   requestRefresh: () => {},
+  refreashId: 0,
 });
 
 export const useDisplayOptions = () => useContext(DisplayOptionsContext);
@@ -38,22 +38,18 @@ export const useDisplayOptions = () => useContext(DisplayOptionsContext);
 const HomePage = () => {
   const [includePlanned, setIncludePlanned] = useState(false);
   const [groupByCategory, setGroupByCategory] = useState(true);
+  const [refreashId, setRefreashId] = useState(0);
+
   const { token } = useAuth();
-  const [refreshListeners, setRefreshListeners] = useState<(() => void)[]>([]);
-  // useEffect(() => {
-  //   getAllSubjects();
-  // }, []);
-
-  const getSubjets = async () => {
-    const subs = await getAllSubjects(token);
-  };
-
-  const addRefreshListener = (cb: () => void) => {
-    setRefreshListeners([...refreshListeners, cb]);
-  };
 
   const requestRefresh = () => {
-    for (const cb of refreshListeners) cb();
+    // window.location.reload();
+    // getAllSubjectsRequest.refresh();
+    setRefreashId(Math.floor(Math.random() * 100000000));
+    // console.log("requested refresh", refreshListeners.length);
+    // for (const cb of refreshListeners) {
+    //   console.log("callback called");
+    // }
   };
 
   return (
@@ -61,8 +57,8 @@ const HomePage = () => {
       value={{
         includePlanned,
         groupByCategory,
-        addRefreshListener,
         requestRefresh,
+        refreashId,
       }}
     >
       <div className="pb-12">
@@ -76,7 +72,7 @@ const HomePage = () => {
               <span className="label-text">Include planned subjects.</span>
               <input
                 type="checkbox"
-                className="checkbox checkbox-accent"
+                className="toggle toggle-accent"
                 checked={includePlanned}
                 onClick={() => setIncludePlanned(!includePlanned)}
               />
@@ -87,7 +83,7 @@ const HomePage = () => {
               <span className="label-text">Group by Category</span>
               <input
                 type="checkbox"
-                className="checkbox checkbox-accent"
+                className="toggle toggle-accent"
                 checked={groupByCategory}
                 onClick={() => setGroupByCategory(!groupByCategory)}
               />
@@ -109,11 +105,15 @@ const HomePage = () => {
 };
 
 const groupSubjectsByCategory = (subjects: SubjectData[]) => {
-  const ret: SubjectDataGroupedByCategory[] = [];
+  let ret: SubjectDataGroupedByCategory[] = [];
+  const orderedSubs = subjects.sort((a, b) =>
+    a.planned || (!a.planned && b.planned) ? 1 : -1
+  );
   for (const c of categories) ret.push({ category_id: c.id, subjects: [] });
-  for (const s of subjects)
+  for (const s of orderedSubs)
     ret.find((group) => group.category_id === s.category_id)?.subjects.push(s);
-  return ret.filter((group) => group.subjects.length > 0);
+  ret = ret.filter((group) => group.subjects.length > 0);
+  return ret;
 };
 
 const groupSubjectsBySemester = (subjects: SubjectData[]) => {
@@ -121,11 +121,15 @@ const groupSubjectsBySemester = (subjects: SubjectData[]) => {
     return self.indexOf(value) === index;
   }
 
-  const ret: SubjectDataGroupedBySemester[] = [];
+  let ret: SubjectDataGroupedBySemester[] = [];
   const allSems = subjects.map((s) => s.semester).filter(onlyUnique);
 
+  const orderedSubs = subjects.sort((a, b) =>
+    a.planned || (!a.planned && b.planned) ? 1 : -1
+  );
+
   for (const sem of allSems) ret.push({ semester: sem, subjects: [] });
-  for (const s of subjects)
+  for (const s of orderedSubs)
     ret.find((group) => group.semester === s.semester)?.subjects.push(s);
   return ret
     .filter((group) => group.subjects.length > 0)
@@ -133,21 +137,23 @@ const groupSubjectsBySemester = (subjects: SubjectData[]) => {
 };
 
 const SubjectsDataDisplay = () => {
-  const { addRefreshListener } = useDisplayOptions();
-  const { groupByCategory } = useDisplayOptions();
+  const { groupByCategory, refreashId } = useDisplayOptions();
 
   const { token } = useAuth();
+  const [prevData, setPrevData] = useState();
+
   const { data, error, loading, refresh } = useRequest(() =>
     getAllSubjects(token)
   );
   useEffect(() => {
-    addRefreshListener(() => refresh());
-  }, []);
+    setPrevData(data);
+    refresh();
+  }, [refreashId]);
 
-  if (loading) return <div>Loading ...</div>;
+  const subjectData: SubjectData[] = data ?? prevData;
+
+  if (loading && !subjectData) return <div>Loading ...</div>;
   if (error) return <div>Error ...</div>;
-
-  const subjectData: SubjectData[] = data;
 
   if (groupByCategory) {
     const subjectGroups = groupSubjectsByCategory(subjectData);

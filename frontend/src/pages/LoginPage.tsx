@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { loginUser } from "../api/api";
 import { saveToken, useAuth } from "../authHanlder";
 import logo from "../data/logo2.png";
@@ -7,12 +7,12 @@ import logo from "../data/logo2.png";
 type Props = {};
 
 const LoginPage = (props: Props) => {
-  const image = require("../data/logo2.png").default;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { token, setToken } = useAuth();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // prevents refresh
     if (setToken == null) return;
 
     if (email.length === 0 || password.length === 0) {
@@ -43,7 +43,7 @@ const LoginPage = (props: Props) => {
               Plan your studies
             </h4>
           </div>
-          <form className="mt-6">
+          <form className="mt-6" onSubmit={handleSubmit}>
             <div className="mt-10 rounded-md shadow-sm">
               <div>
                 <input
@@ -74,22 +74,22 @@ const LoginPage = (props: Props) => {
                 />
               </div>
             </div>
+            <div>
+              <button
+                type="submit"
+                className="mt-4 btn btn-primary flex w-full justify-center"
+              >
+                Sign in
+              </button>
+            </div>
           </form>
-          <div>
-            <button
-              className="mt-4 btn btn-primary flex w-full justify-center"
-              onClick={handleSubmit}
-            >
-              Sign in
-            </button>
-          </div>
           <div className="mt-2 flex justify-end items-baseline">
             <div className="text-sm mr-4">
               <a className="">No Account yet?</a>
             </div>
-            <a href="/createAccount" className="link text-sm">
+            <Link to="/createAccount" className="link text-sm">
               Register now
-            </a>
+            </Link>
           </div>
         </div>
       </div>
