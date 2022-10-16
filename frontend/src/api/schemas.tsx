@@ -51,28 +51,28 @@ export const categories = [
       "Courses usually done in first year They're split into two block exams. (All other courses have to be passed individually)",
   },
   {
-    name: "BasicCourse",
+    name: "Basic Course",
     german_name: "Grundlagenfächer",
     id: 1,
     information:
       "Courses usually done in second year. Requirements: All courses need to be taken, but only seven of eight have to be passed. If you don't pass all, you need to take an additional core subject instead.",
   },
   {
-    name: "MinorCourse",
+    name: "Minor Course",
     german_name: "Ergänzungsfächer",
     information:
       "In this category five credits can be done. Additional credits can count towards the Bacehlor.",
     id: 2,
   },
   {
-    name: "CoreCourse",
+    name: "Core Course",
     german_name: "Kernfächer",
     information:
       "Courses usually done in THIRD year. Requirements: At least four courses need to be taken. You can also take more.",
     id: 3,
   },
   {
-    name: "FirstYearExaminations",
+    name: "First Year Examinations",
     german_name: "Basisjahrfächer",
     information:
       "Courses usually done in first year They're split into two block exams. (All other courses have to be passed individually)",
@@ -93,14 +93,14 @@ export const categories = [
     id: 6,
   },
   {
-    name: "BachelorThesis",
+    name: "Bachelor Thesis",
     german_name: "Bachelor Thesis",
     id: 7,
     information:
       "Thesis usually done at the end of your Bachelor studies. Requirements: At least five Grundlagenfächer need to be passed to start.",
   },
   {
-    name: "GESS",
+    name: "Science in Perspective",
     german_name: "GESS",
     id: 8,
     information:
