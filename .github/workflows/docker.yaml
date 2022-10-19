@@ -1,9 +1,5 @@
 name: Build Release
 
-env:
-  PROJ_NAME: stupl-backend
-  PROJ2_NAME: stupl-frontend
-
 on:
   push:
     branches:
@@ -37,9 +33,9 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/$PROJ_NAME:latest
-          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/$PROJ_NAME:buildcache
-          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/$PROJ_NAME:buildcache,mode=max
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/stupl-backend:latest
+          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/stupl-backend:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/stupl-backend:buildcache,mode=max
 
       - name: Build and push
         uses: docker/build-push-action@v3
@@ -48,6 +44,6 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/$PROJ1_NAME:latest
-          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/$PROJ1_NAME:buildcache
-          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/$PROJ1_NAME:buildcache,mode=max
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/stupl-frontend:latest
+          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/stupl-frontend:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/stupl-frontend:buildcache,mode=max
