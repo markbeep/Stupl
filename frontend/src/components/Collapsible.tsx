@@ -61,7 +61,10 @@ const Collapsible3 = ({ headerBuilder, children }: Props) => {
   return (
     <div className="">
       <div
-        className="bg-base-200 collapse-title cursor-pointer flex rounded-t-xl w-full"
+        className={
+          "bg-base-200 collapse-title cursor-pointer flex rounded-t-xl w-full " +
+          (collapsed ? "" : "rounded-b-xl")
+        }
         onClick={() => setCollapsed(!collapsed)}
       >
         <svg

@@ -34,21 +34,21 @@ const AddSubjectModal = ({ isOpen, closeModal, subjectPreset }: Props) => {
   const { token } = useAuth();
   const { requestRefresh } = useDisplayOptions();
 
-  const [mode, setMode] = useState("#2A303C");
-
   const customStyles = {
     content: {
       top: "50%",
       left: "50%",
       right: "auto",
       bottom: "auto",
+      width: "100%",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      background: "#2A303C",
+      background: "transparent",
       // background: window.matchMedia("(prefers-color-scheme: dark)").matches
       //   ? "#2A303C"
       //   : "#FFFFFF",
       border: "none",
+      borderRadius: 16,
     },
     overlay: {
       overlay: { zIndex: 1000 },
@@ -63,7 +63,6 @@ const AddSubjectModal = ({ isOpen, closeModal, subjectPreset }: Props) => {
         console.log("Changed");
         const colorScheme = event.matches ? "dark" : "light";
         console.log(colorScheme); // "dark" or "light"
-        setMode(colorScheme ? "#2A303C" : "#FFFFFF");
       });
   }, []);
 
@@ -92,7 +91,7 @@ const AddSubjectModal = ({ isOpen, closeModal, subjectPreset }: Props) => {
       onRequestClose={closeModal}
       style={customStyles}
     >
-      <div className="container mx-auto w-96 p-4">
+      <div className="mx-auto max-w-lg p-8 m-8 bg-base-100 rounded-lg">
         <h1 className="text-2xl font-medium">Add Subject</h1>
         <label className="block text-sm font-medium mt-6">Subject</label>
         <input

@@ -61,7 +61,7 @@ const HomePage = () => {
         refreashId,
       }}
     >
-      <div className="pb-12 px-4">
+      <div className="pb-32 px-4">
         <Navbar></Navbar>
         <div className="mt-8 max-w-lg mx-auto">
           <SearchBar></SearchBar>
@@ -74,7 +74,7 @@ const HomePage = () => {
                 type="checkbox"
                 className="toggle toggle-accent"
                 checked={includePlanned}
-                onClick={() => setIncludePlanned(!includePlanned)}
+                onChange={(e) => setIncludePlanned(e.target.checked)}
               />
             </label>
           </div>
@@ -85,7 +85,7 @@ const HomePage = () => {
                 type="checkbox"
                 className="toggle toggle-accent"
                 checked={groupByCategory}
-                onClick={() => setGroupByCategory(!groupByCategory)}
+                onChange={(e) => setGroupByCategory(e.target.checked)}
               />
             </label>
           </div>
@@ -99,6 +99,9 @@ const HomePage = () => {
             ></RequirementsCollapsible>
           </div>
         </div>
+        <div className="container max-w-2xl mx-auto mt-8">
+          <p className="float-right text-xs">All Data is without Guarantee.</p>
+        </div>
       </div>
     </DisplayOptionsContext.Provider>
   );
@@ -106,9 +109,7 @@ const HomePage = () => {
 
 const groupSubjectsByCategory = (subjects: SubjectData[]) => {
   let ret: SubjectDataGroupedByCategory[] = [];
-  const orderedSubs = subjects.sort((a, b) =>
-    a.planned || (!a.planned && b.planned) ? 1 : -1
-  );
+  const orderedSubs = subjects.sort((a, b) => (a === b ? 0 : a ? -1 : 1));
   for (const c of categories) ret.push({ category_id: c.id, subjects: [] });
   for (const s of orderedSubs)
     ret.find((group) => group.category_id === s.category_id)?.subjects.push(s);
@@ -124,9 +125,7 @@ const groupSubjectsBySemester = (subjects: SubjectData[]) => {
   let ret: SubjectDataGroupedBySemester[] = [];
   const allSems = subjects.map((s) => s.semester).filter(onlyUnique);
 
-  const orderedSubs = subjects.sort((a, b) =>
-    a.planned || (!a.planned && b.planned) ? 1 : -1
-  );
+  const orderedSubs = subjects.sort((a, b) => (a === b ? 0 : a ? -1 : 1));
 
   for (const sem of allSems) ret.push({ semester: sem, subjects: [] });
   for (const s of orderedSubs)
@@ -161,7 +160,7 @@ const SubjectsDataDisplay = () => {
       <>
         <TotalAvgDisplay subjectGroups={subjectGroups}></TotalAvgDisplay>
         {subjectGroups.map((group) => (
-          <div className="mt-12">
+          <div className="mt-12" key={group.category_id}>
             <SubjectGroupCollapsible
               subjectGroup={group}
             ></SubjectGroupCollapsible>
@@ -175,7 +174,7 @@ const SubjectsDataDisplay = () => {
       <>
         <TotalAvgDisplay subjectGroups={subjectGroups}></TotalAvgDisplay>
         {subjectGroups.map((group) => (
-          <div className="mt-12">
+          <div className="mt-12" key={group.semester}>
             <SemesterGroupCollapsible
               subjectGroup={group}
             ></SemesterGroupCollapsible>

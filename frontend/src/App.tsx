@@ -10,6 +10,7 @@ import LoginPage from "./pages/LoginPage";
 import CreateAccount from "./pages/CreateAccount";
 import { AuthProvider, useAuth } from "./authHanlder";
 import React from "react";
+import DataProtectionPolicy from "./pages/DataProtectionPolicy";
 
 function App() {
   return (
@@ -29,9 +30,11 @@ function App() {
             }
           ></Route>
 
-          <Route path="/konsti" element={<Konsti />}></Route>
-          <Route path="/yanick" element={<Yanick />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
+          <Route
+            path="/dataProtectionPolicy"
+            element={<DataProtectionPolicy />}
+          ></Route>
           <Route path="/statistics" element={<StatisticsPage />}></Route>
         </Routes>
       </BrowserRouter>

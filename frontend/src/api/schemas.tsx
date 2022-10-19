@@ -42,6 +42,12 @@ export type SubjectDataGroupedGeneric =
   | SubjectDataGroupedByCategory
   | SubjectDataGroupedBySemester;
 
+export type Requirement = {
+  sat: boolean;
+  sat2: boolean;
+  name: string;
+};
+
 export const categories = [
   {
     name: "Other",

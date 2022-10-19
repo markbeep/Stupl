@@ -63,7 +63,10 @@ const SemesterGroupCollapsible = ({
           </thead>
           <tbody>
             {subjectGroup.subjects.map((subject) => (
-              <SubjectTableRow subject={subject}></SubjectTableRow>
+              <SubjectTableRow
+                subject={subject}
+                key={subject.id}
+              ></SubjectTableRow>
             ))}
             <tr className="">
               <td className="text-left pr-2 bg-base-200">Total</td>

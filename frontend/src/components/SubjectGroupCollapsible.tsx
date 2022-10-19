@@ -68,7 +68,10 @@ const SubjectGroupCollapsible = ({
           </thead>
           <tbody>
             {subjectGroup.subjects.map((subject) => (
-              <SubjectTableRow subject={subject}></SubjectTableRow>
+              <SubjectTableRow
+                subject={subject}
+                key={subject.id}
+              ></SubjectTableRow>
             ))}
             <tr className="">
               <td className="text-left pr-2 bg-base-200">Total</td>
@@ -103,6 +106,7 @@ const SubjectTableRow = ({ subject }: { subject: SubjectData }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const openModal = () => {
+    console.log("opening modal with subject ", subject);
     setModalIsOpen(true);
   };
 

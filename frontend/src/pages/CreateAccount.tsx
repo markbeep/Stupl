@@ -11,6 +11,7 @@ const CreateAccount = (props: Props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPolicy, setConfirmPolicy] = useState(false);
   const { token, setToken } = useAuth();
   const [error, setError] = useState(false);
 
@@ -36,6 +37,11 @@ const CreateAccount = (props: Props) => {
 
     if (password !== confirmPassword) {
       alert("Passwords don't match");
+      return;
+    }
+
+    if (!confirmPolicy) {
+      alert("Please Agree to our Data Protection Policy");
       return;
     }
 
@@ -115,11 +121,30 @@ const CreateAccount = (props: Props) => {
                   }}
                 />
               </div>
+              <div className="flex mt-4">
+                <input
+                  id="dataProtectionPolicy"
+                  name="dataProtectionPolicy"
+                  type="checkbox"
+                  required
+                  className="checkbox"
+                  checked={confirmPolicy}
+                  onChange={(e) => {
+                    setConfirmPolicy(e.target.checked);
+                  }}
+                ></input>
+                <div className="ml-2">
+                  I agree to the{" "}
+                  <Link to="/dataProtectionPolicy" className="link">
+                    Data Protection Policy
+                  </Link>
+                </div>
+              </div>
             </div>
             <div>
               <button
                 type="submit"
-                className="mt-4 btn btn-primary flex w-full justify-center"
+                className="mt-8 btn btn-primary flex w-full justify-center"
               >
                 Register
               </button>

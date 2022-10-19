@@ -27,6 +27,28 @@ const EditSubjectModal = ({ isOpen, closeModal, subject }: Props) => {
   const { token } = useAuth();
   const { requestRefresh } = useDisplayOptions();
 
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      width: "100%",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      background: "transparent",
+      // background: window.matchMedia("(prefers-color-scheme: dark)").matches
+      //   ? "#2A303C"
+      //   : "#FFFFFF",
+      border: "none",
+      borderRadius: 16,
+    },
+    overlay: {
+      overlay: { zIndex: 1000 },
+      background: "rgba(0, 0,0 , 0.4)",
+    },
+  };
+
   const onSubmit = async () => {
     const data: any = {
       name: subjectName!,
@@ -61,7 +83,7 @@ const EditSubjectModal = ({ isOpen, closeModal, subject }: Props) => {
       onRequestClose={closeModal}
       style={customStyles}
     >
-      <div className="container mx-auto w-96 p-4">
+      <div className="mx-auto max-w-lg p-8 m-8 bg-base-100 rounded-lg">
         <h1 className="text-2xl font-medium">Edit Subject</h1>
         <label className="block text-sm font-medium mt-6">Subject</label>
         <input
@@ -106,7 +128,7 @@ const EditSubjectModal = ({ isOpen, closeModal, subject }: Props) => {
             <input
               type="checkbox"
               checked={completedCheckbox}
-              onClick={(e) => setCompletedCheckbox(!completedCheckbox)}
+              onChange={(e) => setCompletedCheckbox(e.target.checked)}
               className="checkbox"
             />
           </div>
@@ -151,23 +173,6 @@ const EditSubjectModal = ({ isOpen, closeModal, subject }: Props) => {
       </div>
     </Modal>
   );
-};
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    background: "#2A303C",
-    border: "none",
-  },
-  overlay: {
-    overlay: { zIndex: 1000 },
-    background: "rgba(0, 0,0 , 0.4)",
-  },
 };
 
 export default EditSubjectModal;
