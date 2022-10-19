@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { getAllSubjects } from "../api/api";
 import {
   categories,
+  getCategoryWithId,
   SubjectData,
   SubjectDataGroupedByCategory,
   SubjectDataGroupedBySemester,
@@ -114,7 +115,11 @@ const groupSubjectsByCategory = (subjects: SubjectData[]) => {
   for (const s of orderedSubs)
     ret.find((group) => group.category_id === s.category_id)?.subjects.push(s);
   ret = ret.filter((group) => group.subjects.length > 0);
-  return ret;
+  return ret.sort(
+    (a, b) =>
+      getCategoryWithId(a.category_id)!.order -
+      getCategoryWithId(a.category_id)!.order
+  );
 };
 
 const groupSubjectsBySemester = (subjects: SubjectData[]) => {

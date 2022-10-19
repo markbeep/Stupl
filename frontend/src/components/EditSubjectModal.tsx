@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import { addSubject, deleteSubject, editSubject } from "../api/api";
-import { categories, SubjectData, VVZSubject } from "../api/schemas";
+import {
+  categories,
+  orderedCategories,
+  SubjectData,
+  VVZSubject,
+} from "../api/schemas";
 import { useAuth } from "../authHanlder";
 import { useDisplayOptions } from "../pages/HomePage";
 import SemesterPill from "./SemesterPill";
@@ -98,9 +103,10 @@ const EditSubjectModal = ({ isOpen, closeModal, subject }: Props) => {
         <label className="block text-sm font-medium mt-4">Category</label>
         <select
           className="select select-bordered w-full mt-1"
+          value={category}
           onChange={(e) => setCategory(parseInt(e.target.value))}
         >
-          {categories.map((cat) => (
+          {orderedCategories.map((cat) => (
             <option key={cat.id} value={cat.id}>
               {cat.name}
             </option>

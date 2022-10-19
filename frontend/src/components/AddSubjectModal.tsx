@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { addSubject } from "../api/api";
-import { categories, VVZSubject } from "../api/schemas";
+import { categories, orderedCategories, VVZSubject } from "../api/schemas";
 import { useAuth } from "../authHanlder";
 import { SubjectData } from "../data";
 import { useDisplayOptions } from "../pages/HomePage";
@@ -106,9 +106,10 @@ const AddSubjectModal = ({ isOpen, closeModal, subjectPreset }: Props) => {
         <label className="block text-sm font-medium mt-4">Category</label>
         <select
           className="select select-bordered w-full mt-1"
+          value={category}
           onChange={(e) => setCategory(parseInt(e.target.value))}
         >
-          {categories.map((cat) => (
+          {orderedCategories.map((cat) => (
             <option key={cat.id} value={cat.id}>
               {cat.name}
             </option>
