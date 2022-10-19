@@ -108,9 +108,16 @@ const HomePage = () => {
   );
 };
 
+//stackoverflow.com/questions/8539934/sort-an-array-of-objects-lexicographically-based-on-a-nested-value
+function sortFactory(prop: string) {
+  return function (a, b) {
+    return a[prop].localeCompare(b[prop]);
+  };
+}
+
 const groupSubjectsByCategory = (subjects: SubjectData[]) => {
   let ret: SubjectDataGroupedByCategory[] = [];
-  const orderedSubs = subjects.sort((a, b) => (a === b ? 0 : a ? -1 : 1));
+  const orderedSubs = subjects.sort(sortFactory("semester"));
   for (const c of categories) ret.push({ category_id: c.id, subjects: [] });
   for (const s of orderedSubs)
     ret.find((group) => group.category_id === s.category_id)?.subjects.push(s);
@@ -130,14 +137,19 @@ const groupSubjectsBySemester = (subjects: SubjectData[]) => {
   let ret: SubjectDataGroupedBySemester[] = [];
   const allSems = subjects.map((s) => s.semester).filter(onlyUnique);
 
-  const orderedSubs = subjects.sort((a, b) => (a === b ? 0 : a ? -1 : 1));
+  const orderedSubs = subjects.sort(
+    (a, b) =>
+      getCategoryWithId(a.category_id)!.order -
+      getCategoryWithId(b.category_id)!.order
+  );
 
   for (const sem of allSems) ret.push({ semester: sem, subjects: [] });
   for (const s of orderedSubs)
     ret.find((group) => group.semester === s.semester)?.subjects.push(s);
   return ret
     .filter((group) => group.subjects.length > 0)
-    .sort((a, b) => a.semester - b.semester);
+    .sort(sortFactory("semester"));
+  // .sort((a, b) => a.semester - b.semester);
 };
 
 const SubjectsDataDisplay = () => {

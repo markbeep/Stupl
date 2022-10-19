@@ -40,7 +40,7 @@ const AboutPage = (props: Props) => {
         </div>
       </div>
       <div className="mt-12 max-w-2xl mx-auto">
-        <img className="" src={teamPicture} />
+        <img className="rounded-xl" src={teamPicture} />
         <p className="text-xs mt-2 float-right "> © Alexander Zank</p>
       </div>
     </div>

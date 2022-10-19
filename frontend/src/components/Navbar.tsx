@@ -27,13 +27,14 @@ export const Navbar = () => {
             <Link to="/DataProtectionPolicy">
               <button className="btn btn-ghost normal-case">Data Policy</button>
             </Link>
-            <button
+            <Link
+              to="/login"
               // to="/login"
               className="btn btn-ghost normal-case"
               onClick={logout}
             >
               Log Out
-            </button>
+            </Link>
           </div>
         </div>
       </div>

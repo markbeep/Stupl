@@ -60,9 +60,9 @@ const SubjectGroupCollapsible = ({
           <thead className="">
             <tr className="">
               <th className="w-5/12 text-left z-index0-force"></th>
-              <th className="w-1/6 pr-2">Categories</th>
-              <th className="w-1/12 pr-2">ECTS</th>
-              <th className="w-1/12 pr-2">Grade</th>
+              <th className="w-1/12 text-center">Semester</th>
+              <th className="w-1/12 text-right">ECTS</th>
+              <th className="w-1/12 text-right">Grade</th>
               <th className="w-1/12"></th>
             </tr>
           </thead>
@@ -130,7 +130,7 @@ const SubjectTableRow = ({ subject }: { subject: SubjectData }) => {
       >
         <td className="truncate text-left pr-2">{subject.name}</td>
         <td className="truncate pr-2">
-          <div className="flex justify-center">
+          <div className="flex justify-end">
             <SemesterPill semester={subject.semester}></SemesterPill>
           </div>
         </td>
