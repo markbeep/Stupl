@@ -14,4 +14,6 @@ ENV DJANGO_SETTINGS_MODULE backend.settings
 EXPOSE 8000
 
 RUN python3 manage.py migrate
-CMD python3 manage.py loaddata data/db.json && python3 manage.py runserver 0.0.0.0:8000
+
+COPY entrypoint.sh .
+ENTRYPOINT [ "sh", "./entrypoint.sh" ]
