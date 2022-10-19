@@ -21,14 +21,9 @@ const SemesterGroupCollapsible = ({
     <Collapsible
       headerBuilder={(collapsed) => (
         <div className="flex justify-between select-none w-full">
-          <div
-            className="tooltip"
-            data-tip={getCategoryWithId(subjectGroup.semester)?.information}
-          >
-            <h3 className="font-semibold text-lg">
-              Semester {subjectGroup.semester}
-            </h3>
-          </div>
+          <h3 className="font-semibold text-lg">
+            Semester {subjectGroup.semester}
+          </h3>
           <div className="flex">
             {collapsed && (
               <p className="mr-8">
