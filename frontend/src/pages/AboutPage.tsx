@@ -1,17 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
+import teamPicture from "../data/teamPicture.jpeg";
 
 type Props = {};
 
 const AboutPage = (props: Props) => {
   return (
-    <>
+    <div className="pb-32">
       <div>
         <Navbar></Navbar>
       </div>
       <div className="container mx-auto max-w-lg mt-16">
-        {/* <img className="mx-auto h-25 w-auto" src={logo} /> */}
         {/* <img
             src="https://placeimg.com/260/400/arch"
             className="max-w-sm rounded-lg shadow-2xl"
@@ -39,7 +39,11 @@ const AboutPage = (props: Props) => {
           </Link>
         </div>
       </div>
-    </>
+      <div className="mt-12 max-w-2xl mx-auto">
+        <img className="" src={teamPicture} />
+        <p className="text-xs mt-2 float-right "> © Alexander Zank</p>
+      </div>
+    </div>
   );
 };
 

@@ -22,18 +22,14 @@ export const Navbar = () => {
           </Link>
           <div>
             <Link to="/About">
-              <button className="float-right btn btn-ghost normal-case">
-                About Us
-              </button>
+              <button className="btn btn-ghost normal-case">About Us</button>
             </Link>
             <Link to="/DataProtectionPolicy">
-              <button className="float-right btn btn-ghost normal-case">
-                Data Policy
-              </button>
+              <button className="btn btn-ghost normal-case">Data Policy</button>
             </Link>
             <button
               // to="/login"
-              className="float-right btn btn-ghost normal-case"
+              className="btn btn-ghost normal-case"
               onClick={logout}
             >
               Log Out

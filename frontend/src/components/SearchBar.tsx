@@ -107,7 +107,7 @@ const SearchBarNameList = ({
             onClick={() => console.log("TODO")}
           >
             <p>🍔 Nothing here...</p>
-            <p>Click to create Custom Subject</p>
+            {/* <p>Click to create Custom Subject</p> */}
           </button>
         </li>
       </ul>
@@ -120,7 +120,7 @@ const SearchBarNameList = ({
       className="absolute dropdown-content menu p-2 shadow-md bg-base-200 rounded-box w-full"
     >
       {lectures.slice(0, 5).map((lecture) => (
-        <li>
+        <li key={lecture.vvz_id}>
           <button onClick={() => openModal(lecture)}>{lecture.name}</button>
         </li>
       ))}

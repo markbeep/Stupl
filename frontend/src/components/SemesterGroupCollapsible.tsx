@@ -36,7 +36,7 @@ const SemesterGroupCollapsible = ({
               </p>
             )}
             {collapsed && (
-              <p className="mr-2">
+              <p className="mr-8">
                 {" "}
                 {Number(
                   avgGrades({

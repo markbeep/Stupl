@@ -130,7 +130,9 @@ const SubjectTableRow = ({ subject }: { subject: SubjectData }) => {
       >
         <td className="truncate text-left pr-2">{subject.name}</td>
         <td className="truncate pr-2">
-          <SemesterPill semester={subject.semester}></SemesterPill>
+          <div className="flex justify-center">
+            <SemesterPill semester={subject.semester}></SemesterPill>
+          </div>
         </td>
         <td className="pr-2 text-right">{subject.credits}</td>
         <td className="pr-2 text-right">{subject.grade}</td>
