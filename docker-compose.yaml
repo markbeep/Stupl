@@ -1,37 +1,37 @@
 version: "1"
 
 services:
+  stupl-psql:
+    image: postgres
+    restart: always
+    volumes:
+      - data_psql:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - "5432:5432"
   stupl-backend:
     build: .
     restart: always
     ports:
       - "8000:8000"
-    volumes:
-      - data:/data
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=stupl-psql
     depends_on:
       - stupl-psql
-  stupl-psql:
-    image: postgres
-    restart: always
-    volumes:
-      - ./data/:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    ports:
-      - "5432:5432"
   stupl-frontend:
     build: frontend
     restart: always
     ports:
       - "80:80"
+    environment:
+      - API_HOST=stupl-backend
     depends_on:
       - stupl-backend
 
 volumes:
-  data:
+  data_psql:
