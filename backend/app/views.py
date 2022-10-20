@@ -1,4 +1,5 @@
 
+from unicodedata import category
 import django
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -124,29 +125,16 @@ def add_subject(request):
 @permission_classes([IsAuthenticated])
 def edit_subject(request):
     #Get new information
-    name = request.data.get("name", None)
-    credits = request.data.get("credits", None)
-    category = request.data.get("category", None)
-    semester = request.data.get("semester", None)
-    year = request.data.get("year", 2022)
-    grade = request.data.get("grade", None)
-    planned = request.data.get("planned", None)
+    new_name = request.data.get("name", None)
+    new_credits = request.data.get("credits", None)
+    new_category = request.data.get("category", None)
+    new_semester = request.data.get("semester", None)
+    new_year = request.data.get("year", 2022)
+    new_grade = request.data.get("grade", None)
+    new_planned = request.data.get("planned", None)
     subjid = request.data.get("id")
-    #Deleting old usersubject object
-    subject = get_object_or_404(UserSubjects, id=subjid)
-    subject.delete()
-    #Add new usersubject object
-    sub = UserSubjects.objects.create(
-        name=name,
-        user=subject.user,
-        credits=credits,
-        category=category,
-        grade=grade,
-        semester=semester,
-        year=year,
-        planned=planned,
-    )
-    sub.save()
+    #Update the database object
+    UserSubjects.objects.filter(id=subjid).update(name=new_name,credits=new_credits,category=new_category,semester=new_semester,year=new_year,grade=new_grade,planned=new_planned)
     return Response("Success")
 
 
