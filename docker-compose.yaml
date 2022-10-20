@@ -8,10 +8,30 @@ services:
       - "8000:8000"
     volumes:
       - data:/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    depends_on:
+      - stupl-psql
+  stupl-psql:
+    image: postgres
+    restart: always
+    volumes:
+      - ./data/:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
   stupl-frontend:
     build: frontend
+    restart: always
     ports:
       - "80:80"
+    depends_on:
+      - stupl-backend
 
 volumes:
   data:
