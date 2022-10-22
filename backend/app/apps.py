@@ -16,12 +16,14 @@ class FillDatabase(AppConfig):
         for i, x in enumerate(data):
             try:
                 lec, created = VVZSubjects.objects.get_or_create(
-                    name=x["name"],
-                    credits=x["credits"],
                     vvz_id=x["vvz_id"],
-                    semester=x["semester"],
-                    year=x["year"],
-                    category=category_to_enum(x["category"]).value,
+                    defaults={
+                        "name": x["name"],
+                        "credits": x["credits"],
+                        "semester": x["semester"],
+                        "year": x["year"],
+                        "category": category_to_enum(x["category"]).value,
+                    }
                 )
                 if created:
                     print(f"Added subject {i}")

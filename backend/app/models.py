@@ -5,7 +5,7 @@ from myauth.models import User
 class VVZSubjects(models.Model):
     name = models.CharField(max_length=256)
     credits = models.IntegerField()
-    vvz_id = models.IntegerField()
+    vvz_id = models.IntegerField(unique=True)
     lesson_number = models.CharField(max_length=256)
     semester = models.CharField(max_length=1)
     year = models.IntegerField()
