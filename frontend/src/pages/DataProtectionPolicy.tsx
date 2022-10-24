@@ -10,7 +10,7 @@ const DataProtectionPolicy = (props: Props) => {
       <div>
         <Navbar></Navbar>
       </div>
-      <div className="container mx-auto max-w-lg mt-16">
+      <div className="container mx-auto max-w-lg mt-16 px-4">
         <h1 className="text-3xl font-bold">Data Protection Policy</h1>
         <p className="pt-8">
           Your data will be stored on a server. It will not be handed to third

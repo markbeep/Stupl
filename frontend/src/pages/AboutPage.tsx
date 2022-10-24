@@ -8,10 +8,8 @@ type Props = {};
 const AboutPage = (props: Props) => {
   return (
     <div className="pb-32">
-      <div>
-        <Navbar></Navbar>
-      </div>
-      <div className="container mx-auto max-w-lg mt-16">
+      <Navbar></Navbar>
+      <div className="container mx-auto max-w-lg mt-16 px-4">
         {/* <img
             src="https://placeimg.com/260/400/arch"
             className="max-w-sm rounded-lg shadow-2xl"
@@ -32,6 +30,15 @@ const AboutPage = (props: Props) => {
           from scratch. The Bibstreet Boys are Charles Kremer, Mark Csurgay,
           Konstantin Sturm, Leander Diaz Bone, and Yanick Schimpf.
         </p>
+
+        <p className="pt-4">
+          If you find a bug or want to request a feature, feel free to open an
+          issue on{" "}
+          <a className="link" href="https://github.com/markbeep/Stupl">
+            Github
+          </a>
+          .
+        </p>
         <p className="pt-4">We hope that you enjoy our application.</p>
         <div className="flex justify-center mt-8">
           <Link to="/home" className="mt-6 btn btn-primary px-16">
@@ -39,7 +46,7 @@ const AboutPage = (props: Props) => {
           </Link>
         </div>
       </div>
-      <div className="mt-12 max-w-2xl mx-auto">
+      <div className="mt-12 max-w-2xl mx-auto px-4">
         <img className="rounded-xl" src={teamPicture} />
         <p className="text-xs mt-2 float-right "> © Alexander Zank</p>
       </div>
