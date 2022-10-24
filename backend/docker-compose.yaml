@@ -1,14 +1,16 @@
 version: "1"
 
 services:
-  # db:
-  #   image: postgres
-  #   volumes:
-  #     - ./data/db:/var/lib/postgresql/data
-  #   environment:
-  #     - POSTGRES_DB=postgres
-  #     - POSTGRES_USER=postgres
-  #     - POSTGRES_PASSWORD=postgres
+  db:
+    image: postgres
+    volumes:
+      - data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - "5432:5432"
   django:
     build: .
     restart: always
@@ -17,6 +19,11 @@ services:
     volumes:
       - .:/app
     environment:
-      - DJANGO_DEBUG=False
+      - POSTGRES_HOST=db
+      - DJANGO_DEBUG=True
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+    depends_on:
+      - db
 volumes:
   data:

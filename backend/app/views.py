@@ -1,25 +1,12 @@
 
-import django
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
-import json
 
-from app.categories import Categories, category_to_enum, enum_to_category_german
+from app.categories import Categories, enum_to_category_german
 from .models import VVZSubjects, UserSubjects
 from django.shortcuts import get_object_or_404
-
-# Create your views here.
-
-@api_view(["GET"])
-def list_temporary(request):
-    subjects = VVZSubjects.objects.all()
-    sub2 = UserSubjects.objects.all()
-    return Response({
-        "data": len(subjects),
-        "data2": len(sub2)
-    })
 
 
 @api_view(["GET"])
@@ -28,17 +15,18 @@ def get_subjects_per_user(request):
     user = request.user
     subjects = user.subjects.all()
     return Response([{
-                "id": x.id,
-                "name": x.name,
-                "credits": x.credits,
-                "category_id": x.category,
-                "category": enum_to_category_german(Categories(x.category)),
-                "semester": x.semester,
-                "year": x.year,
-                "grade": x.grade,
-                "planned": x.planned,
-        } for x in subjects ]
+        "id": x.id,
+        "name": x.name,
+        "credits": x.credits,
+        "category_id": x.category,
+        "category": enum_to_category_german(Categories(x.category)),
+        "semester": x.semester,
+        "year": x.year,
+        "grade": x.grade,
+        "planned": x.planned,
+    } for x in subjects]
     )
+
 
 def sumCreditsCategories(user, categoryList, maxList, incplanned):
     sum = 0
@@ -55,21 +43,33 @@ def sumCreditsCategories(user, categoryList, maxList, incplanned):
         i = i+1
     return sum
 
+
 @api_view(["GET"])
 def get_requirements(request):
     user = request.user
     return Response([
-            {"sat":sumCreditsCategories(user, [4], [180], True) == 56,"sat2":sumCreditsCategories(user, [4], [180], False) == 56, "name":"First Year Examinations = 56 KP"},
-            {"sat":sumCreditsCategories(user, [1],[180],True) >= 45,"sat2":sumCreditsCategories(user, [1],[180], False) >= 45, "name": "Basic Courses >= 45 KP"},
-            {"sat":sumCreditsCategories(user, [3],[180],True) >= 32,"sat2":sumCreditsCategories(user, [3],[180], False) >= 32, "name":"Core Courses >= 32 KP"},
-            {"sat":sumCreditsCategories(user, [5],[180],True) >= 2,"sat2":sumCreditsCategories(user, [5],[180], False) >= 2,"name": "Seminar = 2KP"},
-            {"sat":sumCreditsCategories(user, [2], [180],True) >= 5,"sat2":sumCreditsCategories(user, [2], [180], False) >= 5, "name": "Minor Courses >= 5 KP"},
-            {"sat":sumCreditsCategories(user, [8], [180],True) >= 6,"sat2":sumCreditsCategories(user, [8], [180], False) >= 6, "name": "Science in Perspective >= 6 KP"},
-            {"sat":sumCreditsCategories(user, [7],[180],True) >= 10,"sat2":sumCreditsCategories(user, [7],[180], False) >= 10, "name": "Bachelor's Thesis = 10 KP"},
-            {"sat":sumCreditsCategories(user, [1,3],[180,180],True) >= 84,"sat2":sumCreditsCategories(user, [1,3],[180,180], False) >= 84, "name": "Basic Courses + Core Courses >= 84 KP"},
-            {"sat":sumCreditsCategories(user, [1,3,6],[180,180,180],True) >= 96,"sat2":sumCreditsCategories(user, [1,3,6],[180,180,180], False) >= 96,"name": "Basic Courses + Core Courses + Electives >= 96 KP"},
-            {"sat":sumCreditsCategories(user, [0,1,2,3,4,5,6,7,8],[180,180,10,180,180,2,180,10,6],True) >= 180,"sat2":sumCreditsCategories(user, [0,1,2,3,4,5,6,7,8],[180,180,10,180,180,2,180,10,6], False) >= 180, "name": "Total  >= 180 KP"},
-        ])
+        {"sat": sumCreditsCategories(user, [4], [180], True) == 56, "sat2":sumCreditsCategories(
+            user, [4], [180], False) == 56, "name":"First Year Examinations = 56 KP"},
+        {"sat": sumCreditsCategories(user, [1], [180], True) >= 45, "sat2":sumCreditsCategories(
+            user, [1], [180], False) >= 45, "name": "Basic Courses >= 45 KP"},
+        {"sat": sumCreditsCategories(user, [3], [180], True) >= 32, "sat2":sumCreditsCategories(
+            user, [3], [180], False) >= 32, "name":"Core Courses >= 32 KP"},
+        {"sat": sumCreditsCategories(user, [5], [180], True) >= 2, "sat2":sumCreditsCategories(
+            user, [5], [180], False) >= 2, "name": "Seminar = 2KP"},
+        {"sat": sumCreditsCategories(user, [2], [180], True) >= 5, "sat2":sumCreditsCategories(
+            user, [2], [180], False) >= 5, "name": "Minor Courses >= 5 KP"},
+        {"sat": sumCreditsCategories(user, [8], [180], True) >= 6, "sat2":sumCreditsCategories(
+            user, [8], [180], False) >= 6, "name": "Science in Perspective >= 6 KP"},
+        {"sat": sumCreditsCategories(user, [7], [180], True) >= 10, "sat2":sumCreditsCategories(
+            user, [7], [180], False) >= 10, "name": "Bachelor's Thesis = 10 KP"},
+        {"sat": sumCreditsCategories(user, [1, 3], [180, 180], True) >= 84, "sat2":sumCreditsCategories(
+            user, [1, 3], [180, 180], False) >= 84, "name": "Basic Courses + Core Courses >= 84 KP"},
+        {"sat": sumCreditsCategories(user, [1, 3, 6], [180, 180, 180], True) >= 96, "sat2":sumCreditsCategories(
+            user, [1, 3, 6], [180, 180, 180], False) >= 96, "name": "Basic Courses + Core Courses + Electives >= 96 KP"},
+        {"sat": sumCreditsCategories(user, [0, 1, 2, 3, 4, 5, 6, 7, 8], [180, 180, 10, 180, 180, 2, 180, 10, 6], True) >= 180, "sat2":sumCreditsCategories(
+            user, [0, 1, 2, 3, 4, 5, 6, 7, 8], [180, 180, 10, 180, 180, 2, 180, 10, 6], False) >= 180, "name": "Total  >= 180 KP"},
+    ])
+
 
 @api_view(["GET"])
 def load_vvz(request):
@@ -92,6 +92,7 @@ def load_vvz(request):
         }
         for x in vvz
     ])
+
 
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
@@ -119,34 +120,24 @@ def add_subject(request):
     sub.save()
     return Response("Success")
 
-#API that updates the usersubject object
+# API that updates the usersubject object
+
+
 @api_view(["Post"])
 @permission_classes([IsAuthenticated])
 def edit_subject(request):
-    #Get new information
-    name = request.data.get("name", None)
-    credits = request.data.get("credits", None)
-    category = request.data.get("category", None)
-    semester = request.data.get("semester", None)
-    year = request.data.get("year", 2022)
-    grade = request.data.get("grade", None)
-    planned = request.data.get("planned", None)
+    # Get new information
+    new_name = request.data.get("name", None)
+    new_credits = request.data.get("credits", None)
+    new_category = request.data.get("category", None)
+    new_semester = request.data.get("semester", None)
+    new_year = request.data.get("year", 2022)
+    new_grade = request.data.get("grade", None)
+    new_planned = request.data.get("planned", None)
     subjid = request.data.get("id")
-    #Deleting old usersubject object
-    subject = get_object_or_404(UserSubjects, id=subjid)
-    subject.delete()
-    #Add new usersubject object
-    sub = UserSubjects.objects.create(
-        name=name,
-        user=subject.user,
-        credits=credits,
-        category=category,
-        grade=grade,
-        semester=semester,
-        year=year,
-        planned=planned,
-    )
-    sub.save()
+    # Update the database object
+    UserSubjects.objects.filter(id=subjid).update(name=new_name, credits=new_credits, category=new_category,
+                                                  semester=new_semester, year=new_year, grade=new_grade, planned=new_planned)
     return Response("Success")
 
 
@@ -161,29 +152,10 @@ def delete_subject(request):
     subject.delete()
     return Response("Success")
 
+
 @api_view(["GET"])
 def get_statistics(request):
     return Response({
-        "number_users" : 10
-        
+        "number_users": 10
+
     })
-
-@api_view(["GET"])
-def fill_db(request):
-    with open("data/lectures.json",'r') as f:
-        data = json.load(f)
-
-    for i, x in enumerate(data):
-        try:
-            lec = VVZSubjects.objects.create(
-                name=x["name"],
-                credits=x["credits"],
-                vvz_id=x["vvz_id"],
-                semester=x["semester"],
-                year=x["year"],
-                category=category_to_enum(x["category"]).value,
-            )
-            lec.save()
-        except django.db.utils.IntegrityError as e:
-            print(f"Error filling db: {e} | {x = }")
-    return Response("Done")

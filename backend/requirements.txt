@@ -1,3 +1,5 @@
 Django
 django-cors-headers
 django-rest-framework
+gunicorn
+psycopg2
