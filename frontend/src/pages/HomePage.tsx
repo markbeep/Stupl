@@ -117,7 +117,7 @@ function sortFactory(prop: string) {
 
 const groupSubjectsByCategory = (subjects: SubjectData[]) => {
   let ret: SubjectDataGroupedByCategory[] = [];
-  const orderedSubs = subjects.sort(sortFactory("semester"));
+  const orderedSubs = subjects.sort((a, b) => a.semester - b.semester);
   for (const c of categories) ret.push({ category_id: c.id, subjects: [] });
   for (const s of orderedSubs)
     ret.find((group) => group.category_id === s.category_id)?.subjects.push(s);
@@ -148,8 +148,7 @@ const groupSubjectsBySemester = (subjects: SubjectData[]) => {
     ret.find((group) => group.semester === s.semester)?.subjects.push(s);
   return ret
     .filter((group) => group.subjects.length > 0)
-    .sort(sortFactory("semester"));
-  // .sort((a, b) => a.semester - b.semester);
+    .sort((a, b) => a.semester - b.semester);
 };
 
 const SubjectsDataDisplay = () => {
@@ -166,7 +165,13 @@ const SubjectsDataDisplay = () => {
     refresh();
   }, [refreashId]);
 
-  const subjectData: SubjectData[] = data ?? prevData;
+  const cachedData = data ?? prevData;
+  const subjectData: SubjectData[] = cachedData?.map((s) => {
+    if (s?.semester != null) {
+      s.semester = parseInt(s.semester);
+    }
+    return s;
+  });
 
   if (loading && !subjectData) return <div>Loading ...</div>;
   if (error) return <div>Error ...</div>;
