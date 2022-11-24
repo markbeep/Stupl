@@ -1,4 +1,4 @@
-name: Build Release
+name: Build Release Production
 
 on:
   push:
@@ -34,8 +34,6 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/stupl-backend:latest
-          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/stupl-backend:buildcache
-          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/stupl-backend:buildcache,mode=max
 
       - name: Build and push frontend
         uses: docker/build-push-action@v3
@@ -45,5 +43,3 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/stupl-frontend:latest
-          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/stupl-frontend:buildcache
-          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/stupl-frontend:buildcache,mode=max
