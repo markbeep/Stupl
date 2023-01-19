@@ -94,7 +94,7 @@ const HomePage = () => {
         <div className="max-w-2xl mx-auto mt-12">
           <SubjectsDataDisplay></SubjectsDataDisplay>
 
-          <div className="mt-12">
+          <div className="mt-4">
             <RequirementsCollapsible
               includePlanned={includePlanned}
             ></RequirementsCollapsible>
