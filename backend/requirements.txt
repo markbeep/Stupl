@@ -1,5 +1,5 @@
-Django
-django-cors-headers
+Django==4.1
+django-cors-headers==3.13
 django-rest-framework
-gunicorn
-psycopg2
+gunicorn==20.1
+psycopg2==2.9
