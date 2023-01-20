@@ -94,7 +94,7 @@ const HomePage = () => {
         <div className="max-w-2xl mx-auto mt-12">
           <SubjectsDataDisplay></SubjectsDataDisplay>
 
-          <div className="mt-12">
+          <div className="mt-4">
             <RequirementsCollapsible
               includePlanned={includePlanned}
             ></RequirementsCollapsible>
@@ -182,7 +182,7 @@ const SubjectsDataDisplay = () => {
       <>
         <TotalAvgDisplay subjectGroups={subjectGroups}></TotalAvgDisplay>
         {subjectGroups.map((group) => (
-          <div className="mt-12" key={group.category_id}>
+          <div className="mt-4" key={group.category_id}>
             <SubjectGroupCollapsible
               subjectGroup={group}
             ></SubjectGroupCollapsible>
@@ -196,7 +196,7 @@ const SubjectsDataDisplay = () => {
       <>
         <TotalAvgDisplay subjectGroups={subjectGroups}></TotalAvgDisplay>
         {subjectGroups.map((group) => (
-          <div className="mt-12" key={group.semester}>
+          <div className="mt-4" key={group.semester}>
             <SemesterGroupCollapsible
               subjectGroup={group}
             ></SemesterGroupCollapsible>
